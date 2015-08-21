@@ -1,0 +1,89 @@
+/* ADMIN FORMS STYLE */
+input[type='text'],
+input[type='password']
+{
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+	font-size: 17px;
+	margin: 5px;
+}
+
+p.label
+{
+	display: inline-block;
+	margin: 0;
+}
+
+h2.item-title, h5.item-details
+{
+	margin: 0;
+	padding: 0;
+}
+h2.item-title input
+{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	font-family: "Roboto Condensed";
+	font-size: 30px;
+	font-weight: 700;
+	color: #000000;
+	font-style: none;
+	text-align: left;
+	text-indent: 0;
+/*border: none;
+border-bottom: 1px dashed #555555;*/
+}
+h5.item-details input
+{
+	margin: 0;
+	padding: 0;
+	float: left;
+	width: 50%;
+	font-weight: 700;
+	font-family: "Roboto Condensed";
+	font-size: 20px;
+	color: #000000;
+	font-style: italic;
+/*border: none;
+border-bottom: 1px dashed #555555;*/
+}
+
+
+/*#cutlery-categ,
+#cutlery-name,
+#cutlery-descr,
+#cutlery-price,
+#cutlery-img
+{
+	float: left;
+	margin: 20px;
+}*/
+#img-preview-container
+{
+	float: left;
+	position: fixed;
+}
+.img-preview
+{
+	display: inline-block;
+	float: left;
+	margin-top: 20px;
+}
+#form-container
+{
+	width: 50%;
+	float: right;
+}
+#form-section
+{
+
+}
+select
+{
+	width: 300px;
+	font-family: "Roboto Condensed", "Source Sans Pro";
+	font-size: 30px;
+	margin-bottom: 20px;
+	float: left;
+	position: fixed;
+}

@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: FandC
+        psr4_prefix: FandC
+        src_path: app

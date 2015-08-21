@@ -1,0 +1,22 @@
+#form-container
+{
+	display: block;
+	margin: auto;
+	width: 50%;
+}
+
+input[type="text"]
+{
+	width: 100%;
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+	font-size: 20px;
+	border: 1px solid #DDDDDD;
+	margin-bottom: 5px;
+}
+
+label
+{
+	font-family: "Roboto Condensed", Helvetica, sans-serif;
+	/*font-weight: 800;*/
+	font-size: 20px;
+}

@@ -1,0 +1,264 @@
+/* Admin Section Style */
+
+div.module
+{
+	float: left;
+	margin-bottom: 10px;
+	/*border: 1px solid black;*/
+	margin: 10px;
+}
+/*div.module:hover,
+div.module:hover h3,
+div.module:hover a,
+div.module a:hover
+{
+	color: #FFFFFF;
+	background-color: #7CFFB1;
+	border: none;
+	text-decoration: none;
+}*/
+
+.width-50
+{
+	width: 45%;
+}
+.width-100
+{
+	width: 100%;
+}
+
+/*div.module p
+{
+	text-align: center;
+}
+.module span
+{
+	font-family: Roboto, Helvetica, sans-serif;
+	font-weight: 100;
+	font-size: 80px;
+}*/
+
+/******************************************* ONE ORDER *******************************************/
+table#order-status
+{
+	width: 50%;
+	border-collapse: collapse;
+}
+table#order, #validation-table
+{
+	width: 100%;
+	margin: auto;
+	border-collapse: collapse;
+}
+tr
+{
+	/*height: 60px;*/
+}
+tr.table-header
+{
+	color: #FFFFFF;
+	background-color: #000000;
+	height: 30px;
+}
+td
+{
+	padding: 5px 0;
+	font-weight: normal;
+}
+td.center-col
+{
+	text-align: center;
+}
+
+
+tr#search-add-item
+{
+	height: 50px;
+}
+.edit-field input[type="text"]
+{
+	width: 40px;
+}
+.edit-comment,
+.edit-shipping-details
+{
+	margin-top: 3px;
+	width: 70%;
+}
+
+
+/* SEARCH BOX */
+#search-container
+{
+	position: relative;
+	width: 70%;
+	margin: auto;
+}
+#search-box
+{
+	display: block;
+	position: relative;
+	width: 100%%;
+	height: 30px;
+	z-index: 100;
+	margin: 0 auto 10px auto;
+	padding: 3px 2px;
+	border-radius: 7px;
+	background: #FFFFFF;
+}
+#search-tags
+{
+	display: inline-block;
+	float: left;
+}
+.search-tag
+{
+	display: inline-block;
+	height: 24px;
+	font-size: 17px;
+	font-family: "Roboto Condensed", Helvetica, sans-serif;
+	font-weight: 300;
+	color: #FFFFFF;
+	background-color: #76F2A8;
+	border-radius: 7px;
+	font-style: normal;
+	padding: 1px 4px;
+	margin: 0 1px;
+}
+.search-tag .hidden-data
+{
+	display: none;
+}
+#search-input
+{
+	display: inline-block;
+	-moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    width: 100%;
+	height: 24px;
+	margin-left: 5px;
+
+	font-size: 17px;
+	font-family: "Roboto Condensed", Helvetica, sans-serif;
+	font-weight: 300;
+	outline: none;
+	border: none;
+}
+
+#search-box #search-input:focus
+{
+	border: 1px solid #000000;border-color: #FFFFFF;
+	box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+p#search-info
+{
+	display: block;
+	margin: 0px auto;
+	text-align: center;
+	padding: 0;
+	color: #FFFFFF;
+	z-index: 100;
+	position: relative;
+}
+#results-box
+{
+	width: 100%;
+	display: block;
+	margin: auto;
+	background-color: #FAFAFA;
+	z-index: 100;
+	position: absolute;
+}
+#results-box table
+{
+	border-collapse: collapse;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+#results-box table tr:hover
+{
+	background-color: #EEEEEE;
+	cursor: pointer;
+}
+#results-box table tr td
+{
+	max-height: 50px;
+	overflow: hidden;
+	padding: 5px;
+	vertical-align: middle;
+	border-top: 1px solid #DDDDDD;
+}
+#results-box table tr td p
+{
+	margin: 0px;
+	padding: 0px;
+	font-size: 15px;
+}
+#results-box table tr td img
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+#search-tag
+{
+	color: #000000;
+	background-color: #EEEEEE;
+}
+
+/******************************************** ALL ORDERS *****************************************/
+table#all-orders
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+table#all-orders tr.table-header
+{
+	color: #FFFFFF;
+	background-color: #222222;
+}
+table#all-orders tr.table-header
+{
+	border-bottom: 2px solid #000000;
+}
+table#all-orders tr:hover
+{
+	background-color: #E3E3E3;
+}
+table#all-orders td
+{
+	text-align: center;
+}
+
+/******************************************** INVOICE ********************************************/
+#invoice-header, #invoice-customer-details, #invoice-order-details
+{
+	width: 100%;
+}
+#invoice-header img
+{
+	width: 300px;
+}
+#invoice-header p
+{
+	font-size: 15px;
+	text-align: center;
+}
+
+#invoice-customer-details p
+{
+	text-align: right;
+}
+
+table.invoice-order
+{
+	width: 100%;
+	margin: auto;
+	border-collapse: collapse;
+}
+
+table.invoice-order td
+{
+	border-top: 1px solid #555555;
+}

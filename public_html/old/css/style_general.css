@@ -1,0 +1,473 @@
+@import url(http://fonts.googleapis.com/css?family=Quicksand:400,800|Open+Sans:400,800);
+@font-face{
+	font-family: Didot;
+	src: url(../fonts/theanodidot-regular.eot);
+	src: url(../fonts/theanodidot-regular.woff) format('woff'),
+		 url(../fonts/theanodidot-regular.ttf) format('truetype'),
+		 url(../fonts/theanodidot-regular.svg) format('svg');
+	font-weight: 300;
+	/*font-style:normal*/
+}
+/** Z-INDEX
+	
+	blur
+	item-viewer
+	basket
+	header
+
+**/
+
+*
+{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+html, body
+{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	background-color: #222222;
+	z-index: -10;
+}
+
+a.button
+{
+	margin: 0px;
+	margin-top: 20px;
+	padding: 2px 7px 2px 7px;
+	font-family: "Quicksand", sans-serif;
+	font-size: 15px;
+	text-indent: 0px;
+	color: #FFFFFF;
+	border: none;
+	background-color: #000000;
+	text-decoration: none;
+}
+
+button
+{
+	margin: 15px;
+	
+	padding: 10px;
+	height: 44px;
+
+	font-family: "Quicksand", sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+	text-indent: 0px;
+	color: #FFFFFF;
+	border: none;
+	background-color: rgba(0,0,0,0);
+	text-decoration: none;
+	border: 3px solid #FFFFFF;
+}
+button:hover
+{
+	color: #000000;
+	background-color: #FFFFFF;
+}
+
+/********************************************** HOME *********************************************/
+.block-link-left
+{
+	width: 50%;
+	float: left;
+	height: 300px;
+	text-align: right;
+	padding: 10px;
+	background-color: #FFFFFF;
+	color: #ff2a7f;
+}
+.block-link-right
+{
+	width: 50%;
+	float: right;
+	height: 300px;
+	text-align: left;
+	padding: 10px;
+	background-color: #FFFFFF;
+	color: #ff2a7f;
+}
+
+#block-link-title
+{
+	background: url('../pictures/unnamed8.jpg');
+	background-size: cover;
+	width: 100%;
+	height: 80%;
+	padding: 50px;
+	border-bottom: 20px solid #ff2a7f;
+}
+#block-link-silverware
+{
+	background: url('../pictures/unnamed1.jpg');
+	background-size: cover;
+	float: left;
+}
+#block-link-lighting
+{
+	background-color: #777777;
+	background: url('../pictures/unnamed2.jpg');
+	background-size: cover;
+	float: left;
+}
+#block-link-furniture
+{
+	background-color: #AAAAAA;
+	background: url('../pictures/unnamed5.jpg');
+	background-size: cover;
+	float: left;
+}
+#block-link-bric-a-brac
+{
+	background-color: #555555;
+	background: url('../pictures/unnamed4.jpg');
+	background-size: cover;
+	float: left;
+}
+#block-link-cake-stand
+{
+	background-color: #555555;
+	background: url('../pictures/cakestand.jpg') center;
+	background-size: cover;
+	float: left;
+}
+#block-link-about-us
+{
+	background-color: #EEEEEE;
+	float: left;
+	/*width: 100%;*/
+}
+
+
+/********************************************** TEXT *********************************************/
+h2
+{
+	font-family: "Didot", serif;
+	font-size: 60px;
+	padding: 0;
+	font-weight: 300;
+	color: #FFFFFF;
+	text-align: center;
+}
+h3
+{
+	font-family: "Quicksand", sans-serif;
+	font-size: 30px;
+	font-weight: 800;
+	padding: 0;
+	color: #000000;
+	/*text-align: center;*/
+}
+
+p
+{
+	font-family: "Quicksand", sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+	color: #000000;
+	/*text-align: center;*/
+}
+
+/********************************************* HEADER ********************************************/
+#header, #top-bar
+{
+	width: 100%;
+	height: 60px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 20;
+}
+#menu-link
+{
+	height: 60px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: #FFFFFF;
+	padding-right: 15px;
+	cursor: pointer;
+	z-index: 20;
+}
+#basket-link
+{
+	height: 60px;
+	/*width: 60px;*/
+	position: fixed;
+	top: 0;
+	right: 0;
+	background-color: #FFFFFF;
+	cursor: pointer;
+	z-index: 20;
+}
+#basket-link #basket-notif
+{
+	height: 60px;
+	display: none;
+	font-family: "Quicksand", sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+	color: #000000;
+	padding: 17px;
+}
+#svg-menu
+{
+	float: left;
+	width: 60px;
+	height: 60px;
+	padding: 15px 15px 15px 15px;
+}
+#svg-basket
+{
+	float: right;
+	width: 60px;
+	height: 60px;
+	padding: 15px 18px 15px 19px;
+}
+h4 /*Page title*/
+{
+	font-family: "Quicksand", sans-serif;
+	font-size: 20px;
+	font-weight: 800;
+	color: #000000;
+	vertical-align: middle;
+	margin-top: 17px;
+	float: left;
+}
+#header .dropdown
+{
+	float: right;
+	width: 150px;
+	margin-top: 17px;
+	cursor: pointer;
+	overflow: hidden;
+	font-family: "Quicksand", sans-serif;
+	font-size: 20px;
+	font-weight: 800;
+	color: #FFFFFF;	
+}
+#header .options
+{
+	display: none;
+	width: 100%;
+	padding: 2px;
+}
+#header .options span:hover
+{
+	color: #000000;
+	background-color: #FFFFFF; 
+}
+#header .selected
+{
+	border: 2px solid #FFFFFF;
+	padding: 2px;
+}
+
+#header .options span
+{
+	width: 100%;
+	display: block;
+}
+
+
+/******************************************** BASKET *********************************************/
+#basket
+{
+	display: block;
+	width: 50%;
+	height: 100%;
+	padding: 60px 15px 20px 15px;
+	background-color: #222222;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 0;
+	overflow: auto;
+}
+table#basket-contents
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+table#basket-contents tr
+{
+	height: 40px;
+}
+table#basket-contents td
+{
+	font-family: "Quicksand", sans-serif;
+	font-size: 15px;
+	text-indent: 0px;
+	color: #FFFFFF;
+	border-top: 1px dashed #FFFFFF;
+	padding: 2px;
+}
+
+/********************************************** NAV **********************************************/
+#nav
+{
+	display: block;
+	width: 200px;
+	height: 100%;
+	margin-top: 60px;
+	background-color: #222222;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+#nav ul li
+{
+	width: 100%;
+	color: #FFFFFF;
+	font-family: "Quicksand", sans-serif;
+	font-size: 18px;
+	font-weight: 400;
+}
+
+/********************************************* PAGE **********************************************/
+#title-silverware
+{
+	width: 100%;
+	font-size: 60px;
+	height: 3em;
+	padding-top: 0.5em;
+	background: url('../pictures/unnamed1.jpg');
+	background-size: cover;
+}
+#blur
+{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 14;
+	background-color: #FFFFFF;
+	opacity: 0.5;
+}
+/*body
+{
+	-webkit-filter: blur(3px);
+}*/
+
+/****************************************** SHOPWINDOW *******************************************/
+#shopwindow
+{
+	width: 100%;
+	float: left;
+	position: absolute;
+	left: 0;
+	z-index: 5;
+	background-color: #FFFFFF;
+}
+.item
+{
+	float: left;
+	padding: 0;
+	margin: 0;
+	position: relative;
+}
+.item img
+{
+	display: block;
+}
+.item-details
+{
+	display: none;
+	float: left;
+	height: 100px;
+	position: absolute;
+	bottom: 80px;
+	background-color: #FFFFFF;
+	text-align: center;
+	vertical-align: middle;
+	
+}
+.item:hover .item-details
+{
+	display: block;
+
+}
+
+/****************************************** ITEM VIEWER ******************************************/
+#item-viewer
+{
+	display: block;
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 0;
+	padding: 30px;
+	background-color: #222222;
+	color: #FFFFFF;
+}
+#item-viewer-pict
+{
+	float: left;
+	width: 50%;
+
+}
+#item-viewer-details
+{
+	float: right;
+	width: 50%;
+	padding: 0 20px 0 20px;
+}
+#item-viewer-details p
+{
+	color: #FFFFFF;
+}
+
+#item-viewer-details p#item-viewer-stamped
+{
+	font-size: 30px;
+	font-family: Didot;
+}
+#item-viewer-details p#item-viewer-price
+{
+	float: right;
+	font-size: 30px;
+}
+
+span#close
+{
+	float: right;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	margin: 0;
+	font-family: "Quicksand", sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+	text-indent: 0px;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+/*#item-viewer
+{
+	display: none;
+	width: 80%;
+	height: 80%;
+	padding: 10px;
+	z-index: 15;
+	position: fixed;
+	top: 10%;
+	left: 10%;
+	background-color: #FFFFFF;
+}
+
+#item-viewer-pict
+{
+	width: 45%;
+}
+*/

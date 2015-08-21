@@ -1,0 +1,111 @@
+/** BASKET STYLE **/
+
+#basket
+{
+	width: 70%;
+	height: 100%;
+	display: block;
+	position: fixed;
+	top: -100%;
+	right: 0;
+	z-index: 90;
+	background-color: #F1F1F1;
+	padding: 20px 50px 20px 50px;
+}
+#basket.opened
+{
+	/*top:60px;*/
+}
+hr
+{
+	border: none;
+	background-color: #555555;
+	height: 1px;
+	width: 100%;
+}
+
+table#basket-contents
+{
+	border-collapse: collapse;
+	border-bottom: 20px;
+}
+td
+{
+	font-family: "Source Sans Pro", sans-serif;
+	font-size: 15px;
+
+}
+td span
+{
+	font-style: italic;
+}
+
+tr#subtotal-row, tr#shipping-row, tr#total-row
+{
+	height: 50px;
+}
+tr#subtotal-row td, tr#shipping-row td, tr#total-row td
+{
+	font-family: "Roboto Condensed", "Source Sans Pro", sans-serif;
+	font-weight: bold;
+	font-size: 17px;
+	border-top: 2px solid #000000;
+	border-bottom: 2px solid #000000;
+	padding: 0 20px;
+}
+tr#shipping-row td input
+{
+	font-family: "Roboto Condensed", "Source Sans Pro", sans-serif;
+	font-weight: bold;
+	font-size: 17px;
+}
+tr#message-row td
+{
+	border: none;
+}
+tr#message-row td textarea
+{
+	display: block;
+	width: 70%;
+	margin: auto;
+}
+
+
+div.item-qty
+{
+	display: inline-block;
+	width: 62px;
+	height: 22px;
+	margin-right: 30px;
+	border: 1px solid #000000;
+}
+
+div.item-qty-plus-button
+{
+	width: 20px;
+	height: 20px;
+	color: #FFFFFF;
+	background-color: #000000;
+	text-align: center;
+	cursor: pointer;
+
+	float: left;
+}
+div.item-qty-minus-button
+{
+	width: 20px;
+	height: 20px;
+	color: #FFFFFF;
+	background-color: #000000;
+	text-align: center;
+	cursor: pointer;
+
+	float: right;
+}
+div.item-qty-value
+{
+	width: 20px;
+	height: 20px;
+	float: left;
+	text-align: center;
+}

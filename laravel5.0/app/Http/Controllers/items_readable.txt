@@ -1,0 +1,122 @@
+c4 MY DAD IS A SUPERHERO	Big Spoon	big-spoon	€15.00
+c7 YOU MAKE ME HAPPY	Big Spoon	big-spoon	€15.00
+c17 BEST MUM	Big Spoon	big-spoon	€15.00
+c20 SUPPENKASPER	Big Spoon	big-spoon	€15.00
+c36 YOU'RE A SPOONFUL OF MAGIC To my Teacher	Big Spoon	big-spoon	€15.00
+c39 BEST DAD	Big Spoon	big-spoon	€15.00
+c46 CEREAL KILLER	Big Spoon	big-spoon	€15.00
+c48 CUTIE PIE	Big Spoon	big-spoon	€15.00
+c54 PEACE JOY & LOVE	Big Spoon	big-spoon, christmas	€15.00
+c55 BONJOUR MON AMOUR	Big Spoon	big-spoon	€15.00
+c60 MERCI BEAUCOUP!	Big Spoon	big-spoon	€15.00
+c61 DANKE SCHÖN	Big Spoon	big-spoon	€15.00
+c62 GUTEN APPETIT	Big Spoon	big-spoon	€15.00
+c65 I AM A MERMAID	Big Spoon	big-spoon	€15.00
+c66 I EAT GLITTER FOR TEA	Big Spoon	big-spoon	€15.00
+c67 FUTURE TROPHY HUSBAND	Big Spoon	big-spoon	€15.00
+c68 LOVE YOU MUM	Big Spoon	big-spoon	€15.00
+c71 DREAM | BIG	Big Spoon	big-spoon	€15.00
+c96 MY DARLING	Big Spoon	big-spoon	€15.00
+c97 KEEP CALM AND CARRY ME ON	Big Spoon	big-spoon	€15.00
+c98 I LOVE YOU	Big Spoon	big-spoon	€15.00
+c113 MERCI	Big Spoon	big-spoon	€15.00
+c131 JE T'AIME à la folie	Big Spoon	big-spoon	€15.00
+c151 NOEL	Big Spoon	big-spoon, christmas	€15.00
+c8 DREAM BIG	Dessert Spoon	dessert-spoon	€20.00
+c15 sweety	Dessert Spoon	dessert-spoon	€20.00
+c30 LET'S EAT ICE CREAM	Dessert Spoon	dessert-spoon	€18.00
+c45 CARPE DIEM	Dessert Spoon	dessert-spoon	€18.00
+c94 YOU ARE SWEET ENOUGH	Jam/Sugar Serving Spoon	dessert-spoon, serving-spoon	€18.00
+c130 MON AMIE PREFEREE	Dessert Spoon	dessert-spoon	€18.00
+c138 JE T'AIME	Dessert Spoon	dessert-spoon	€18.00
+c142 PEACHES AND CREAM	Dessert Spoon	dessert-spoon	€18.00
+c143 YOU'RE MY SUNSHINE	Dessert Spoon	dessert-spoon	€18.00
+c156 SCRUMDIDDLYOUMPTIOUS	Dessert Spoon	dessert-spoon	€18.00
+c164 WELCOME to the WORLD	Baby Spoon	baby-spoon, teaspoon	€25.00
+c3 Ma Chérie	Big Fork	big-fork	€15.00
+c11 MR | MRS	Pair Big Forks	big-fork, pair	€25.00
+c24 I &	9825; CAKE	Big Fork	big-fork, dessert-fork	€15.00
+c25 BEAUTY & | the BEAST	Pair Big Forks	big-fork, pair	€25.00
+c27 I &	9825; cake	Fork	with Sterling Silver Collar)	big-fork, dessert-fork	€20.00
+c78 FEED ME LOVE ME	Big Fork	big-fork	€15.00
+c88 CUTIE PIE	Big Fork	big-fork	€15.00
+c91 YOU & | ME	Pair Big Forks	big-fork	€25.00
+c93 HEALTH FOOD MAKES ME SICK!	Big Fork	big-fork	€15.00
+c99 SERVE LOVE GENEROUSLY	Very Big Ladle XXL	big-fork	€34.00
+c101 TAKE ME | TO YOUR PIC-NIC	Pair Fork Knife	pair, big-fork, knife	€25.00
+c102 I DO ME TOO	Pair Big Forks	pair, big-fork	€25.00
+c109 Mon Chéri	Big Fork	big-fork	€15.00
+c110 MOI | TOI	Pair Big Forks	pair, big-fork	€25.00
+c111 ENJOY ME	Big Fork	big-fork	€15.00
+c112 HE CARES ABOUT ME	Dessert Spoon	pair, big-fork	€18.00
+c114 I HAVE A DREAM	Big Fork	big-fork	€15.00
+c127 J'&	9825; le gâteau	Big Fork	big-fork	€15.00
+c128 I'm always right | I'm always wrong	Pair Big Forks	pair, big-fork	€25.00
+c134 Mangeons du gâteau | Ensemble au lit	Pair Big Forks	big-fork, pair	€25.00
+c136 TON AMOUR | ME RASSASIE	Pair Fork Knife	pair, big-fork, knife	€25.00
+c146 LOOKING FOR YOU	Seafood Fork	big-fork, serving-fork	€25.00
+c22 I &	9825; cake	Dessert Fork	dessert-fork	€15.00
+c24 I &	9825; CAKE	Big Fork	big-fork, dessert-fork	€15.00
+c27 I &	9825; cake	Fork	with Sterling Silver Collar)	big-fork, dessert-fork	€20.00
+c58 I &	9825; YOU	Dessert Fork	dessert-fork	€15.00
+c106 KISS ME	Dessert Fork	dessert-fork	€18.00
+c120 eat cake | in Bed	Pair Dessert Forks	pair, dessert-fork	€25.00
+c137 LET'S EAT FOREVER | CAKE TOGETHER	Pair Dessert Forks	pair, dessert-fork	€25.00
+c150 I &	9825; cake and you	Dessert Fork	dessert-fork	€15.00
+c12 YOU ARE THE BUTTER ON MY BREAD	Big Butter Knife	with Sterling Silver Collar)	knife	€25.00
+c32 SPREAD HAPPINESS	Big Butter Knife	knife	€20.00
+c42 SPREAD LOVE	Mid-size Butter Knife	sterling silver collar)	knife	€25.00
+c82 SPREAD KINDNESS	Big Butter Knife	knife	€20.00
+c89 SERVE LOVE GENEROUSLY	Jam Server	knife, server	€25.00
+c101 TAKE ME | TO YOUR PIC-NIC	Pair Fork Knife	pair, big-fork, knife	€25.00
+c115 LA VIE EST DURE SANS CONFITURE	Jam Server	server, knife	€25.00
+c116 LE BEURRE C'EST LE BONHEUR	Big Butter Knife	knife	€20.00
+c136 TON AMOUR | ME RASSASIE	Pair Fork Knife	pair, big-fork, knife	€25.00
+c152 SPREAD LAUGHTER	Big Butter Knife	with Sterling Silver Collar)	knife	€25.00
+c74 DOLCE VITA	Sugar/Jam Serving Spoon	serving-spoon, spoon	€25.00
+c81 SERVE LOVE	Mid-Size Serving Spoon	serving-spoon	€18.00
+c94 YOU ARE SWEET ENOUGH	Jam/Sugar Serving Spoon	dessert-spoon, serving-spoon	€18.00
+c100 SERVE LOVE GENEROUSLY	Clawed Serving Spoon	serving-spoon	€25.00
+c118 SERVE LOVE	Serving Spoon	serving-spoon	€25.00
+c123 HOLD ME | TIGHT	Pair Serving Spoons	serving-spoon, pair	€34.00
+c125 YES PLEASE	Big Clawed Serving Spoon	serving-spoon	€25.00
+c34 pick me up	Pickle Fork	serving-fork	€20.00
+c70 MORE	Big Serving Fork	serving-fork	€32.00
+c124 YES PLEASE	Big Serving Fork	pair, serving-fork	€25.00
+c146 LOOKING FOR YOU	Seafood Fork	big-fork, serving-fork	€25.00
+c18 LET'S EAT CAKE AND CELEBRATE	Cake Server	cake-server	€32.00
+c43 SERVED WITH LOVE	Cake server	cake-server	€32.00
+c44 QUEEN OF CAKES	Cake server	cake-server	€32.00
+c69 SLICE of HEAVEN	Cake Server	cake-server	€32.00
+c75 YOU ME & CAKE	Cake Server	cake-server	€32.00
+c117 HOLD ME TIGHT	Pâtisserie Server	cake-server	€32.00
+c126 PRINCESSE de la PATISSERIE	Cake Server	cake-server	€32.00
+c129 SERVE LOVE	Cake Server	cake-server	€32.00
+c31 SAUCY	Little Ladle	ladle	€25.00
+c33 SERVE LOVE	Very Big Ladle XXL	ladle	€34.00
+c159 SERVED WITH LOVE	Very Big Ladle XXL	ladle	€34.00
+c11 MR | MRS	Pair Big Forks	big-fork, pair	€25.00
+c23 TEA | FOR TWO	Pair Teaspoons	teaspoon, pair	€28.00
+c25 BEAUTY & | the BEAST	Pair Big Forks	big-fork, pair	€25.00
+c28 TEA | FOR TWO	Pair Teaspoons	teaspoon, pair	€25.00
+c101 TAKE ME | TO YOUR PIC-NIC	Pair Fork Knife	pair, big-fork, knife	€25.00
+c102 I DO ME TOO	Pair Big Forks	pair, big-fork	€25.00
+c108 YOU | ME	Pair Teaspoons	pair, teaspoon	€25.00
+c110 MOI | TOI	Pair Big Forks	pair, big-fork	€25.00
+c112 HE CARES ABOUT ME	Dessert Spoon	pair, big-fork	€18.00
+c120 eat cake | in Bed	Pair Dessert Forks	pair, dessert-fork	€25.00
+c123 HOLD ME | TIGHT	Pair Serving Spoons	serving-spoon, pair	€34.00
+c124 YES PLEASE	Big Serving Fork	pair, serving-fork	€25.00
+c128 I'm always right | I'm always wrong	Pair Big Forks	pair, big-fork	€25.00
+c134 Mangeons du gâteau | Ensemble au lit	Pair Big Forks	big-fork, pair	€25.00
+c136 TON AMOUR | ME RASSASIE	Pair Fork Knife	pair, big-fork, knife	€25.00
+c137 LET'S EAT FOREVER | CAKE TOGETHER	Pair Dessert Forks	pair, dessert-fork	€25.00
+c147 DREAMER | LOVER	Pair Teaspoons	pair, teaspoon	€25.00
+c148 MY SAIL | MY ANCHOR	Pair Teaspoons	pair, teaspoon	€25.00
+c160 HOW SWEET IT IS | TO BE LOVE BY YOU	Pair Teaspoons	pair, teaspoon	€25.00
+k1 Charlotte	three-plates	three-plates	€69.00
+k2 Deauville	two-plates	two-plates	€49.00
+k3 Georgette	two-plates	two-plates	€49.00
+k4 Josephine	plate-gravy-boat	plate-gravy-boat	€59.00
+k5 Louisette	two-plates	two-plates	€49.00
+k6 Paulette	two-oval-plates	two-oval-plates	€54.00

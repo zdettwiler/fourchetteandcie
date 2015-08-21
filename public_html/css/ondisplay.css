@@ -1,0 +1,53 @@
+/** ONE ITEM DISPLAY STYLE **/
+
+#ondisplay-imgs
+{
+	width: 55%;
+	float: left;
+}
+#ondisplay-imgs img
+{
+	width: 100%;
+}
+
+#ondisplay-details
+{
+	width: 40%;
+	padding: 10px;
+	float: right;
+
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+#ondisplay-details h2
+{
+	margin: 0;
+	padding: 0;
+	font-family: "Roboto Condensed";
+	font-size: 40px;
+	color: #000000;
+	font-style: none;
+	text-align: left;
+}
+
+#ondisplay-details h5
+{
+	margin: 0;
+	padding: 0;
+	font-family: "Roboto Condensed";
+	font-size: 20px;
+	color: #000000;
+	font-style: italic;
+}
+
+#ondisplay-details h6
+{
+	margin: 0;
+	padding: 0;
+	font-family: "Roboto Condensed";
+	font-size: 40px;
+	color: #000000;
+	text-align: right;
+}

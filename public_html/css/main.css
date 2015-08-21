@@ -1,0 +1,538 @@
+/** MAIN CSS **/
+
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:300|Source+Sans+Pro:400,900|Bentham);
+
+html, body
+{
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	margin-top: 50px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	background-color: #FAFAFA;
+	position: relative;
+}
+
+*
+{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+p, li
+{
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+}
+a
+{
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+	color: #000000;
+	text-decoration: none;
+	margin-right: 30px;
+}
+a:hover
+{
+	color: #7CFFB1;
+}
+h1
+{
+	margin: 18px;
+	font-family: "Roboto Condensed", Helvetica, sans-serif;
+	font-weight: 300;
+	font-size: 20px;
+	float: left;
+	color: #000000;
+}
+h2
+{
+	margin: 10px;
+	padding: 0;
+	font-family: "Roboto Condensed", Helvetica, sans-serif;
+	font-weight: 300;
+	font-size: 30px;
+	color: #000000;
+	text-align: left;
+}
+h3
+{
+	margin: 10px;
+	padding: 0;
+	font-family: "Roboto Condensed", Helvetica, sans-serif;
+	/*font-weight: 800;*/
+	font-size: 20px;
+	color: #000000;
+	text-align: left;
+	text-indent: 20px;
+}
+
+button, input[type='submit']
+{
+	color: #FFFFFF;
+	background-color: #7CFFB1;
+	border: none;
+	height: 30px;
+	padding: 1px 10px 1px 10px;
+	font-family: Arial, "Roboto Condensed";
+	/*font-weight: 700;*/
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+a.a-button-style
+{
+	color: #FFFFFF;
+	background-color: #7CFFB1;
+	border: none;
+	height: 30px;
+	width: auto;
+	margin: 0;
+	padding: 7px 10px 7px 10px;
+	font-family: Arial, "Roboto Condensed";
+	font-size: 13.33px;
+	cursor: pointer;
+	text-align: left;
+	margin-bottom: 5px;
+}
+.ref-box
+{
+	display: inline-block;
+	height: 22px;
+	padding: 0px 5px;
+	/*width: 30px;*/
+	color: #FFFFFF;
+	background-color: #000000;
+	text-align: left;
+	font-style: normal;
+	text-decoration: none;
+}
+.categ-box
+{
+	display: inline-block;
+	height: 22px;
+	padding: 0px 5px;
+	/*width: 30px;*/
+	color: #FFFFFF;
+	background-color: #555555;
+	text-align: left;
+	font-style: normal;
+	text-decoration: none;
+}
+
+.right
+{
+	float: right;
+}
+table
+{
+	width: 100%;
+}
+
+
+#content
+{
+	width: 80%;
+	padding: 0;
+	display: block;
+	margin: auto;
+}
+.content
+{
+	width: 80%;
+	padding: 0;
+	display: block;
+	margin: auto;
+}
+
+ul#shopwindow
+{
+	width: 100%;
+	padding: 0;
+	display: block;
+	margin: auto;
+
+}
+.item
+{
+	display: block;
+	width: 300px;
+	/*height: 350px;*/
+	margin: 30px;
+	float: left;
+	list-style-type: none;
+}
+.item .item-details
+{
+	height: 100px;
+}
+.item .item-stamped-descr
+{
+	float: left;
+}
+.item .item-details span.item-stamped
+{
+	font-family: "Roboto Condensed";
+	font-weight: 800;
+}
+.item .item-details span.item-descr
+{
+	margin-top: 5px;
+	font-size: 12px;
+	font-family: "Roboto Condensed";
+	font-weight: 800;
+}
+.item .item-details .item-price span
+{
+	width: 50px;
+	font-family: "Roboto Condensed";
+	font-weight: 800;
+	float: right;
+}
+
+#fade
+{
+	display: none;
+	height: 100%;
+	width: 100%;
+	background-color: #000000;
+	z-index: 50;
+	position: fixed;
+	top: 0;
+	left: 0;
+	opacity: 0.6;
+}
+
+/********************************************** HOME *********************************************/
+#home-content
+{
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+
+}
+.block-link-left
+{
+	width: 50%;
+	float: left;
+	height: 300px;
+	text-align: right;
+	padding: 10px;
+	background-color: #FFFFFF;
+	color: #000000;
+}
+.block-link-right
+{
+	width: 50%;
+	float: right;
+	height: 300px;
+	text-align: left;
+	padding: 10px;
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+#block-link-title
+{
+	background: url('../pictures/home/unnamed8.jpg');
+	background-size: cover;
+	width: 100%;
+	height: 50%;
+	padding: 40px;
+	border-bottom: 20px solid #7CFFB1;
+}
+#block-link-silverware
+{
+	background: url('../pictures/home/cutlery.jpg');
+	background-size: cover;
+	float: left;
+}
+#block-link-lighting
+{
+	background-color: #777777;
+	background: url('../pictures/home/unnamed2.jpg');
+	background-size: cover;
+	float: left;
+}
+#block-link-furniture
+{
+	background-color: #AAAAAA;
+	background: url('../pictures/home/unnamed5.jpg');
+	background-size: cover;
+	float: left;
+}
+#block-link-bric-a-brac
+{
+	background-color: #555555;
+	background: url('../pictures/home/unnamed4.jpg');
+	background-size: cover;
+	float: left;
+}
+#block-link-cake-stand
+{
+	background-color: #555555;
+	background: url('../pictures/home/cakestand.jpg') center;
+	background-size: cover;
+	float: left;
+}
+#block-link-about-us
+{
+	background-color: #EEEEEE;
+	float: left;
+	/*width: 100%;*/
+}
+
+/******************************************** NAV LINKS *********************************************/
+#nav-links
+{
+	width: 30%;
+	height: 100%;
+	display: block;
+	position: fixed;
+	top: 0;
+	left: -30%;
+	z-index: -10;
+	background-color: #F1F1F1;
+	padding: 70px 10px 50px 10px;
+}
+#nav-links ul
+{
+	text-align: left;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+#nav-links ul li
+{
+	width: 100%;
+	font-size: 20px;
+	height: 40px;
+	text-align: left;
+}
+#back-arrow
+{
+	width: 50px;
+	height: 50px;
+	position: fixed;
+	left: 0px;
+	top: 100px;
+	background-color: #7CFFB1;
+	padding: 13px 10px 10px 10px;
+}
+
+/******************************************* CATEG BAR *******************************************/
+#categ-bar
+{
+	width: 100%;
+	margin: 30px 0px;
+	padding: 0 30px;
+}
+#categ-links
+{
+
+}
+#categ-bar ul
+{
+	display: block;
+	width: 100%;
+	margin: 10px auto;
+	padding: 0;
+	list-style: none;
+	text-align: center;
+}
+#categ-bar ul li
+{
+	display: block;
+	width: 20%;
+	float: left;
+}
+
+
+
+/******************************************** ITEMVIEWER *********************************************/
+#item-viewer-content
+{
+	display: block;
+	margin: auto;
+	width: 80%;
+}
+#item-viewer
+{
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: fixed;
+	top: 60px;
+	left: -120%;
+	z-index: 40;
+	background-color: #EEEEEE;
+	padding: 20px 0px 20px 0px;
+}
+
+#close-viewer
+{
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+#item-viewer-imgs
+{
+	width: 55%;
+	float: left;
+}
+#item-viewer-imgs img
+{
+	width: 100%;
+}
+
+#item-viewer-details
+{
+	width: 40%;
+	padding: 10px;
+	float: right;
+
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+#item-viewer-details h2
+{
+	margin: 0;
+	padding: 0;
+	font-family: "Roboto Condensed";
+	font-size: 40px;
+	color: #000000;
+	font-style: none;
+	text-align: left;
+}
+
+#item-viewer-details h5
+{
+	margin: 0;
+	padding: 0;
+	font-family: "Roboto Condensed";
+	font-size: 20px;
+	color: #000000;
+	font-style: italic;
+}
+
+#item-viewer-details h6
+{
+	margin: 0;
+	padding: 0;
+	font-family: "Roboto Condensed";
+	font-size: 40px;
+	color: #000000;
+	text-align: right;
+}
+
+
+/******************************************** NOTIF BAR *********************************************/
+#notification-bar
+{
+	width: 70%;
+	margin: auto;
+	/*height: 45px;*/
+	border: 2px solid #000000;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+#notification-bar p
+{
+	margin: 0;
+}
+
+#notification.positive
+{
+	width: 70%;
+	margin: 20px auto;
+	padding: 10px;
+	border: 1px solid #2ECC71;
+}
+#notification.positive p
+{
+	color: #2ECC71;
+	margin: 0;
+}
+
+#notification.negative
+{
+	width: 70%;
+	margin: 20px auto;
+	padding: 10px;
+	border: 1px solid #E74C3C;
+}
+#notification.negative p
+{
+	color: #E74C3C;
+	margin: 0;
+}
+
+/******************************************** FOOTER *********************************************/
+
+footer
+{
+	position: relative;
+	margin-top: -200px; /* negative value of footer height */
+	height: 200px;
+	clear:both;
+	background-color: #DDDDDD;
+	padding: 20px;
+}
+footer ul
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+footer ul li a
+{
+	color: #888888;
+}
+footer #footer-links,
+footer #footer-various-details,
+footer #footer-fandcie-details
+{
+	height: 150px;
+}
+
+footer #footer-links
+{
+	width: 33.33%;
+	float: left;
+}
+footer #footer-fandcie-details p
+{
+	margin: 0;
+	color: #888888;
+}
+footer #footer-various-details
+{
+	width: 33.33%;
+	float: left;
+	text-align: center;
+}
+footer #footer-fandcie-details
+{
+	width: 33.33%;
+	float: left;
+	text-align: left;
+}
+
+footer #signature
+{
+	margin: auto;
+	width: 100%;
+}
+footer #signature p
+{
+	color: #666666;
+	text-align: center;
+}
