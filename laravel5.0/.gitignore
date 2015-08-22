@@ -1,9 +1,0 @@
-/config/paypal.php
-/vendor
-/node_modules
-/public/pictures
-.env
-fourchetteandcie_backup_27jul.zip
-orga.txt
-checkout_process.txt
-shipping_prices.txt
