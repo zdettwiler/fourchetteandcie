@@ -376,6 +376,7 @@ ul#shopwindow
 	display: block;
 	margin: auto;
 	width: 80%;
+	height: 100%;
 }
 #item-viewer
 {
@@ -387,7 +388,7 @@ ul#shopwindow
 	left: -120%;
 	z-index: 40;
 	background-color: #EEEEEE;
-	padding: 20px 0px 20px 0px;
+	padding: 20px 0px 80px 0px;
 }
 
 #close-viewer
@@ -404,11 +405,17 @@ ul#shopwindow
 #item-viewer-imgs
 {
 	width: 55%;
+	height: 100%;
 	float: left;
 }
-#item-viewer-imgs img
+#item-viewer-imgs img.main-img
 {
-	width: 100%;
+	max-height: 80%;
+	max-width: 100%;
+}
+#item-viewer-imgs img.thumb-img
+{
+	max-height: 20%;
 }
 
 #item-viewer-details
