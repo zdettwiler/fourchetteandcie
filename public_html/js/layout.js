@@ -78,7 +78,7 @@ function toggle_viewer(item)
 		$("#item-viewer, #button-add-to-basket").attr('item-ref', $(item).attr('item-ref'));
 		$("#item-viewer").animate({left:0});
 
-		// console.log($(item).attr('img-count'));
+		console.log($(item).attr('img-count'));
 		$('#item-viewer-imgs img').attr('src', $('img.item-img', item).attr('src'));
 		// $('#item-viewer-ref').html('ref: #'+$('.item-details p.item-ref', item).html());
 		$('#item-viewer-stamped').html($('.item-details .item-stamped-descr span.item-stamped', item).html());

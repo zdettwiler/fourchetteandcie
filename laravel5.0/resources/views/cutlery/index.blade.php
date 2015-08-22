@@ -29,11 +29,11 @@
 @section('categ-bar')
 	<div id="categ-bar">
 		<ul id="categ-links">
-			<li><a href="http://localhost/fourchetteandcie/public/handstamped-silverware">ALL</a></li>
-			<li><a href="http://localhost/fourchetteandcie/public/handstamped-silverware/category/spoons">SPOONS</a></li>
-			<li><a href="http://localhost/fourchetteandcie/public/handstamped-silverware/category/forks">FORKS</a></li>
-			<li><a href="http://localhost/fourchetteandcie/public/handstamped-silverware/category/knives">KNIVES</a></li>
-			<li><a href="http://localhost/fourchetteandcie/public/handstamped-silverware/category/servers">SERVERS</a></li>
+			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware">ALL</a></li>
+			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware/category/spoons">SPOONS</a></li>
+			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware/category/forks">FORKS</a></li>
+			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware/category/knives">KNIVES</a></li>
+			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware/category/servers">SERVERS</a></li>
 		</ul>
 	</div>
 @stop
