@@ -7,6 +7,7 @@ use FandC\Models\User;
 use Illuminate\Http\Request;
 
 use Auth;
+use Config;
 use DB;
 use Input;
 use Redirect;
@@ -21,23 +22,41 @@ class AdminController extends Controller
 
 	public function index()
 	{
+		$section_list = Config::get('fandc_arrays')['section_list'];
+		$nb_new_items = 0;
+		$nb_best_seller_items = 0;
+		$nb_sold_out_items = 0;
+		$nb_items = 0;
+
 		$nb_not_val_orders = DB::table('orders')
 			->where('is_validated', '0')
+			->count();
+		$nb_val_orders = DB::table('orders')
+			->where('is_validated', '1')
+			->where('is_payed', '0')
+			->count();
+		$nb_payed_orders = DB::table('orders')
+			->where('is_payed', '1')
 			->count();
 		$nb_orders = DB::table('orders')
 			->count();
 
-		$nb_new = DB::table('cutlery')
-			->where('is_new', '1')
-			->count();
-		$nb_best_seller = DB::table('cutlery')
-			->where('is_best_seller', '1')
-			->count();
-		$nb_sold_out = DB::table('cutlery')
-			->where('is_sold_out', '1')
-			->count();
+		foreach($section_list as $section)
+		{
+			$nb_new_items += DB::table($section)
+				->where('is_new', '1')
+				->count();
+			$nb_best_seller_items += DB::table($section)
+				->where('is_best_seller', '1')
+				->count();
+			$nb_sold_out_items += DB::table($section)
+				->where('is_sold_out', '1')
+				->count();
+			$nb_items += DB::table($section)
+				->count();
+		}
 
-		return view('admin.index', compact('nb_not_val_orders', 'nb_orders', 'nb_new', 'nb_best_seller', 'nb_sold_out'));
+		return view('admin.index', compact('nb_not_val_orders', 'nb_val_orders', 'nb_payed_orders', 'nb_orders', 'nb_new', 'nb_best_seller', 'nb_sold_out', 'nb_new_items', 'nb_best_seller_items', 'nb_sold_out_items', 'nb_items'));
 	}
 
 	public function login()

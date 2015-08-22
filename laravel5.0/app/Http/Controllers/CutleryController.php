@@ -18,7 +18,7 @@ class CutleryController extends Controller
 		$items = DB::table('cutlery')
 					->orderBy('is_new', 'desc')
 					->get();
-					
+
 		return view('cutlery.index', compact('items'));
 	}
 

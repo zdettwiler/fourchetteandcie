@@ -45,15 +45,15 @@
 	<ul id="shopwindow">
 
 	@foreach($items as $item)
-		<li class="item" item-ref="{{ $item->ref }}">
+		<li class="item" item-ref="{{ $item->ref }}" img-count="{{ $item->img_count }}">
 			<div class="item-img-zoom">
-				<img class="item-img" src="pictures/cutlery/500px/{{ $item->ref }}.jpg">
+				<img class="item-img" src="http://www.fourchetteandcie.com/pictures/cutlery/500px/{{ $item->ref }}.jpg">
 			@if($item->is_new)
-				<img class="label" src="pictures/label_new.png">
+				<img class="label" src="http://www.fourchetteandcie.com/pictures/label_new.png">
 			@elseif($item->is_best_seller)
-				<img class="label" src="pictures/label_best_seller.png">
+				<img class="label" src="http://www.fourchetteandcie.com/pictures/label_best_seller.png">
 			@elseif($item->is_sold_out)
-				<img class="label" src="pictures/label_sold_out.png">
+				<img class="label" src="http://www.fourchetteandcie.com/pictures/label_sold_out.png">
 			@endif
 			</div>
 			<div class="item-details">
