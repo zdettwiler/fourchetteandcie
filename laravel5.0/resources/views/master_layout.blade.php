@@ -77,7 +77,7 @@
 		<div id="item-viewer-content">
 
 			<div id="item-viewer-imgs">
-				<img class="item-img main-img" src="">
+				<img class="item-img main-img" src=""><br>
 				<img class="item-img thumb-img" src="">
 			</div>
 
