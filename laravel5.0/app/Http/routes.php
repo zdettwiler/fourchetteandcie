@@ -24,7 +24,7 @@ Route::get('/handstamped-silverware/category/{categ}', 'CutleryController@show_c
 Route::get('/handstamped-silverware/looking-after-your-handstamped-cutlery', 'CutleryController@look_after_cutlery');
 
 // CAKE STANDS
-Route::get('/cake-stands', 'CakeStandController@index');
+Route::get('/cake-stand', 'CakeStandController@index');
 
 // BASKET
 Route::get('/basket', 'BasketController@index');

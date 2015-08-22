@@ -52,7 +52,7 @@
 			<h3>HANDSTAMPED SILVERWARE</h3>
 			<p>Say it with words! Our keepsake silverware are all handstamped with love in our little French atelier. Here you will find an ever growing collection of sayings and words all the better to express your feelings, wishes or to mark a special occasion! We scour flea markets, garage sales, and old dusty drawers around France and Europe to find the treasure that will become a poetic keepsake.</p>
 			<br>
-			<a href="#" class="a-button-style">COMING SOON</a>
+			<a href="handstamped-silverware" class="a-button-style">EXPLORE</a>
 		</div>
 
 
@@ -60,7 +60,7 @@
 			<h3>CAKE STANDS</h3>
 			<p>Having a tea party, wedding party, birthday party, garden party or any other kind of party? These cake stands will bring height and delight to your table. Made with vintage French plates.</p>
 			<br>
-			<a href="#" class="a-button-style">COMING SOON</a>
+			<a href="cake-stand" class="a-button-style">EXPLORE</a>
 		</div>
 		<div class="block-link-right" id="block-link-cake-stand">
 		</div>
