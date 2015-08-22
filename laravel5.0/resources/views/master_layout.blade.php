@@ -37,7 +37,7 @@
 
 
 
-		<div id="contain-svg-basket">
+		{{-- <div id="contain-svg-basket">
 			<div id="basket-count"><span>?</span></div>
 			<svg id="svg-basket" xmlns="http://www.w3.org/2000/svg" version="1.1" height="30" width="23" viewBox="0 0 22 30.581257">
 				<g id="layer1" transform="translate(0 -1021.8)">
@@ -47,7 +47,7 @@
 					<path id="path4213" style="color-rendering:auto;text-decoration-color:#000000;color:#000000;isolation:auto;mix-blend-mode:normal;shape-rendering:auto;solid-color:#000000;block-progression:tb;text-decoration-line:none;text-decoration-style:solid;image-rendering:auto;white-space:normal;text-indent:0;text-transform:none" d="m11.002 1021.8c-0.94013 0-1.8812 0.2447-2.7227 0.7305-1.6783 0.969-2.7151 2.7621-2.7207 4.6992h-0.00195v0.016 4.9843h1.9102v-5c0.0056-1.2582 0.67535-2.4174 1.7656-3.0468 1.0949-0.6321 2.4403-0.6321 3.5352 0 1.0903 0.6294 1.762 1.7886 1.7676 3.0468 0.000024 0.01 0 0.01 0 0.016v4.9843h1.9082v-4.9843-0.016s-0.002 0.0001-0.002 0c-0.0056-1.9371-1.0405-3.7302-2.7188-4.6992-0.84143-0.4858-1.7806-0.7305-2.7207-0.7305z" fill="#000"/>
 				</g>
 			</svg>
-		</div>
+		</div> --}}
 	</div>
 
 	<div id="nav-links">
@@ -86,7 +86,7 @@
 				<h5 id="item-viewer-price"></h5>
 
 				<br><br><br><br><br>
-				<button id="button-add-to-basket">ADD TO BASKET</button>
+				{{-- <button id="button-add-to-basket">ADD TO BASKET</button> --}}
 			</div>
 		</div>
 	</div>
