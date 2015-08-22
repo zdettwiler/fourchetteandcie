@@ -29,7 +29,7 @@
 @stop
 
 @section('content')
-	<div style="margin: auto; width: 215px; margin-top: 20%;">
+	<div style="margin: auto; width: 215px; margin-top: 10%;">
 		<h2>Please Log In</h2>
 
 		{{-- @foreach ($users as $user)
@@ -37,8 +37,8 @@
 		@endforeach --}}
 
 		{!! Form::open() !!}
-			{!! Form::text('username', 'username') !!}<br>
-			{!! Form::password('password') !!}<br><br>
+			{!! Form::text('username', 'username', ['placeholder' => 'username']) !!}<br>
+			{!! Form::password('password', '', ['placeholder' => 'password']) !!}<br><br>
 
 			{!! Form::submit('LOGIN'); !!}
 		{!! Form::close() !!}
