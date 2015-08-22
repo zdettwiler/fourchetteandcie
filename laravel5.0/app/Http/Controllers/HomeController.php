@@ -21,18 +21,19 @@ class HomeController extends Controller {
 
 	public function index()
 	{
-		$section_list = Config::get('fandc_arrays')['section_list'];
-		$novelties = [];
-
-		foreach($section_list as $section)
-		{
-			$novelties[$section] = DB::table($section)
-				->where('is_new', '1')
-				->lists('ref');
-		}
+		// $section_list = Config::get('fandc_arrays')['section_list'];
+		// $novelties = [];
+		//
+		// foreach($section_list as $section)
+		// {
+		// 	$novelties[$section] = DB::table($section)
+		// 		->where('is_new', '1')
+		// 		->lists('ref');
+		// }
 
 		// dd($novelties);
-		return view('home.home', compact('novelties'));
+		// return view('home.home', compact('novelties'));
+		return view('home.home');
 	}
 
 	public function about_us()
@@ -62,7 +63,7 @@ class HomeController extends Controller {
 		echo EMailGenerator::send_cust_validated_order(3);
 		echo EMailGenerator::send_papi_payed_order(3);
 		echo EMailGenerator::send_cust_thank_you(3);
-		
+
 	}
 
 	public function search()
