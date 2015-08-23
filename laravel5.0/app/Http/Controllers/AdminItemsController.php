@@ -137,7 +137,7 @@ class AdminItemsController extends Controller
 			echo 'Failed Validator<br>';
 			$messages = $validator->messages();
 
-			return redirect()->back()->with('notification', ['type' => 'negative', 'message' => print_r($messages->all())]);
+			return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $messages->all()]);
 		}
 		// dd($request->file('imgs'));
 		if(!is_null($request->file('imgs')[0]))
@@ -156,7 +156,7 @@ class AdminItemsController extends Controller
 				if ($validator_img->fails() OR !$img->isValid())
 				{
 					$messages = $validator->messages();
-					return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem.'. print_r($messages->all()) .' '. print_r($img->isValid())]);
+					return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem.']);
 				}
 			}
 			$this->_img_upload($request->file('imgs'), $ref);
@@ -237,14 +237,14 @@ class AdminItemsController extends Controller
 					'img' => $img
 				],
 				[
-					'img' => 'required|image|mimes:jpg,jpeg,bmp,png|max:5000'
+					'img' => 'required|image|mimes:jpeg,bmp,png|max:5000'
 				]
 			);
 
-			if ($validator_img->fails())// OR !$img->isValid())
+			if ($validator_img->fails() OR !$img->isValid())
 			{
 				$messages = $validator->messages();
-				return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem.<br>'. print_r($img->isValid())]);
+				return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem. '. print_r($messages->all()) .' '. print_r($img->isValid())]);
 			}
 		}
 
