@@ -309,9 +309,9 @@ class AdminItemsController extends Controller
 		list($section, $id, $sectionfullname) = Item::get_id($ref);
 
 		// paths
-		$img_path_original = 'pictures/'.$sectionfullname.'/originals';
-		$img_path_500px = 'pictures/'.$sectionfullname.'/500px';
-		$img_path_100px = 'pictures/'.$sectionfullname.'/100px';
+		$img_path_original = 'pictures/'.$ref[0].'/originals';
+		$img_path_500px = 'pictures/'.$ref[0].'/500px';
+		$img_path_100px = 'pictures/'.$ref[0].'/100px';
 
 		for($i=0 ; $i<=$imgs_count-1 ; $i++)
 		{
