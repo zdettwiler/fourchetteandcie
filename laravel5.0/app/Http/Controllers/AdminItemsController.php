@@ -230,7 +230,7 @@ class AdminItemsController extends Controller
 
 			return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $messages->all()]);
 		}
-		/*foreach ($imgs as $img)
+		foreach ($imgs as $img)
 		{
 			$validator_img = Validator::make(
 				[
@@ -244,9 +244,9 @@ class AdminItemsController extends Controller
 			if ($validator_img->fails() OR !$img->isValid())
 			{
 				$messages = $validator->messages();
-				return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem. '. print_r($messages->all()) .' '. print_r($img->isValid())]);
+				return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem.']);
 			}
-		}*/
+		}
 
 		// FORM IS OK - SAVE IMGS AND ADD NEW ITEM IN DB
 		if ($validator->passes())
