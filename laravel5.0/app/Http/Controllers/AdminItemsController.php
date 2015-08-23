@@ -137,7 +137,7 @@ class AdminItemsController extends Controller
 			echo 'Failed Validator<br>';
 			$messages = $validator->messages();
 
-			return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $messages->all()]);
+			return redirect()->back()->with('notification', ['type' => 'negative', 'message' => print_r($messages->all())]);
 		}
 		// dd($request->file('imgs'));
 		if(!is_null($request->file('imgs')[0]))
@@ -156,7 +156,7 @@ class AdminItemsController extends Controller
 				if ($validator_img->fails() OR !$img->isValid())
 				{
 					$messages = $validator->messages();
-					return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem.']);
+					return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem.'. print_r($messages->all()) .' '. print_r($img->isValid())]);
 				}
 			}
 			$this->_img_upload($request->file('imgs'), $ref);
