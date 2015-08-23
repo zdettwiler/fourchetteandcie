@@ -120,7 +120,7 @@
 
 							<tr item-ref="{{ $item->ref }}">
 								<td class="cell-img">
-									<img class='item-img' src='http://www.fourchetteandcie.com/pictures/{{ $section }}/100px/{{ $item->ref }}_thumb.jpg' height='50'>
+									<img class='item-img' src='http://www.fourchetteandcie.com/pictures/{{ $ref[0] }}/100px/{{ $item->ref }}_thumb.jpg' height='50'>
 								</td>
 								<td class="cell-details">
 									<span class="ref-box">{{ $item->ref }}</span>
@@ -167,7 +167,7 @@
 			<table>
 				@foreach($items['cake-stand'] as $item)
 					<tr>
-						<td class="cell-img"><img class='item-img' src='http://www.fourchetteandcie.com/pictures/{{ $section }}/100px/{{ $item->ref }}_thumb.jpg' height='50'></td>
+						<td class="cell-img"><img class='item-img' src='http://www.fourchetteandcie.com/pictures/{{ $ref[0] }}/100px/{{ $item->ref }}_thumb.jpg' height='50'></td>
 						<td class="cell-details"><span class="ref-box">{{ $item->ref }}</span> <b>{{ $item->name }}</b><br>
 							{{ $item->categ }} ({{ $item->categ }})</td>
 						<td class="cell-price">€{{ $item->price }}</td>
