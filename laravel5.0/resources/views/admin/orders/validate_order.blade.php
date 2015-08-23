@@ -4,16 +4,67 @@
 @section('page_title', 'Admin // Validate Order #'.sprintf('%03u', $order->id))
 
 @section('include')
-	<link rel="stylesheet" href="http://localhost/fourchetteandcie/public/css/main.css" type="text/css" media="all"/>
-	<link rel="stylesheet" href="http://localhost/fourchetteandcie/public/css/nav.css" type="text/css" media="all"/>
-	<link rel="stylesheet" href="http://localhost/fourchetteandcie/public/css/basket.css" type="text/css" media="all"/>
-	<link rel="stylesheet" href="http://localhost/fourchetteandcie/public/css/admin.css" type="text/css" media="all"/>
+	<link rel="stylesheet" href="http://www.fourchetteandcie.com/css/main.css" type="text/css" media="all"/>
+	<link rel="stylesheet" href="http://www.fourchetteandcie.com/css/nav.css" type="text/css" media="all"/>
+	<link rel="stylesheet" href="http://www.fourchetteandcie.com/css/basket.css" type="text/css" media="all"/>
+	<link rel="stylesheet" href="http://www.fourchetteandcie.com/css/admin.css" type="text/css" media="all"/>
+
+	<style>
+		#currency-switch
+		{
+			width: 70px;
+			height: 30px;
+			position: relative;
+			background-color: #DDDDDD;
+			cursor: pointer;
+		}
+		.switch
+		{
+			width: 35px;
+			height: 30px;
+			display: block;
+			position: relative;
+			top: 0;
+			left: 0;
+			background-color: #7CFFB1;
+		}
+
+		.option-eur
+		{
+			left: 0;
+		}
+		.option-aud
+		{
+			left: 35px;
+		}
+		.option-eur,
+		.option-aud
+		{
+			width: 35px;
+			height: 30px;
+			padding: 8px 0;
+			position: absolute;
+			top: 0;
+			float: left;
+			font-family: Arial, "Roboto Condensed";
+			font-size: 13.3px;
+			color: #AAAAAA;
+			text-align: center;
+			text-indent: 0;
+			font-style: normal;
+		}
+		span.switch-selection
+		{
+			color: #FFFFFF;
+		}
+
+	</style>
 
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script src="http://localhost/fourchetteandcie/public/js/layout.js"></script>
-	<script src="http://localhost/fourchetteandcie/public/js/search_db.js"></script>
-	<script src="http://localhost/fourchetteandcie/public/js/reach_validate_order_reload.js"></script>
+	<script src="http://www.fourchetteandcie.com/js/layout.js"></script>
+	<script src="http://www.fourchetteandcie.com/js/search_db.js"></script>
+	<script src="http://www.fourchetteandcie.com/js/reach_validate_order_reload.js"></script>
 	<script>
 		var id={{ $order->id }};
 	</script>
@@ -30,7 +81,7 @@
 
 	<div id="back-arrow">
 		<a href="../{{ $order->id }}">
-			<img src="http://localhost/fourchetteandcie/public/pictures/back-arrow.png" width="30px">
+			<img src="http://www.fourchetteandcie.com/pictures/back-arrow.png" width="30px">
 		</a>
 	</div>
 
@@ -47,19 +98,30 @@
 
 			<tr>
 				<td>Wholesale?</td>
-				<td><img id="wholesale-status" src="http://localhost/fourchetteandcie/public/pictures/{{ $order->is_wholesale }}.png"></td>
+				<td><img id="wholesale-status" src="http://www.fourchetteandcie.com/pictures/{{ $order->is_wholesale }}.png"></td>
 				<td><button id="toggle-wholesale">WHOLESALE</button></td>
 			</tr>
 
 			<tr>
 				<td>Validated?</td>
-				<td><img src="http://localhost/fourchetteandcie/public/pictures/{{ $order->is_validated }}.png"></td>
+				<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_validated }}.png"></td>
 
 			</tr>
 
 			<tr>
 				<td>Payed?</td>
-				<td><img src="http://localhost/fourchetteandcie/public/pictures/{{ $order->is_payed }}.png"></td>
+				<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_payed }}.png"></td>
+			</tr>
+
+			<tr>
+				<td>Currency</td>
+				<td>
+					<div id="currency-switch">
+						<span class="switch"></span>
+						<span class="option-eur switch-selection">€</span>
+						<span class="option-aud">AU$</span>
+					</div>
+				</td>
 			</tr>
 		</table>
 	</div>

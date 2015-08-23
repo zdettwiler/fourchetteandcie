@@ -1,6 +1,7 @@
 function reach_validate_order_reload(id, command)
 {
 	var xhr = new XMLHttpRequest();
+	var doneitonce = 0
 
 	xhr.open('GET', '../../../admin/orders/'+id+'/validate/'+encodeURIComponent(command), true);
 	xhr.addEventListener('readystatechange', function() {
@@ -9,7 +10,13 @@ function reach_validate_order_reload(id, command)
 		{
 			$("#wholesale-status").attr("src", "http://www.fourchetteandcie.com/pictures/"+ xhr.responseText.substring(0,1) +".png")
 
-			$("table#validation-table").html(xhr.responseText);
+			// if(!doneitonce)
+			// {
+				toggle_currency(xhr.responseText.substring(1,4));
+			// 	doneitonce = 1;
+			// }
+
+			$("table#validation-table").html(xhr.responseText.substring(4));
 
 		}
 		else if (xhr.readyState == 4 && xhr.status != 200)
@@ -23,8 +30,44 @@ function reach_validate_order_reload(id, command)
 	return false;
 }
 
+function toggle_currency(currency, reload)
+{
+	if(currency == 'eur')
+	{
+		$(".switch").animate({
+			left: '0px'
+		}, 'fast', function(){
+			$(".option-aud").removeClass('switch-selection');
+			$(".option-eur").addClass('switch-selection');
+		});
+	}
+	else if(currency == 'aud')
+	{
+		$(".switch").animate({
+			left: '35px'
+		}, 'fast', function(){
+			$(".option-eur").removeClass('switch-selection');
+			$(".option-aud").addClass('switch-selection');
+		});
+	}
+}
+
 $(function() {
 	reach_validate_order_reload(id, 'SHOW');
+
+	// CURRENCY SWITCH
+	$(document).on("click", "#currency-switch", function(){
+		if( $(".option-eur").hasClass('switch-selection') )
+		{
+			toggle_currency('aud');
+			reach_validate_order_reload(id, 'TOGGLE_CURRENCY');
+		}
+		else if($(".option-aud").hasClass('switch-selection'))
+		{
+			toggle_currency('eur');
+			reach_validate_order_reload(id, 'TOGGLE_CURRENCY');
+		}
+	});
 
 	// MORE BUTTON
 	$("#validation-table").on("click", ".item-qty-plus-button", function() {

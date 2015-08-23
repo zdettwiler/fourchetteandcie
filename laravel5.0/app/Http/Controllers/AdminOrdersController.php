@@ -71,6 +71,11 @@ class AdminOrdersController extends Controller
 				OrderValidation::validation_table_html();
 				break;
 
+			case 'TOGGLE_CURRENCY':
+				OrderValidation::toggle_currency();
+				OrderValidation::validation_table_html();
+				break;
+
 			case 'UPDATE_QTY':
 				OrderValidation::update_qty($ref, $value);
 				OrderValidation::validation_table_html();
@@ -131,7 +136,7 @@ class AdminOrdersController extends Controller
 		$order_details = Basket::json_encode_decode($order->val_order);
 
 		// return view('admin.orders.invoice', compact('order', 'order_details'));
-		
+
 		$pdf = PDF::loadView('admin.orders.invoice', compact('order', 'order_details'));
 		// $pdf->loadHTML('<h1>Test</h1>');
 		return $pdf->stream();

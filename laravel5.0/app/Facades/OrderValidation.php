@@ -29,13 +29,15 @@ class OrderValidation
 			$VALIDATION_ORDER['nb_items']         = $order->order_nb_items;
 			$VALIDATION_ORDER['shipping']         = $order->order_shipping;
 			$VALIDATION_ORDER['shipping_details'] = $order->val_order_shipping_details;
+			$VALIDATION_ORDER['currency']         = $order->order_currency;
 			$VALIDATION_ORDER['total']            = $order->order_total;
 			$VALIDATION_ORDER['message']          = $order->val_order_message;
 
 			$VALIDATION_ORDER = array_merge($VALIDATION_ORDER, $order_details);
 
+			// dd($VALIDATION_ORDER);
 			// Add the 'comment' for each item
-			for($i=0 ; $i<=count($VALIDATION_ORDER)-10 ; $i++)
+			for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
 			{
 				$VALIDATION_ORDER[$i]['comment'] = '';
 			}
@@ -56,7 +58,7 @@ class OrderValidation
 		$nb_items = 0;
 		$total = 0;
 
-		for($i=0 ; $i<=count($VALIDATION_ORDER)-10 ; $i++)
+		for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
 		{
 			$subtotal += $VALIDATION_ORDER[$i]['qty'] * $VALIDATION_ORDER[$i]['price'];
 			$nb_items += $VALIDATION_ORDER[$i]['qty'];
@@ -80,6 +82,27 @@ class OrderValidation
 	}
 
 //----------------------------------------------------------------------------//
+// TOGGLE ORDER CURRENCY EUR OR AUD
+//----------------------------------------------------------------------------//
+	public static function toggle_currency()
+	{
+		$VALIDATION_ORDER = Session::get('validation_order', []);
+
+		if($VALIDATION_ORDER['currency'] == 'eur')
+		{
+			$VALIDATION_ORDER['currency'] = 'aud';
+		}
+		elseif($VALIDATION_ORDER['currency'] == 'aud')
+		{
+			$VALIDATION_ORDER['currency'] = 'eur';
+		}
+
+		Session::set('validation_order', $VALIDATION_ORDER);
+		
+		return false;
+	}
+
+//----------------------------------------------------------------------------//
 // UPDATE ITEM QUANTITY
 //----------------------------------------------------------------------------//
 	public static function update_qty($ref, $new_qty)
@@ -93,7 +116,7 @@ class OrderValidation
 		$VALIDATION_ORDER = Session::get('validation_order', []);
 
 		// Check/Find if item is already in the basket
-		for($i=0 ; $i<=count($VALIDATION_ORDER)-10 ; $i++)
+		for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
 		{
 			// If YES, update its qty
 			if($VALIDATION_ORDER[$i]['ref'] == $ref)
@@ -123,7 +146,7 @@ class OrderValidation
 		$VALIDATION_ORDER = Session::get('validation_order', []);
 
 		// Check/Find if item is already in the basket
-		for($i=0 ; $i<=count($VALIDATION_ORDER)-10 ; $i++)
+		for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
 		{
 			// If YES, update its qty
 			if($VALIDATION_ORDER[$i]['ref'] == $ref)
@@ -146,7 +169,7 @@ class OrderValidation
 		$VALIDATION_ORDER = Session::get('validation_order', []);
 
 		// Check/Find if item is already in the basket
-		for($i=0 ; $i<=count($VALIDATION_ORDER)-10 ; $i++)
+		for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
 		{
 			// If YES, update its qty
 			if($VALIDATION_ORDER[$i]['ref'] == $ref)
@@ -231,7 +254,7 @@ class OrderValidation
 		$new_item = explode("--", $value);
 		$max_custom_item = 0;
 
-		for($i=0 ; $i<=count($VALIDATION_ORDER)-10 ; $i++)
+		for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
 		{
 			list($custom_item_id) = sscanf($VALIDATION_ORDER[$i]['ref'], "custom%d");
 
@@ -268,7 +291,7 @@ class OrderValidation
 		$VALIDATION_ORDER = Session::get('validation_order', []);
 		$VALIDATION_ORDER_DETAILS = array_slice($VALIDATION_ORDER, 0, 9);
 		// dd($VALIDATION_ORDER);
-		for($i=0 ; $i<=count($VALIDATION_ORDER)-10 ; $i++)
+		for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
 		{
 			// If YES, remove it
 			if($VALIDATION_ORDER[$i]['ref'] == $ref)
@@ -329,11 +352,15 @@ class OrderValidation
 	public static function validation_table_html()
 	{
 		$VALIDATION_ORDER = Session::get('validation_order', []);
-
 		$section_ref_code = Config::get('fandc_arrays')['section_ref_code'];
 
+		if($VALIDATION_ORDER['currency'] == 'eur')
+			$currency = '&euro;';
+		elseif($VALIDATION_ORDER['currency'] == 'aud')
+			$currency = 'AU$';
+
 		// is_wholesale AND TABLE HEADER
-		$response = "{$VALIDATION_ORDER['is_wholesale']}<tr class='table-header'>
+		$response = "{$VALIDATION_ORDER['is_wholesale']}{$VALIDATION_ORDER['currency']}<tr class='table-header'>
 			<td></td>
 			<td style='width:50%;'>Item Description</td>
 
@@ -343,7 +370,7 @@ class OrderValidation
 		</tr>\n";
 
 		// ITEMS
-		for($i=0 ; $i<=count($VALIDATION_ORDER)-10 ; $i++)
+		for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
 		{
 			if($VALIDATION_ORDER[$i]['qty'] > 1)
 			{
@@ -368,9 +395,9 @@ class OrderValidation
 
 				<td><div class='item-qty'><div class='item-qty-plus-button'>+</div> <div class='item-qty-value'>{$VALIDATION_ORDER[$i]['qty']}</div> <div class='item-qty-minus-button'>{$minus_button}</div></div></td>\n
 
-				<td class='edit-field'>€<input class='edit-unit-price' type='text' name='unit-price-{$VALIDATION_ORDER[$i]['ref']}' value='".number_format($VALIDATION_ORDER[$i]['price'] , 2)."'></td>\n
+				<td class='edit-field'>". $currency ."<input class='edit-unit-price' type='text' name='unit-price-{$VALIDATION_ORDER[$i]['ref']}' value='".number_format($VALIDATION_ORDER[$i]['price'] , 2)."'></td>\n
 
-				<td>€".number_format($VALIDATION_ORDER[$i]['qty'] * $VALIDATION_ORDER[$i]['price'], 2)."</td>\n
+				<td>". $currency ."".number_format($VALIDATION_ORDER[$i]['qty'] * $VALIDATION_ORDER[$i]['price'], 2)."</td>\n
 
 			</tr>";
 		}
@@ -400,25 +427,25 @@ class OrderValidation
 		}
 
 		$response .= ")</td>\n
-				<td>€".number_format($VALIDATION_ORDER['subtotal'], 2)."</td>\n
+				<td>". $currency ."".number_format($VALIDATION_ORDER['subtotal'], 2)."</td>\n
 			</tr>\n";
 
 		if($VALIDATION_ORDER['is_wholesale'])
 		{
 			$response .= "	<tr id='subtotal-row'>\n
 				<td colspan='4'>WHOLESALE (-30%)</td>\n
-				<td>€".number_format( 0.7 * $VALIDATION_ORDER['subtotal'], 2 )."</td>\n
+				<td>". $currency ."".number_format( 0.7 * $VALIDATION_ORDER['subtotal'], 2 )."</td>\n
 			</tr>\n";
 		}
 
 		$response .= "	<tr id='shipping-row'>\n
 				<td colspan='4'>SHIPPING <input class='edit-shipping-details' type='text' name='shipping-details' placeholder='shipping details' value='{$VALIDATION_ORDER['shipping_details']}'></td>\n
-				<td class='edit-field'>€<input class='edit-shipping' type='text' name='shipping' value='".number_format($VALIDATION_ORDER['shipping'], 2)."'></td>\n
+				<td class='edit-field'>". $currency ."<input class='edit-shipping' type='text' name='shipping' value='".number_format($VALIDATION_ORDER['shipping'], 2)."'></td>\n
 			</tr>
 
 			<tr id='total-row'>\n
 				<td colspan='4'>TOTAL</td>\n
-				<td>€".number_format( $VALIDATION_ORDER['total'], 2 )."</td>\n
+				<td>". $currency ."".number_format( $VALIDATION_ORDER['total'], 2 )."</td>\n
 			</tr>
 
 			<tr id='message-row'>\n
