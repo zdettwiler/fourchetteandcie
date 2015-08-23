@@ -244,7 +244,7 @@ class AdminItemsController extends Controller
 			if ($validator_img->fails() OR !$img->isValid())
 			{
 				$messages = $validator->messages();
-				return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem.<br>'. print_r($messages->all())]);
+				return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem.<br>'. print_r($img->isValid())]);
 			}
 		}
 
