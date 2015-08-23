@@ -237,14 +237,14 @@ class AdminItemsController extends Controller
 					'img' => $img
 				],
 				[
-					'img' => 'required|image|mimes:jpeg,bmp,png|max:5000'
+					'img' => 'required|image|mimes:jpg,jpeg,bmp,png|max:5000'
 				]
 			);
 
 			if ($validator_img->fails() OR !$img->isValid())
 			{
 				$messages = $validator->messages();
-				return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem.']);
+				return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem.<br>'. $messages->all()]);
 			}
 		}
 
