@@ -404,19 +404,38 @@ ul#shopwindow
 
 #item-viewer-imgs
 {
+	/*border: 3px solid green;*/
 	width: 55%;
+	position: relative;
 	height: 100%;
 	float: left;
 }
-#item-viewer-imgs img.main-img
+#item-viewer-imgs #main-imgs
 {
-	max-height: 80%;
-	max-width: 100%;
+	/*border: 3px solid blue;*/
+
 }
-#item-viewer-imgs img.thumb-img
+#item-viewer-imgs #thumb-imgs
 {
-	max-height: 20%;
+	/*border: 3px solid yellow;*/
+
 }
+#item-viewer-imgs #main-imgs img.viewing
+{
+	position:absolute;
+	top: 0;
+	left: 0;
+}
+#item-viewer-imgs #main-imgs img
+{
+
+
+}
+#item-viewer-imgs #thumb-imgs img
+{
+
+}
+
 
 #item-viewer-details
 {

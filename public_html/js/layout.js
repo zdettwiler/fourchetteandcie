@@ -11,6 +11,12 @@ function items_per_row()
 	$(".item .item-img").css({width: item_width, height: item_width});
 	$(".item .item-details").css({width: item_width});
 
+
+	var img_viewer_available_height = $("#item-viewer-imgs").height();
+	$("#main-imgs img").height(0.8 * img_viewer_available_height);
+	$("#thumb-imgs img").height(0.2 * img_viewer_available_height);
+
+
 	return false;
 }
 
@@ -74,19 +80,39 @@ function toggle_viewer(item)
 
 	if(!$("#item-viewer").hasClass('opened'))
 	{
+		item_ref = $(item).attr('item-ref');
+		item_section = item_ref.substring(0,1);
+		img_count = $(item).attr('img-count');
+
 		$("#item-viewer").addClass('opened');
-		$("#item-viewer, #button-add-to-basket").attr('item-ref', $(item).attr('item-ref'));
+		$("#item-viewer, #button-add-to-basket").attr('item-ref', item_ref);
 		$("#item-viewer").animate({left:0});
 
-		console.log($(item).attr('img-count'));
-		$('#item-viewer-imgs img').attr('src', $('img.item-img', item).attr('src'));
-		// $('#item-viewer-ref').html('ref: #'+$('.item-details p.item-ref', item).html());
+		$('#main-imgs').html('');
+		$('#thumb-imgs').html('');
+
+		for (var i = 1; i <= $(item).attr('img-count'); i++)
+		{
+			if(i==1)
+			{
+				$('#main-imgs').append("<img class='item-img viewing' img-nb='"+i+"' src='http://www.fourchetteandcie.com/pictures/"+ item_section +"/500px/"+ item_ref +".jpg'>");
+				$('#thumb-imgs').append("<img class='item-img' img-nb='"+i+"' src='http://www.fourchetteandcie.com/pictures/"+ item_section +"/100px/"+ item_ref +"_thumb.jpg'>");
+			}
+			else
+			{
+				$('#main-imgs').append("<img class='item-img' img-nb='"+i+"' src='http://www.fourchetteandcie.com/pictures/"+ item_section +"/500px/"+ item_ref +"_"+ i +".jpg'>");
+				$('#thumb-imgs').append("<img class='item-img' img-nb='"+i+"' src='http://www.fourchetteandcie.com/pictures/"+ item_section +"/100px/"+ item_ref +"_thumb_"+ i +".jpg'>");
+			}
+
+		}
+
+		$('#item-viewer-imgs img.main-img').attr('src', $('img.item-img', item).attr('src'));
 		$('#item-viewer-stamped').html($('.item-details .item-stamped-descr span.item-stamped', item).html());
 		$('#item-viewer-descr').html($('.item-details .item-stamped-descr span.item-descr', item).html());
 		$('#item-viewer-price').html($('.item-details .item-price span', item).html());
-		// $('#button-add-to-basket').addClass($(item).attr('id'));
 		$('#item-viewer-more-button').attr('href', 'handstamped-silverware/'+$(item).attr('item-ref'));
 
+		items_per_row();
 		return;
 	}
 
@@ -140,6 +166,11 @@ $(function()
 		toggle_viewer(this);
 	});
 
+	$(document).on("click", "#thumb-imgs img", function(){
+		$(".viewing").removeClass('viewing');
+		$("#main-imgs img[img-nb='"+ $(this).attr('img-nb')+ "']").addClass('viewing');
+	});
+
 	$("#back-arrow").hover(function() {
 		$("#back-arrow").css({
 			"width": 60,
@@ -158,6 +189,8 @@ $(function()
 			$("#item-viewer").animate({left: - 1.2* $(window).width() });
 	    }
 	});
+
+
 
 
 });

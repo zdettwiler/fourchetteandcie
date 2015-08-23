@@ -36,7 +36,7 @@
 
 	@foreach($items as $item)
 		<li class="item" item-ref="{{ $item->ref }}" img-count="{{ $item->img_count }}">
-			<div class="item-img-zoom"><img class="item-img" src="pictures/cake-stand/500px/{{ $item->ref }}.jpg"></div>
+			<div class="item-img-zoom"><img class="item-img" src="http://www.fourchetteandcie.com/pictures/s/500px/{{ $item->ref }}.jpg"></div>
 			<div class="item-details">
 				<div class="item-price"><span>€{{ $item->price }}</span></div>
 				<div class="item-stamped-descr">

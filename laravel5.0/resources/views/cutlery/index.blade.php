@@ -47,7 +47,7 @@
 	@foreach($items as $item)
 		<li class="item" item-ref="{{ $item->ref }}" img-count="{{ $item->img_count }}">
 			<div class="item-img-zoom">
-				<img class="item-img" src="http://www.fourchetteandcie.com/pictures/cutlery/500px/{{ $item->ref }}.jpg">
+				<img class="item-img" src="http://www.fourchetteandcie.com/pictures/c/500px/{{ $item->ref }}.jpg">
 			@if($item->is_new)
 				<img class="label" src="http://www.fourchetteandcie.com/pictures/label_new.png">
 			@elseif($item->is_best_seller)
