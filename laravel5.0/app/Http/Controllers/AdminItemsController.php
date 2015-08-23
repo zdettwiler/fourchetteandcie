@@ -241,7 +241,7 @@ class AdminItemsController extends Controller
 				]
 			);
 
-			if ($validator_img->fails() OR !$img->isValid())
+			if ($validator_img->fails())// OR !$img->isValid())
 			{
 				$messages = $validator->messages();
 				return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem.<br>'. print_r($img->isValid())]);
