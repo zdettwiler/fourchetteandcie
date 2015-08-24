@@ -98,7 +98,7 @@ class OrderValidation
 		}
 
 		Session::set('validation_order', $VALIDATION_ORDER);
-		
+
 		return false;
 	}
 
@@ -473,7 +473,7 @@ class OrderValidation
 						'val_order_subtotal'         => $VALIDATION_ORDER['subtotal'],
 						'val_order_shipping'         => $VALIDATION_ORDER['shipping'],
 						'val_order_shipping_details' => $VALIDATION_ORDER['shipping_details'],
-						'val_order_discount'         => 0,
+						'val_order_currency'         => $VALIDATION_ORDER['currency'],
 						'val_order_total'            => $VALIDATION_ORDER['total'],
 						'val_order_message'          => $VALIDATION_ORDER['message']
 					]);
