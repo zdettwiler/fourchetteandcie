@@ -17,22 +17,13 @@ class EMailGenerator
 		$sent = Mail::send('emails.papi_new_order', compact('order'), function($message) use ($order_id)
 		{
 			$message->from('orders@fourchetteandcie.com', 'Fourchette & Cie - Admin');
-			
+
 			$message->subject('New Order! (nº'. sprintf('%03u', $order_id) .')');
 
 			$message->to('z.dettwiler@gmail.com');
 
 			// $message->attach($pathToFile);
 		});
-
-		if($sent)
-		{
-			return 'sent';
-		}
-		else
-		{
-			return 'error';
-		}
 	}
 
 	public static function send_cust_placed_order($order_id)
@@ -52,15 +43,6 @@ class EMailGenerator
 
 			// $message->attach($pathToFile);
 		});
-
-		if($sent)
-		{
-			return 'sent';
-		}
-		else
-		{
-			return 'error';
-		}
 	}
 
 	public static function send_cust_validated_order($order_id)
@@ -79,15 +61,6 @@ class EMailGenerator
 
 			// $message->attach($pathToFile);
 		});
-
-		if($sent)
-		{
-			return 'sent';
-		}
-		else
-		{
-			return 'error';
-		}
 	}
 
 	public static function send_papi_payed_order($order_id)
@@ -102,15 +75,6 @@ class EMailGenerator
 
 			// $message->attach($pathToFile);
 		});
-
-		if($sent)
-		{
-			return 'sent';
-		}
-		else
-		{
-			return 'error';
-		}
 	}
 
 	public static function send_cust_thank_you($order_id)
@@ -129,15 +93,6 @@ class EMailGenerator
 
 			// $message->attach($pathToFile);
 		});
-
-		if($sent)
-		{
-			return 'sent';
-		}
-		else
-		{
-			return 'error';
-		}
 	}
 
 }

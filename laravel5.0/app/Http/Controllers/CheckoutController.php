@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Basket;
 use Config;
 use DB;
+use EMailGenerator;
 use FandC\Models\Order;
 
 
@@ -71,7 +72,9 @@ class CheckoutController extends Controller
 		$order->set_order_total($subtotal);
 
 		$order->save_to_db();
-		// dd($order);
+
+		EMailGenerator::send_papi_new_order($order_id);
+		
 		return view('checkout.placed', compact('order_id'));
 	}
 

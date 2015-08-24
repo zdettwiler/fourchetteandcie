@@ -36,12 +36,12 @@ class Order extends Model
 	private $is_validated = 0;				// has been checked and approved by admin
 	private $is_payed = 0;					// has been payed (paypal)
 	private $is_wholesale = 0;
-	
+
 	// customer details
 	private $customer_name;
 	private $customer_address;
 	private $customer_email;
-	private $customer_phone;	
+	private $customer_phone;
 
 	// order
 	private $order;
@@ -78,19 +78,19 @@ class Order extends Model
 			$this->is_validated     = $loaded_order->is_validated;
 			$this->is_payed         = $loaded_order->is_payed;
 			$this->is_wholesale     = $loaded_order->is_wholesale;
-			
+
 			// customer details
 			$this->customer_name    = $loaded_order->customer_name;
 			$this->customer_address = $loaded_order->customer_address;
 			$this->customer_email   = $loaded_order->customer_email;
-			$this->customer_phone   = $loaded_order->customer_phone;	
+			$this->customer_phone   = $loaded_order->customer_phone;
 
 			// order
 			$this->order            = $loaded_order->order;
 			$this->order_nb_items   = $loaded_order->order_nb_items;
 			$this->order_subtotal   = $loaded_order->order_subtotal;
 			$this->order_shipping   = $loaded_order->order_shipping;
-			$this->order_discount   = $loaded_order->order_discount;
+			// $this->order_discount   = $loaded_order->order_discount;
 			$this->order_total      = $loaded_order->order_total;
 		}
 	}
@@ -107,7 +107,7 @@ class Order extends Model
 				'is_validated'     => $this->is_validated,
 				'is_payed'         => $this->is_payed,
 				'is_wholesale'     => $this->is_wholesale,
-				
+
 				// customer details
 				'customer_name'    => $this->customer_name,
 				'customer_address' => $this->customer_address,
@@ -119,7 +119,7 @@ class Order extends Model
 				'order_nb_items'   => $this->order_nb_items,
 				'order_subtotal'   => $this->order_subtotal,
 				'order_shipping'   => $this->order_shipping,
-				'order_discount'   => $this->order_discount,
+				// 'order_discount'   => $this->order_discount,
 				'order_total'      => $this->order_total
 			]);
 	}
@@ -147,15 +147,15 @@ class Order extends Model
 					break;
 				}
 			}
-		}	
-		
+		}
+
 
 		Session::set('validated_order', $validated_order);
 
 		return false;
 	}
 
-	
+
 
 
 
