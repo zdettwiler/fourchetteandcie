@@ -45,8 +45,6 @@ class AdminOrdersController extends Controller
 			$order_details = Basket::json_encode_decode($order->order);
 		}
 
-
-
 		return view('admin.orders.one_order', compact('order', 'order_details', 'section_ref_code'));
 	}
 

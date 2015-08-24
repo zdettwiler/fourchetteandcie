@@ -468,7 +468,7 @@ class OrderValidation
 			->update([
 						'is_validated'               => 1,
 						'is_wholesale'               => $VALIDATION_ORDER['is_wholesale'],
-						'val_order'                  => json_encode(array_slice($VALIDATION_ORDER, 9)),
+						'val_order'                  => json_encode(array_slice($VALIDATION_ORDER, 10)),
 						'val_order_nb_items'         => $VALIDATION_ORDER['nb_items'],
 						'val_order_subtotal'         => $VALIDATION_ORDER['subtotal'],
 						'val_order_shipping'         => $VALIDATION_ORDER['shipping'],

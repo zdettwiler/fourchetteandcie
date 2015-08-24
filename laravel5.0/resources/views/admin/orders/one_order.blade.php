@@ -85,7 +85,7 @@
 			<tr item-ref='{{ $item['ref'] }}'>
 				<td>
 				@if(substr($item['ref'], 0, 6) != "custom")
-					<img class='item-img' src="http://www.fourchetteandcie.com/pictures/{{ $section_ref_code[ $item['ref'][0] ] }}/100px/{{ $item['ref'] }}_thumb.jpg" height='50'>
+					<img class='item-img' src="http://www.fourchetteandcie.com/pictures/{{ $item['ref'][0] }}/100px/{{ $item['ref'] }}_thumb.jpg" height='50'>
 				@endif
 				</td>
 
