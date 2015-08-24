@@ -57,8 +57,8 @@
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="http://www.fourchetteandcie.com/js/layout.js"></script>
-	<script src="http://localhost/fourchetteandcie/public/js/reach_edit_items_reload.js"></script>
-	<script src="http://localhost/fourchetteandcie/public/js/search_db_2.js"></script>
+	<script src="http://www.fourchetteandcie.com/js/reach_edit_items_reload.js"></script>
+	<script src="http://www.fourchetteandcie.com/js/search_db_2.js"></script>
 @stop
 
 
