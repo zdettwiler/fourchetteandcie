@@ -2,7 +2,7 @@ function reach_edit_items_reload(ref, command)
 {
 	var xhr = new XMLHttpRequest();
 
-	xhr.open('GET', 'http://www.fourchetteandcie.com/admin/items/quick-edit/'+ encodeURIComponent(command), true);
+	xhr.open('GET', '/quick-edit/'+ encodeURIComponent(command), true);
 	xhr.addEventListener('readystatechange', function() {
 
 		if (xhr.readyState === 4 && xhr.status === 200)
