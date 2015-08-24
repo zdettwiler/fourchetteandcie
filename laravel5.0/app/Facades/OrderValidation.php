@@ -354,10 +354,11 @@ class OrderValidation
 		$VALIDATION_ORDER = Session::get('validation_order', []);
 		$section_ref_code = Config::get('fandc_arrays')['section_ref_code'];
 
+		dd($VALIDATION_ORDER);
 		if($VALIDATION_ORDER['currency'] == 'eur')
-			{$currency = '&euro;';}
+			$currency = '&euro;';
 		elseif($VALIDATION_ORDER['currency'] == 'aud')
-			{$currency = 'AU$';}
+			$currency = 'AU$';
 
 		// is_wholesale AND TABLE HEADER
 		$response = "{$VALIDATION_ORDER['is_wholesale']}{$VALIDATION_ORDER['currency']}<tr class='table-header'>
