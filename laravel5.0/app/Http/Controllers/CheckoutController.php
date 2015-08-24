@@ -74,7 +74,8 @@ class CheckoutController extends Controller
 		$order->save_to_db();
 
 		EMailGenerator::send_papi_new_order($order_id);
-		
+		EMailGenerator::send_cust_placed_order($order_id);
+
 		return view('checkout.placed', compact('order_id'));
 	}
 

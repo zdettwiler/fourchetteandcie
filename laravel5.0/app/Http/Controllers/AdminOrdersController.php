@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Basket;
 use Config;
 use DB;
+use EMailGenerator;
 use FandC\Models\Order;
 use OrderValidation;
 use PDF;
@@ -126,6 +127,8 @@ class AdminOrdersController extends Controller
 	public function submit_validated_order($id)
 	{
 		OrderValidation::submit_validated_order($id);
+
+		EMailGenerator::send_cust_validated_order($id);
 
 		return redirect('admin/orders/'.$id);
 	}

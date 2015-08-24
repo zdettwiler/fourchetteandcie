@@ -24,7 +24,7 @@
 
 	<h3 style="font-family: sans-serif; font-size: 20px; font-weight: bold; padding: 0; margin: 0;">Order</h3>
 	<p style="font-family: sans-serif; font-size: 16px; font-weight: 100; padding: 0 20px;">
-		Order #{{ sprintf('%03u', $order->id) }} placed on {{ $order->placed_datetime }}<br>
+		Order nº{{ sprintf('%03u', $order->id) }} placed on {{ date('d/m/Y H:i:s', $order->placed_datetime) }}<br>
 		{{ $order->order_nb_items }}
 		@if($order->order_nb_items > 1)
 			items
