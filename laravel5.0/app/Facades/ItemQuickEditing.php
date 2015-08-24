@@ -131,7 +131,7 @@ class ItemQuickEditing
         $item = new Item($ref);
 
         $update ="<td class='cell-img'>
-                <img class='item-img' src='http://www.fourchetteandcie.com/pictures/{$item->get_sectionfullname()}/100px/{$ref}_thumb.jpg' height='50'>
+                <img class='item-img' src='http://www.fourchetteandcie.com/pictures/{$ref[0]}/100px/{$ref}_thumb.jpg' height='50'>
             </td>
             <td class='cell-details'>
                 <span class='ref-box'>{$ref}</span>
