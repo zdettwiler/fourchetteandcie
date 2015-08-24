@@ -35,7 +35,7 @@ class OrderValidation
 
 			$VALIDATION_ORDER = array_merge($VALIDATION_ORDER, $order_details);
 
-			// dd($VALIDATION_ORDER);
+			dd($VALIDATION_ORDER);
 			// Add the 'comment' for each item
 			for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
 			{
@@ -354,7 +354,6 @@ class OrderValidation
 		$VALIDATION_ORDER = Session::get('validation_order', []);
 		$section_ref_code = Config::get('fandc_arrays')['section_ref_code'];
 
-		dd($VALIDATION_ORDER);
 		if($VALIDATION_ORDER['currency'] == 'eur')
 			$currency = '&euro;';
 		elseif($VALIDATION_ORDER['currency'] == 'aud')
