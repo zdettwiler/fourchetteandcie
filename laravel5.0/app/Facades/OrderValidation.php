@@ -9,7 +9,7 @@ class OrderValidation
 {
 	public function __construct($order_id)
 	{
-		// Session::forget('validation_order');
+		Session::forget('validation_order');
 
 		// If is exists and we want to create a new oneMake validation_order in Session for easy manips.
 		if(!Session::has('validation_order') OR (Session::has('validation_order') AND Session::get('validation_order')['order_id'] != $order_id))
