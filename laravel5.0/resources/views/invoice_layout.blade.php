@@ -42,6 +42,9 @@
 		{{ $order->val_order_message }}<br><br>
 		MERCI BEAUCOUP POUR VOTRE COMMANDE!
 	</p>
+	<br>
+	<p class="fandc-details">fourchette &amp; cie - 383, rue du général de gaulle - 62110 hénin-beaumont - france<br>
+		nº siret 523087575000016 - fourchetteandcie.com - fourchetteandcie@gmail.com</p>
 
 
 </body>

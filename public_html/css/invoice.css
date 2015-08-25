@@ -71,6 +71,11 @@ p
 	line-height: 55px;
 }
 
+.fandc-details
+{
+	color: #777777;
+}
+
 /********************************************* TABLE *********************************************/
 
 table#invoice-order
@@ -90,7 +95,7 @@ table#invoice-order td
 	font-family: 'Times New Roman', serif;
 	font-weight: 300;
 	font-size: 12px;
-	padding: 10px 0px;
+	padding: 10px 5px;
 }
 
 tr.table-header td
@@ -99,6 +104,7 @@ tr.table-header td
 }
 
 tr#subtotal-row td,
+tr#wholesale-row td,
 tr#shipping-row td,
 tr#total-row td
 {
@@ -112,10 +118,10 @@ tr#total-row td
 tr#subtotal-row td
 {
 	border-top: 1px solid #000000;
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 }
 
-tr#total-row td
+tr#total-row td.bordered
 {
 	border-top: 1px solid #000000;
 	border-bottom: 1px solid #000000;
@@ -128,4 +134,8 @@ tr#total-row td
 .right-col
 {
 	text-align: right;
+}
+.width-50
+{
+	width: 50px;
 }
