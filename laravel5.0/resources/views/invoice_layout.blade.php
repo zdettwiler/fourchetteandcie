@@ -14,7 +14,7 @@
 
 
 	<div id="invoice-header">
-		<img src="http://localhost/fourchetteandcie/public/pictures/title_mint.png">
+		<img src="http://www.fourchetteandcie.com/pictures/title_mint.png">
 	</div>
 
 	<div id="invoice-customer-details">

@@ -4,9 +4,9 @@
 @section('page_title', 'Admin // Catalogue')
 
 @section('include')
-	<link rel="stylesheet" href="http://localhost/fourchetteandcie/public/css/main.css" type="text/css" media="all"/>
-	<link rel="stylesheet" href="http://localhost/fourchetteandcie/public/css/nav.css" type="text/css" media="all"/>
-	<link rel="stylesheet" href="http://localhost/fourchetteandcie/public/css/basket.css" type="text/css" media="all"/>
+	<link rel="stylesheet" href="http://www.fourchetteandcie.com/css/main.css" type="text/css" media="all"/>
+	<link rel="stylesheet" href="http://www.fourchetteandcie.com/css/nav.css" type="text/css" media="all"/>
+	<link rel="stylesheet" href="http://www.fourchetteandcie.com/css/basket.css" type="text/css" media="all"/>
 
 	<style>
 		table
@@ -32,8 +32,8 @@
 
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script src="http://localhost/fourchetteandcie/public/js/layout.js"></script>
-	<script src="http://localhost/fourchetteandcie/public/js/reach_basket.js"></script>
+	<script src="http://www.fourchetteandcie.com/js/layout.js"></script>
+	<script src="http://www.fourchetteandcie.com/js/reach_basket.js"></script>
 @stop
 
 @section('content')
@@ -58,15 +58,15 @@
 
 			@if(!$order->is_validated)
 				<tr>
-					<td><a href="http://localhost/fourchetteandcie/public/admin/orders/{{ $order->id }}" class="ref-box">#{{ sprintf('%03u', $order->id) }}</a></td>
+					<td><a href="http://www.fourchetteandcie.com/admin/orders/{{ $order->id }}" class="ref-box">#{{ sprintf('%03u', $order->id) }}</a></td>
 					<td>{{ date('d/m/Y H:i:s', $order->placed_datetime) }}</td>
-					<td><img src="http://localhost/fourchetteandcie/public/pictures/{{ $order->is_validated }}.png"></td>
-					<td><img src="http://localhost/fourchetteandcie/public/pictures/{{ $order->is_payed }}.png"></td>
-					<td><img src="http://localhost/fourchetteandcie/public/pictures/{{ $order->is_wholesale }}.png"></td>
+					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_validated }}.png"></td>
+					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_payed }}.png"></td>
+					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_wholesale }}.png"></td>
 					<td>{{ $order->customer_name }}</td>
 					<td>{{ $order->order_nb_items }}</td>
-					<td>€{{ number_format ( $order->order_shipping, 2 ) }}</td>
-					<td>€{{ number_format ( $order->order_subtotal, 2 ) }}</td>
+					<td>{{ $order->order_currency }} {{ number_format ( $order->order_shipping, 2 ) }}</td>
+					<td>{{ $order->order_currency }} {{ number_format ( $order->order_subtotal, 2 ) }}</td>
 				</tr>
 			@endif
 
@@ -94,15 +94,15 @@
 
 			@if($order->is_validated AND !$order->is_payed)
 				<tr>
-					<td><a href="http://localhost/fourchetteandcie/public/admin/orders/{{ $order->id }}" class="ref-box">#{{ sprintf('%03u', $order->id) }}</a></td>
+					<td><a href="http://www.fourchetteandcie.com/admin/orders/{{ $order->id }}" class="ref-box">#{{ sprintf('%03u', $order->id) }}</a></td>
 					<td>{{ date('d/m/Y H:i:s', $order->placed_datetime) }}</td>
-					<td><img src="http://localhost/fourchetteandcie/public/pictures/{{ $order->is_validated }}.png"></td>
-					<td><img src="http://localhost/fourchetteandcie/public/pictures/{{ $order->is_payed }}.png"></td>
-					<td><img src="http://localhost/fourchetteandcie/public/pictures/{{ $order->is_wholesale }}.png"></td>
+					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_validated }}.png"></td>
+					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_payed }}.png"></td>
+					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_wholesale }}.png"></td>
 					<td>{{ $order->customer_name }}</td>
 					<td>{{ $order->val_order_nb_items }}</td>
-					<td>€{{ number_format ( $order->val_order_shipping, 2 ) }}</td>
-					<td>€{{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
+					<td>{{ $order->val_order_currency }} {{ number_format ( $order->val_order_shipping, 2 ) }}</td>
+					<td>{{ $order->val_order_currency }} {{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
 				</tr>
 			@endif
 
@@ -129,15 +129,15 @@
 
 			@if($order->is_validated AND $order->is_payed)
 				<tr>
-					<td><a href="http://localhost/fourchetteandcie/public/admin/orders/{{ $order->id }}" class="ref-box">#{{ sprintf('%03u', $order->id) }}</a></td>
+					<td><a href="http://www.fourchetteandcie.com/admin/orders/{{ $order->id }}" class="ref-box">#{{ sprintf('%03u', $order->id) }}</a></td>
 					<td>{{ date('d/m/Y H:i:s', $order->placed_datetime) }}</td>
-					<td><img src="http://localhost/fourchetteandcie/public/pictures/{{ $order->is_validated }}.png"></td>
-					<td><img src="http://localhost/fourchetteandcie/public/pictures/{{ $order->is_payed }}.png"></td>
-					<td><img src="http://localhost/fourchetteandcie/public/pictures/{{ $order->is_wholesale }}.png"></td>
+					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_validated }}.png"></td>
+					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_payed }}.png"></td>
+					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_wholesale }}.png"></td>
 					<td>{{ $order->customer_name }}</td>
 					<td>{{ $order->val_order_nb_items }}</td>
-					<td>€{{ number_format ( $order->val_order_shipping, 2 ) }}</td>
-					<td>€{{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
+					<td>{{ $order->val_order_currency }} {{ number_format ( $order->val_order_shipping, 2 ) }}</td>
+					<td>{{ $order->val_order_currency }} {{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
 				</tr>
 			@endif
 

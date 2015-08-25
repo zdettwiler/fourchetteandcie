@@ -33,19 +33,26 @@ class AdminOrdersController extends Controller
 	public function one_order($id)
 	{
 		$order = DB::table('orders')->where('id', $id)->first();
-		$section_ref_code = Config::get('fandc_arrays')['section_ref_code'];
 		$cutlery_categ_list = Config::get('fandc_arrays')['cutlery_categ_list'];
 
 		if($order->is_validated == 1)
 		{
 			$order_details = Basket::json_encode_decode($order->val_order);
+			if($order->val_order_currency == 'eur')
+				$currency = '&euro;';
+			elseif($order->val_order_currency == 'aud')
+				$currency = 'AU$';
 		}
 		else
 		{
 			$order_details = Basket::json_encode_decode($order->order);
+			if($order->order_currency == 'eur')
+				$currency = '&euro;';
+			elseif($order->order_currency == 'aud')
+				$currency = 'AU$';
 		}
 
-		return view('admin.orders.one_order', compact('order', 'order_details', 'section_ref_code'));
+		return view('admin.orders.one_order', compact('order', 'order_details', 'currency'));
 	}
 
 	public function validate_order($id)

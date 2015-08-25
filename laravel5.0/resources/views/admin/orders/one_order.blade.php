@@ -50,6 +50,11 @@
 				<td>Payed?</td>
 				<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_payed }}.png"></td>
 			</tr>
+
+			<tr>
+				<td>Currency</td>
+				<td>{{ $currency }}</td>
+			</tr>
 		</table>
 	</div>
 
@@ -92,8 +97,8 @@
 				<td style='width: 60%;'><span class='ref-box'>{{ $item['ref'] }}</span> {{ $item['name'] }}{{ $item['stamped'] }}<br><span>{{ $item['descr'] }}</span></td>
 
 				<td class="center-col">{{ $item['qty'] }}</td>
-				<td class="center-col">€{{ number_format($item['price'], 2) }}</td>
-				<td class="center-col">€{{ number_format($item['qty'] * $item['price'], 2) }}</td>
+				<td class="center-col">{{ $currency }} {{ number_format($item['price'], 2) }}</td>
+				<td class="center-col">{{ $currency }} {{ number_format($item['qty'] * $item['price'], 2) }}</td>
 			</tr>
 
 		@endforeach
@@ -102,24 +107,24 @@
 
 			<tr id='subtotal-row'>
 				<td colspan='4'>SUBTOTAL ({{ $order->order_nb_items }} @if($order->order_nb_items > 1) items) @else item) @endif</td>
-				<td class="center-col">€{{ number_format ( $order->order_subtotal, 2 ) }}</td>
+				<td class="center-col">{{ $currency }} {{ number_format ( $order->order_subtotal, 2 ) }}</td>
 			</tr>
 
 			@if($order->is_wholesale == 1)
 			<tr id='subtotal-row'>\n
 				<td colspan='4'>WHOLESALE (-30%)</td>\n
-				<td class="center-col">€{{ number_format( 0.7 * $order->val_order_subtotal, 2 ) }}</td>\n
+				<td class="center-col">{{ $currency }} {{ number_format( 0.7 * $order->val_order_subtotal, 2 ) }}</td>\n
 			</tr>
 			@endif
 
 			<tr id='shipping-row'>
 				<td colspan='4'>SHIPPING</td>
-				<td class="center-col">€{{ number_format ( $order->val_order_shipping, 2 ) }}</td>
+				<td class="center-col">{{ $currency }} {{ number_format ( $order->val_order_shipping, 2 ) }}</td>
 			</tr>
 
 			<tr id='total-row'>
 				<td colspan='4'>TOTAL</td>
-				<td class="center-col">€{{ number_format ( $order->order_total, 2 ) }}</td>
+				<td class="center-col">{{ $currency }} {{ number_format ( $order->order_total, 2 ) }}</td>
 			</tr>
 
 		@endif
@@ -128,24 +133,24 @@
 
 			<tr id='subtotal-row'>
 				<td colspan='4'>SUBTOTAL ({{ $order->val_order_nb_items }} item(s))</td>
-				<td class="center-col">€{{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
+				<td class="center-col">{{ $currency }} {{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
 			</tr>
 
 		@if($order->is_wholesale == 1)
 			<tr id='subtotal-row'>\n
 				<td colspan='4'>WHOLESALE (-30%)</td>\n
-				<td class="center-col">€{{ number_format( 0.7 * $order->val_order_subtotal, 2 ) }}</td>\n
+				<td class="center-col">{{ $currency }} {{ number_format( 0.7 * $order->val_order_subtotal, 2 ) }}</td>\n
 			</tr>
 		@endif
 
 			<tr id='shipping-row'>
 				<td colspan='4'>SHIPPING ({{ $order->val_order_shipping_details }})</td>
-				<td class="center-col">€{{ number_format ( $order->val_order_shipping, 2 ) }}</td>
+				<td class="center-col">{{ $currency }} {{ number_format ( $order->val_order_shipping, 2 ) }}</td>
 			</tr>
 
 			<tr id='total-row'>
 				<td colspan='4'>TOTAL</td>
-				<td class="center-col">€{{ number_format ( $order->val_order_total, 2 ) }}</td>
+				<td class="center-col">{{ $currency }} {{ number_format ( $order->val_order_total, 2 ) }}</td>
 			</tr>
 
 		@endif

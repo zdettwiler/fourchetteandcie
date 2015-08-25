@@ -208,7 +208,7 @@ class OrderValidation
 	{
 		$VALIDATION_ORDER = Session::get('validation_order', []);
 
-		$VALIDATION_ORDER['shipping_details'] = urldecode($shipping_details);
+		$VALIDATION_ORDER['shipping_details'] = $shipping_details;
 
 		Session::set('validation_order', $VALIDATION_ORDER);
 		return false;
