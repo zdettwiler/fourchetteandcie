@@ -118,18 +118,18 @@
 					<td>{{ $order->customer_name }}</td>
 					<td>{{ $order->val_order_nb_items }}</td>
 					<td>
-						@if($order->val_order_currency == 'eur')
+						@if($order->order_currency == 'eur')
 						 	€
-						@elseif($order->val_order_currency == 'aud')
+						@elseif($order->order_currency == 'aud')
 							AU$
 						@endif
 
 						{{ number_format ( $order->val_order_shipping, 2 ) }}
 					</td>
 					<td>
-						@if($order->val_order_currency == 'eur')
+						@if($order->order_currency == 'eur')
 						 	€
-						@elseif($order->val_order_currency == 'aud')
+						@elseif($order->order_currency == 'aud')
 							AU$
 						@endif
 
@@ -169,18 +169,18 @@
 					<td>{{ $order->customer_name }}</td>
 					<td>{{ $order->val_order_nb_items }}</td>
 					<td>
-						@if($order->val_order_currency == 'eur')
+						@if($order->order_currency == 'eur')
 						 	€
-						@elseif($order->val_order_currency == 'aud')
+						@elseif($order->order_currency == 'aud')
 							AU$
 						@endif
 
 						{{ number_format ( $order->val_order_shipping, 2 ) }}
 					</td>
 					<td>
-						@if($order->val_order_currency == 'eur')
+						@if($order->order_currency == 'eur')
 						 	€
-						@elseif($order->val_order_currency == 'aud')
+						@elseif($order->order_currency == 'aud')
 							AU$
 						@endif
 

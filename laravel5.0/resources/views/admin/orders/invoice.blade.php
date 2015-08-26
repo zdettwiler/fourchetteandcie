@@ -33,37 +33,46 @@
 					<span style="font-size: 10px;"><i>{{ $item['comment'] }}</span></td>
 
 				<td class="center-col">{{ $item['qty'] }}</td>
-				<td class="center-col">&euro;{{ number_format($item['price'], 2) }}</td>
-				<td class="center-col">&euro;{{ number_format($item['qty'] * $item['price'], 2) }}</td>
+				<td class="center-col">{{ $currency }}{{ number_format($item['price'], 2) }}</td>
+				<td class="center-col">{{ $currency }}{{ number_format($item['qty'] * $item['price'], 2) }}</td>
 			</tr>
 
 		@endforeach
 
 			<tr id='subtotal-row'>
 				<td class="right-col" colspan='3'>SUBTOTAL ({{ $order->val_order_nb_items }} item(s))</td>
-				<td class="center-col">&euro;{{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
+				<td class="center-col">{{ $currency }}{{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
 			</tr>
 
 			@if($order->is_wholesale == 1)
 				<tr id='wholesale-row'>
 					<td class="right-col" colspan='3'>WHOLESALE (-30%)</td>
-					<td class="center-col">€ {{ number_format( 0.7 * $order->val_order_subtotal, 2 ) }}</td>
+					<td class="center-col">{{ $currency }} {{ number_format( 0.7 * $order->val_order_subtotal, 2 ) }}</td>
 				</tr>
 			@endif
 
 			<tr id='shipping-row'>
 				<td class="right-col" colspan='3'>SHIPPING ({{ $order->val_order_shipping_details }})</td>
-				<td class="center-col">&euro;{{ number_format( $order->val_order_shipping, 2 ) }}</td>
+				<td class="center-col">{{ $currency }}{{ number_format( $order->val_order_shipping, 2 ) }}</td>
 			</tr>
 
 			<tr id='total-row'>
 				<td></td>
 				<td  class="right-col bordered" colspan='2'>TOTAL</td>
-				<td class="center-col bordered">&euro;{{ number_format( $order->val_order_total, 2 ) }}</td>
+				<td class="center-col bordered">{{ $currency }}{{ number_format( $order->val_order_total, 2 ) }}</td>
 			</tr>
 		</table>
 @stop
 
+@section('message')
+	{{ $order->val_order_message }}<br><br>
 
-
-@stop
+	@if($order->order_currency == 'aud')
+	Thank you for a quick bank-transfer as indicated below, so we can send over your order:<br>
+	Commonwealth Bank<br>
+	367 Collins Street, MELBOURNE / VIC<br>
+	BSB No 063000<br>
+	Account No 12525984 / Iris Lara Fabbricotti & Eric Dettwiler<br>
+	SWIFT CTBAAU2S
+	@endif
+@endsection

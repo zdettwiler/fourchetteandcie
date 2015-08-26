@@ -39,7 +39,7 @@
 
 	<p class="order-message">
 		<b>a little message for you:</b><br>
-		{{ $order->val_order_message }}<br><br>
+		@yield('message')<br><br>
 		MERCI BEAUCOUP POUR VOTRE COMMANDE!
 	</p>
 	<br>
