@@ -44,7 +44,9 @@ tr#subtotal-row, tr#shipping-row, tr#total-row
 {
 	height: 50px;
 }
-tr#subtotal-row td, tr#shipping-row td, tr#total-row td
+tr#subtotal-row td,
+tr#shipping-row td,
+tr#total-row td
 {
 	font-family: "Roboto Condensed", "Source Sans Pro", sans-serif;
 	font-weight: bold;

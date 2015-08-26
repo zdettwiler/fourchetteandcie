@@ -48,6 +48,12 @@
 
 @section('content')
 
+	@if(Session::has('notification'))
+		<div id="notification" class="{{ Session::get('notification')['type'] }}">
+			<p>{{ Session::get('notification')['message'] }}</p>
+		</div>
+	@endif
+
 	<h2>Your order (#{{ sprintf('%03u', $order_id) }}) has been successfully placed.</h2>
 	<p>We have received your order and we will validate it as soon as possible. We will make sure we are able to meet your desires and will come back to you as soon as possible for you to pay. That done, we'll ship your order over to you...</p>
 

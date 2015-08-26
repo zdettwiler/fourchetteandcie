@@ -57,7 +57,17 @@
 	@endif
 
 	<h2>Your order (#{{ sprintf('%03u', $order->id) }}) has been validated.</h2>
-	<p>Here is your validated order. Get ready to pay on PayPal.</p>
+
+	@if($order->order_currency == 'eur')
+		<p>Here is your validated order. Get ready to pay on PayPal.</p>
+	@elseif($order->order_currency == 'aud')
+		<p>Here is your validated order. Thank you for a quick bank-transfer as indicated below, so we can send over your order:<br><br>
+		Commonwealth Bank<br>
+		367 Collins Street, MELBOURNE / VIC<br>
+		BSB No 063000<br>
+		Account No 12525984 / Iris Lara Fabbricotti &amp; Eric Dettwiler<br>
+		SWIFT CTBAAU2S</p>
+	@endif
 
 	<h3>Order Details</h3>
 
@@ -76,39 +86,44 @@
 		<tr item-ref='{{ $item['ref'] }}'>
 			<td>
 			@if(substr($item['ref'], 0, 6) != "custom")
-				<img class='item-img' src="http://www.fourchetteandcie.com/pictures/{{ $section_ref_code[ $item['ref'][0] ] }}/100px/{{ $item['ref'] }}_thumb.jpg" height='50'>
+				<img class='item-img' src="http://www.fourchetteandcie.com/pictures/{{ $item['ref'][0] }}/100px/{{ $item['ref'] }}_thumb.jpg" height='50'>
 			@endif
 			</td>
 
-			<td style='width: 60%;'><span class='ref-box'>{{ $item['ref'] }}</span> {{ $item['name'] }}{{ $item['stamped'] }}<br><span>{{ $item['descr'] }}</span></td>
+			<td style='width: 60%;'>
+				<span class='ref-box'>{{ $item['ref'] }}</span> {{ $item['name'] }}{{ $item['stamped'] }} - <i>{{ $item['descr'] }}</i><br>
+				@if($item['comment'] != '')
+					<i>{{ '"'. $item['comment'] .'"' }}</i>
+				@endif
+			</td>
 
 			<td class="center-col">{{ $item['qty'] }}</td>
-			<td class="center-col">€{{ number_format($item['price'], 2) }}</td>
-			<td class="center-col">€{{ number_format($item['qty'] * $item['price'], 2) }}</td>
+			<td class="center-col">{{ $currency }} {{ number_format($item['price'], 2) }}</td>
+			<td class="center-col">{{ $currency }} {{ number_format($item['qty'] * $item['price'], 2) }}</td>
 		</tr>
 
 	@endforeach
 
 		<tr id='subtotal-row'>
 			<td colspan='4'>SUBTOTAL ({{ $order->val_order_nb_items }} item(s))</td>
-			<td class="center-col">€{{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
+			<td class="center-col">{{ $currency }} {{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
 		</tr>
 
 	@if($order->is_wholesale == 1)
-		<tr id='subtotal-row'>\n
-			<td colspan='4'>WHOLESALE (-30%)</td>\n
-			<td class="center-col">€{{ number_format( 0.7 * $order->val_order_subtotal, 2 ) }}</td>\n
+		<tr id='subtotal-row'>
+			<td colspan='4'>WHOLESALE (-30%)</td>
+			<td class="center-col">{{ $currency }} {{ number_format( 0.7 * $order->val_order_subtotal, 2 ) }}</td>
 		</tr>
 	@endif
 
 		<tr id='shipping-row'>
 			<td colspan='4'>SHIPPING ({{ $order->val_order_shipping_details }})</td>
-			<td class="center-col">€{{ number_format ( $order->val_order_shipping, 2 ) }}</td>
+			<td class="center-col">{{ $currency }} {{ number_format ( $order->val_order_shipping, 2 ) }}</td>
 		</tr>
 
 		<tr id='total-row'>
 			<td colspan='4'>TOTAL</td>
-			<td class="center-col">€{{ number_format ( $order->val_order_total, 2 ) }}</td>
+			<td class="center-col">{{ $currency }} {{ number_format ( $order->val_order_total, 2 ) }}</td>
 		</tr>
 
 	</table>
@@ -120,6 +135,8 @@
 	<br>
 	<br>
 
-	<a href="http://www.fourchetteandcie.com/checkout/{{ $order->order_token }}/shipping/confirm/placed/payment/init" class="a-button-style" style="float: right;">PAY WITH PAYPAL</a>
+	@if($order->order_currency == 'eur')
+		<a href="http://www.fourchetteandcie.com/checkout/{{ $order->order_token }}/shipping/confirm/placed/payment/init" class="a-button-style" style="float: right;">PAY WITH PAYPAL</a>
+	@endif
 
 @stop

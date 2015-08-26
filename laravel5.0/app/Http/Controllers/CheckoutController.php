@@ -86,21 +86,22 @@ class CheckoutController extends Controller
 		$order_details = Basket::json_encode_decode($order->val_order);
 		$section_ref_code = Config::get('fandc_arrays')['section_ref_code'];
 
+		if($order->order_currency == 'eur')
+			$currency = '&euro;';
+		elseif($order->order_currency == 'aud')
+			$currency = 'AU$';
+
 		// If order hasn't beem validated, don't allow access
 		if($order->is_validated == 0)
 		{
 			// Custom Error Message...
-			return view('checkout.placed', compact('order'));
+			return view('checkout.placed', compact('order'))
+				->with('notification', ['type' => 'negative', 'message' => "You can't pay now, your order has not been validated yet."]);
 		}
-		else
+		elseif($order->is_validated == 1)
 		{
-			return view('checkout.payment', compact('order', 'order_details', 'section_ref_code'));
+			return view('checkout.payment', compact('order', 'order_details', 'currency'));
 		}
-
-		// $notification = [];
-		// $notification['type'] = 'negative';
-		// $notification['message'] = 'There has been an error when connecting with PayPal...';
-		return view('checkout.payment', compact('order', 'order_details', 'section_ref_code'));
 
 	}
 
