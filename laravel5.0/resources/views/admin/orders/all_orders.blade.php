@@ -65,8 +65,24 @@
 					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_wholesale }}.png"></td>
 					<td>{{ $order->customer_name }}</td>
 					<td>{{ $order->order_nb_items }}</td>
-					<td>{{ $order->order_currency }} {{ number_format ( $order->order_shipping, 2 ) }}</td>
-					<td>{{ $order->order_currency }} {{ number_format ( $order->order_subtotal, 2 ) }}</td>
+					<td>
+						@if($order->order_currency == 'eur')
+						 	€
+						@elseif($order->order_currency == 'aud')
+							AU$
+						@endif
+
+						{{ number_format ( $order->order_shipping, 2 ) }}
+					</td>
+					<td>
+						@if($order->order_currency == 'eur')
+						 	€
+						@elseif($order->order_currency == 'aud')
+							AU$
+						@endif
+
+						{{ number_format ( $order->order_subtotal, 2 ) }}
+					</td>
 				</tr>
 			@endif
 
@@ -101,8 +117,24 @@
 					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_wholesale }}.png"></td>
 					<td>{{ $order->customer_name }}</td>
 					<td>{{ $order->val_order_nb_items }}</td>
-					<td>{{ $order->val_order_currency }} {{ number_format ( $order->val_order_shipping, 2 ) }}</td>
-					<td>{{ $order->val_order_currency }} {{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
+					<td>
+						@if($order->val_order_currency == 'eur')
+						 	€
+						@elseif($order->val_order_currency == 'aud')
+							AU$
+						@endif
+
+						{{ number_format ( $order->val_order_shipping, 2 ) }}
+					</td>
+					<td>
+						@if($order->val_order_currency == 'eur')
+						 	€
+						@elseif($order->val_order_currency == 'aud')
+							AU$
+						@endif
+
+						{{ number_format ( $order->val_order_subtotal, 2 ) }}
+					</td>
 				</tr>
 			@endif
 
@@ -136,8 +168,24 @@
 					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_wholesale }}.png"></td>
 					<td>{{ $order->customer_name }}</td>
 					<td>{{ $order->val_order_nb_items }}</td>
-					<td>{{ $order->val_order_currency }} {{ number_format ( $order->val_order_shipping, 2 ) }}</td>
-					<td>{{ $order->val_order_currency }} {{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
+					<td>
+						@if($order->val_order_currency == 'eur')
+						 	€
+						@elseif($order->val_order_currency == 'aud')
+							AU$
+						@endif
+
+						{{ number_format ( $order->val_order_shipping, 2 ) }}
+					</td>
+					<td>
+						@if($order->val_order_currency == 'eur')
+						 	€
+						@elseif($order->val_order_currency == 'aud')
+							AU$
+						@endif
+
+						{{ number_format ( $order->val_order_subtotal, 2 ) }}
+					</td>
 				</tr>
 			@endif
 

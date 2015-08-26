@@ -94,7 +94,13 @@
 				@endif
 				</td>
 
-				<td style='width: 60%;'><span class='ref-box'>{{ $item['ref'] }}</span> {{ $item['name'] }}{{ $item['stamped'] }}<br><span>{{ $item['descr'] }}</span></td>
+				<td style='width: 60%;'>
+					<span class='ref-box'>{{ $item['ref'] }}</span>
+					{{ $item['name'] }}{{ $item['stamped'] }} - <i>{{ $item['descr'] }}</i><br>
+					@if($order->is_validated)
+						<i>{{ '\"'. $item['comment'] .'\"' }}</i>
+					@endif
+				</td>
 
 				<td class="center-col">{{ $item['qty'] }}</td>
 				<td class="center-col">{{ $currency }} {{ number_format($item['price'], 2) }}</td>
