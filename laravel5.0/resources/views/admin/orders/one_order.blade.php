@@ -67,7 +67,7 @@
 	<div class="module width-50">
 		<h3>Customer</h3>
 		<p><b>{{ $order->customer_name }}</b><br>
-		{!! str_replace('', "<br>", $order->customer_address) !!}<br>
+		{!! str_replace('\n', "<br>", $order->customer_address) !!}<br>
 		<span style="font-size: 20px">☎</span> {{ $order->customer_phone }} // <span style="font-size: 20px">&#64;</span> {{ $order->customer_email }}</p>
 	</div>
 
@@ -97,8 +97,8 @@
 				<td style='width: 60%;'>
 					<span class='ref-box'>{{ $item['ref'] }}</span>
 					{{ $item['name'] }}{{ $item['stamped'] }} - <i>{{ $item['descr'] }}</i><br>
-					@if($order->is_validated)
-						<i>{{ '\"'. $item['comment'] .'\"' }}</i>
+					@if($order->is_validated AND $item['comment'] != '')
+						<i>{{ '"'. $item['comment'] .'"' }}</i>
 					@endif
 				</td>
 
