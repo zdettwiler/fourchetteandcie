@@ -119,6 +119,10 @@ class AdminOrdersController extends Controller
 				OrderValidation::validation_table_html($id);
 				break;
 
+			case 'TOGGLE_PAYED':
+				OrderValidation::toggle_payed($id);
+				break;
+
 			case 'UPDATE_MESSAGE':
 				OrderValidation::update_message($value);
 				OrderValidation::validation_table_html($id);

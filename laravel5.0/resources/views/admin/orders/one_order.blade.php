@@ -13,7 +13,9 @@
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="http://www.fourchetteandcie.com/js/layout.js"></script>
-	<script src="http://www.fourchetteandcie.com/js/reach_basket.js"></script>
+	<script>
+		var id={{ $order->id }};
+	</script>
 @stop
 
 @section('content')
@@ -30,7 +32,10 @@
 
 	{{-- ORDER STATUS AT A GLANCE --}}
 	<div class="module width-50">
-		<h3>Order Status <a class="a-button-style" href="{{ $order->id }}/validate">VALIDATE</a><h3>
+		<h3>Order Status
+			@if(!$order->is_validated)
+				<a class="a-button-style" href="{{ $order->id }}/validate">VALIDATE</a><h3>
+			@endif
 		<table id="order-status" style="width: 300px;">
 			<tr>
 				<td colspan="3">Order placed at <b>{{ date('d/m/Y H:i:s', $order->placed_datetime) }}</b></td>
@@ -38,22 +43,25 @@
 
 			<tr>
 				<td>Wholesale?</td>
-				<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_wholesale }}.png"></td>
+				<td colspan="2"><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_wholesale }}.png"></td>
 			</tr>
 
 			<tr>
 				<td>Validated?</td>
-				<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_validated }}.png"></td>
+				<td colspan="2"><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_validated }}.png"></td>
 			</tr>
 
 			<tr>
 				<td>Payed?</td>
-				<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_payed }}.png"></td>
+				<td><img id="payed-status" src="http://www.fourchetteandcie.com/pictures/{{ $order->is_payed }}.png"></td>
+				@if($order->is_validated AND $order->order_currency == 'aud' AND !$order->is_payed)
+					<td><button id="toggle-payed">PAYED</button></td>
+				@endif
 			</tr>
 
 			<tr>
 				<td>Currency</td>
-				<td>{{ $currency }}</td>
+				<td colspan="2">{{ $currency }}</td>
 			</tr>
 		</table>
 	</div>

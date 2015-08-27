@@ -137,6 +137,46 @@ function blink_basket_count()
 	}, 1000);
 }
 
+function confirm_action(message, confirmed_action)
+{
+	$("body #confirm-action").remove();
+	$("#fade").hide();
+
+	if(message)
+	{
+		$("#fade").show();
+		$("body").prepend("<div id='confirm-action'><div id='title'><h3>Please Confirm</h3></div><div id='message'><p>"+ message +"</p><p style='text-align: right; margin: 0; padding-right: 7px;'><button onclick='confirm_action()'>CANCEL</button> <button onclick='"+ confirmed_action +"()'>CONFIRM</button></p></div></div>");
+	}
+}
+function toggle_payed()
+{
+	var xhr = new XMLHttpRequest();
+
+	xhr.open('GET', '../../admin/orders/'+id+'/validate/'+encodeURIComponent("TOGGLE_PAYED"), true);
+	xhr.addEventListener('readystatechange', function() {
+
+		if (xhr.readyState === 4 && xhr.status === 200)
+		{
+			$("#payed-status").attr("src", "http://www.fourchetteandcie.com/pictures/1.png");
+		}
+		else if (xhr.readyState == 4 && xhr.status != 200)
+		{
+			alert("ERROR!" + '\n\nCode :' + xhr.status + '\nText : ' + xhr.statusText + '\nMessage : ' + xhr.responseText);
+		}
+	}, false);
+
+	xhr.send(null);
+
+	$("body #confirm-action").remove();
+	$("#fade").hide();
+
+	return false;
+}
+function submit_validated_order()
+{
+	window.location.replace("/submit");
+}
+
 function placeholder()
 {
 	myArray = $('input');
@@ -188,6 +228,16 @@ $(function()
 	     	$("#item-viewer").removeClass('opened');
 			$("#item-viewer").animate({left: - 1.2* $(window).width() });
 	    }
+	});
+
+	// PAYED TOGGLE
+	$("#toggle-payed").on("click", function() {
+		confirm_action("Are you sure the customer has paid?", "toggle_payed");
+	});
+
+	// SUBMIT VALIDATED ORDER
+	$("#submit-validation").on("click", function() {
+		confirm_action("Are you sure the order is ready for the customer?", "submit_validated_order");
 	});
 
 

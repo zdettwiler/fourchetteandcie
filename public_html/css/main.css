@@ -157,6 +157,41 @@ table
 	left: 0;
 	opacity: 0.6;
 }
+#confirm-action
+{
+	width: 40%;
+	margin: auto;
+	background-color: #000000;
+	z-index: 51;
+	position: relative;
+	top: 30%;
+	background-color: #FFFFFF;
+	color: #E74C3C;
+	padding-bottom: 1px;
+}
+#confirm-action #title
+{
+	background-color: #E74C3C;
+	color: #FFFFFF;
+	position: relative;
+	top: 0;
+	left: 0;
+	padding: 1px;
+}
+#confirm-action #title h3
+{
+	color: #FFFFFF;
+	margin: 10px 0;
+
+}
+#confirm-action p
+{
+	padding: 0 20px;
+}
+#confirm-action button
+{
+	background-color: #E74C3C;
+}
 
 .fade-loading
 {

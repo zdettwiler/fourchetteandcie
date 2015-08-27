@@ -1,7 +1,6 @@
 function reach_validate_order_reload(id, command)
 {
 	var xhr = new XMLHttpRequest();
-	var doneitonce = 0
 
 	xhr.open('GET', '../../../admin/orders/'+id+'/validate/'+encodeURIComponent(command), true);
 	xhr.addEventListener('readystatechange', function() {

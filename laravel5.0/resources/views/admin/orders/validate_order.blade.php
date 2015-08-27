@@ -89,7 +89,7 @@
 	<p>Security token: <b>{{ $order->order_token }}</b></p>
 
 	{{-- ORDER STATUS AT A GLANCE --}}
-	<div class="width-50">
+	<div class="width-50" style="float: left;">
 		<h3>Order Status<h3>
 		<table id="order-status" style="width: 300px;">
 			<tr>
@@ -132,7 +132,7 @@
 
 
 	{{-- CUSTOMER DETAILS --}}
-	<div class="width-50">
+	<div class="width-50" style="float: left;">
 		<h3>Customer</h3>
 		<p><b>{{ $order->customer_name }}</b><br>
 		{!! str_replace('\n', "<br>", $order->customer_address) !!}<br>
@@ -143,14 +143,13 @@
 	<br>
 	<br>
 	<br>
-	<h3>Order Details</h3>
-
-	<table id="validation-table">
-
-
-	</table>
+	<div style="margin: auto; width: 90%; float: left;">
+		<h3>Order Details</h3>
+		<table id="validation-table">
+		</table>
+	</div>
 
 	<br><br><br>
-	<a href="validate/submit" class="a-button-style" style="float: right;">SUBMIT CHANGES</a>
+	<button id="submit-validation" style="float: right;">SUBMIT CHANGES</button>
 
 @stop

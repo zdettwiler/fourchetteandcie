@@ -334,6 +334,20 @@ class OrderValidation
 	}
 
 //----------------------------------------------------------------------------//
+// TOGGLE ORDER TO PAYED FOR AUD$ PAYMENTS
+//----------------------------------------------------------------------------//
+	public static function toggle_payed($id)
+	{
+		DB::table('orders')
+			->where('id', $id)
+			->update([
+						'is_payed' => 1
+					]);
+
+		return false;
+	}
+
+//----------------------------------------------------------------------------//
 // UPDATE ORDER MESSAGE
 //----------------------------------------------------------------------------//
 	public static function update_message($message)
