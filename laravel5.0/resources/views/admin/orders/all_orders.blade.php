@@ -96,7 +96,7 @@
 	<table>
 		<tr class="table-header">
 			<td>Order #</td>
-			<td>Placed at</td>
+			<td>Validated at</td>
 			<td>Validated?</td>
 			<td>Payed?</td>
 			<td>Wholesale?</td>
@@ -111,7 +111,7 @@
 			@if($order->is_validated AND !$order->is_payed)
 				<tr>
 					<td><a href="http://www.fourchetteandcie.com/admin/orders/{{ $order->id }}" class="ref-box">#{{ sprintf('%03u', $order->id) }}</a></td>
-					<td>{{ date('d/m/Y H:i:s', $order->placed_datetime) }}</td>
+					<td>{{ date('d/m/Y H:i:s', $order->validated_datetime) }}</td>
 					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_validated }}.png"></td>
 					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_payed }}.png"></td>
 					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_wholesale }}.png"></td>
@@ -147,7 +147,7 @@
 	<table>
 		<tr class="table-header">
 			<td>Order #</td>
-			<td>Placed at</td>
+			<td>Validated at</td>
 			<td>Validated?</td>
 			<td>Payed?</td>
 			<td>Wholesale?</td>
@@ -162,7 +162,7 @@
 			@if($order->is_validated AND $order->is_payed)
 				<tr>
 					<td><a href="http://www.fourchetteandcie.com/admin/orders/{{ $order->id }}" class="ref-box">#{{ sprintf('%03u', $order->id) }}</a></td>
-					<td>{{ date('d/m/Y H:i:s', $order->placed_datetime) }}</td>
+					<td>{{ date('d/m/Y H:i:s', $order->validated_datetime) }}</td>
 					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_validated }}.png"></td>
 					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_payed }}.png"></td>
 					<td><img src="http://www.fourchetteandcie.com/pictures/{{ $order->is_wholesale }}.png"></td>
