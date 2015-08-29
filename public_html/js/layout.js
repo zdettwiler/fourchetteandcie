@@ -174,7 +174,7 @@ function toggle_payed()
 }
 function submit_validated_order()
 {
-	window.location.replace("../validate/submit");
+	window.location.replace("validate/submit");
 }
 
 function placeholder()
