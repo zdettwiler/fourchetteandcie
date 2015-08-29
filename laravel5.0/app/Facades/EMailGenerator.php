@@ -51,7 +51,9 @@ class EMailGenerator
 			->where('id', $order_id)
 			->first();
 
-		$sent = Mail::send('emails.cust_validated_order', compact('order'), function($message) use ($order_id)
+        $order_token = $order->order_token;
+
+		$sent = Mail::send('emails.cust_validated_order', compact('order'), function($message) use ($order_id, $order_token)
 		{
 			$message->from('orders@fourchetteandcie.com', 'Fourchette & Cie - Admin');
 
@@ -59,7 +61,7 @@ class EMailGenerator
 
 			$message->to('z.dettwiler@gmail.com');
 
-			// $message->attach($pathToFile);
+			$message->attach('/home/fouraqir/invoices/'. $order_token .'.pdf');
 		});
 	}
 
