@@ -153,7 +153,7 @@ class AdminOrdersController extends Controller
 		// return view('admin.orders.invoice', compact('order', 'order_details'));
 
 		$pdf = PDF::loadView('admin.orders.invoice', compact('order', 'order_details', 'currency'))
-			->save('/home/fouraqir/invoices/'. $order->$order_token .'.pdf');
+			->save('/home/fouraqir/invoices/'. $order->order_token .'.pdf');
 	}
 
 	public function show_pdf_invoice($id)
