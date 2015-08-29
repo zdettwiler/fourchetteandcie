@@ -111,9 +111,12 @@ $(function() {
 
 	// SHIPPING DETAILS
 	$("#validation-table").on("focusout", "input[type=text].edit-shipping-details", function() {
-		var shipping_details = encodeURIComponent( $(this).val() );
-		// console.log('UPDATE_SHIPPING_DETAILS-null-' + shipping_details);
-		reach_validate_order_reload(id, 'UPDATE_SHIPPING_DETAILS-null-' + shipping_details);
+		var shipping_details = $(this).val();
+		if(shipping_details == '')
+		{
+			shipping_details = ' ';
+		}
+		reach_validate_order_reload(id, 'UPDATE_SHIPPING_DETAILS-null-' + encodeURIComponent(shipping_details) );
 	});
 
 	// WHOLESALE TOGGLE
@@ -124,9 +127,12 @@ $(function() {
 
 	// MESSAGE
 	$("#validation-table").on("focusout", "textarea", function() {
-		var message = encodeURIComponent( $(this).val() );
-		// console.log('TOGGLE_WHOLESALE');
-		reach_validate_order_reload(id, 'UPDATE_MESSAGE-null-' + message);
+		var message = $(this).val();
+		if(message == '')
+		{
+			message = ' ';
+		}
+		reach_validate_order_reload(id, 'UPDATE_MESSAGE-null-' + encodeURIComponent(message) );
 	});
 
 

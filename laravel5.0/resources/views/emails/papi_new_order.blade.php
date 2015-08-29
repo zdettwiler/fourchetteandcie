@@ -3,7 +3,7 @@
 @section('page_title', 'Handstamped Silverware')
 
 @section('preloader')
-	A new order has been place and you need to validate it asap!
+	A new order has been placed and you need to validate it asap!
 @stop
 
 @section('content')
