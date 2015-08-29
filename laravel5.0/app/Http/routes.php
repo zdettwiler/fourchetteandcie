@@ -44,6 +44,9 @@ Route::get('/checkout/{order_token}/shipping/confirm/placed/payment/thanks', 'Ch
 // Search Engine
 Route::get('/search/{query}', 'HomeController@search_query');
 
+//
+Route::get('/invoice/{order_token}', 'HomeController@invoice');
+
 //-------------------------------------------- ADMIN --------------------------------------------//
 // Login
 Route::get('/admin', ['middleware' => 'auth','uses' => 'AdminController@index']);
