@@ -16,11 +16,10 @@ use Session;
 
 class AdminOrdersController extends Controller
 {
-
-	// public function __construct()
-	// {
-	// 	$this->middleware('auth');
-	// }
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
 
 	public function all_orders()
 	{
@@ -151,7 +150,8 @@ class AdminOrdersController extends Controller
 
 		// return view('admin.orders.invoice', compact('order', 'order_details'));
 
-		$pdf = PDF::loadView('admin.orders.invoice', compact('order', 'order_details', 'currency'));
+		$pdf = PDF::loadView('admin.orders.invoice', compact('order', 'order_details', 'currency'))
+			->save('/home/fouraqir/invoices/my_stored_file.pdf');
 		// $pdf->loadHTML('<h1>Test</h1>');
 		return $pdf->stream();
 	}
