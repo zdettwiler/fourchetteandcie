@@ -67,7 +67,7 @@ Route::get('/admin/items/quick-edit/{command}-{ref}-{value?}', 'AdminItemsContro
 // Orders Management
 Route::get('/admin/orders', 'AdminOrdersController@all_orders');
 Route::get('/admin/orders/{id}', 'AdminOrdersController@one_order');
-Route::get('/admin/orders/{id}/invoice', 'AdminOrdersController@make_pdf_invoice');
+Route::get('/admin/orders/{id}/invoice', 'AdminOrdersController@show_pdf_invoice');
 Route::get('/admin/orders/{id}/validate', 'AdminOrdersController@validate_order');
 Route::get('/admin/orders/{id}/validate/submit', 'AdminOrdersController@submit_validated_order');
 Route::get('/admin/orders/{id}/validate/{command}-{ref?}-{value?}', 'AdminOrdersController@validate_order_command');

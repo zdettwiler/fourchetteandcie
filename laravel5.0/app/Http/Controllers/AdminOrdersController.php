@@ -135,6 +135,8 @@ class AdminOrdersController extends Controller
 
 		EMailGenerator::send_cust_validated_order($id);
 
+		$this->make_pdf_invoice($id);
+
 		return redirect('admin/orders/'.$id);
 	}
 
@@ -151,7 +153,23 @@ class AdminOrdersController extends Controller
 		// return view('admin.orders.invoice', compact('order', 'order_details'));
 
 		$pdf = PDF::loadView('admin.orders.invoice', compact('order', 'order_details', 'currency'))
-			->save('/home/fouraqir/invoices/my_stored_file.pdf');
+			->save('/home/fouraqir/invoices/'. $order->$order_token .'.pdf');
+	}
+
+	public function show_pdf_invoice($id)
+	{
+		$order = DB::table('orders')->where('id', $id)->first();
+		$order_details = Basket::json_encode_decode($order->val_order);
+
+		if($order->order_currency == 'eur')
+			$currency = '&euro;';
+		elseif($order->order_currency == 'aud')
+			$currency = 'AU$';
+
+		// return view('admin.orders.invoice', compact('order', 'order_details'));
+
+		$pdf = PDF::loadView('admin.orders.invoice', compact('order', 'order_details', 'currency'));
+			// ->save('/home/fouraqir/invoices/my_stored_file.pdf');
 		// $pdf->loadHTML('<h1>Test</h1>');
 		return $pdf->stream();
 	}
