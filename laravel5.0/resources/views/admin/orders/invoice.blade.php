@@ -12,7 +12,7 @@
 @section('customer-phone', $order->customer_phone)
 @section('customer-email', $order->customer_email)
 @section('order-id', sprintf('%03u', $order->id))
-@section('order-placed-datetime', date('d/m/Y H:i:s', $order->placed_datetime))
+@section('order-validated-datetime', date('d/m/Y H:i:s', $order->validated_datetime))
 
 @section('order')
 

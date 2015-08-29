@@ -480,6 +480,7 @@ class OrderValidation
 		DB::table('orders')
 			->where('id', $id)
 			->update([
+						'validated_datetime'         => time(),
 						'is_validated'               => 1,
 						'is_wholesale'               => $VALIDATION_ORDER['is_wholesale'],
 						'val_order'                  => json_encode(array_slice($VALIDATION_ORDER, 10)),
@@ -487,7 +488,7 @@ class OrderValidation
 						'val_order_subtotal'         => $VALIDATION_ORDER['subtotal'],
 						'val_order_shipping'         => $VALIDATION_ORDER['shipping'],
 						'val_order_shipping_details' => $VALIDATION_ORDER['shipping_details'],
-						'order_currency'         => $VALIDATION_ORDER['currency'],
+						'order_currency'             => $VALIDATION_ORDER['currency'],
 						'val_order_total'            => $VALIDATION_ORDER['total'],
 						'val_order_message'          => $VALIDATION_ORDER['message']
 					]);
