@@ -345,7 +345,7 @@ class OrderValidation
 					]);
 
 		// send emails
-		EMailGenerator::send_papi_payed_order($id);
+		EMailGenerator::send_papi_paid_order($id);
 		EMailGenerator::send_cust_thank_you($id);
 
 		return false;

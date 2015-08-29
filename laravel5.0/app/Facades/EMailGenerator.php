@@ -65,9 +65,13 @@ class EMailGenerator
 		});
 	}
 
-	public static function send_papi_payed_order($order_id)
+	public static function send_papi_paid_order($order_id)
 	{
-		$sent = Mail::send('emails.papi_payed_order', ['order_id' => $order_id], function($message) use ($order_id)
+        $order_token = DB::table('orders')
+			->where('id', $order_id)
+			->pluck('order_token');
+
+		$sent = Mail::send('emails.papi_paid_order', ['order_id' => $order_id], function($message) use ($order_id, $order_token)
 		{
 			$message->from('orders@fourchetteandcie.com', 'Fourchette & Cie - Admin');
 
@@ -75,7 +79,7 @@ class EMailGenerator
 
 			$message->to('z.dettwiler@gmail.com');
 
-			// $message->attach($pathToFile);
+			$message->attach('/home/fouraqir/invoices/'. $order_token .'.pdf');
 		});
 	}
 

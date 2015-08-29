@@ -244,7 +244,7 @@ class CheckoutController extends Controller
 						->where('order_token', $order_token)
 						->pluck('id');
 
-		EMailGenerator::send_papi_payed_order($order_id);
+		EMailGenerator::send_papi_paid_order($order_id);
 		EMailGenerator::send_cust_thank_you($order_id);
 
 		// detroy Basket
