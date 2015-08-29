@@ -31,20 +31,26 @@ use PayPal\Api\PaymentExecution;
 
 class CheckoutController extends Controller
 {
-	// STEP 1: Show Basket
+//----------------------------------------------------------------------------//
+// STEP 1: SHOW BASKET
+//----------------------------------------------------------------------------//
 	public function index()
 	{
 		$basket = Basket::show_basket();
 		return view('checkout.index', compact('basket'));
 	}
 
-	// STEP 2: Shipping
+//----------------------------------------------------------------------------//
+// STEP 2: SHIPPING
+//----------------------------------------------------------------------------//
 	public function shipping()
 	{
 		return view('checkout.shipping');
 	}
 
-	// STEP 3: Confirmation
+//----------------------------------------------------------------------------//
+// STEP 3: CONFIRMATION
+//----------------------------------------------------------------------------//
 	public function confirm($order_token, Request $shipping_details)
 	{
 		$order = new Order($order_token);
@@ -57,7 +63,9 @@ class CheckoutController extends Controller
 		return view('checkout.confirm', compact('shipping_details', 'order_token'));
 	}
 
-	// STEP 4: Place the order
+//----------------------------------------------------------------------------//
+// STEP 4: PLACE ORDER
+//----------------------------------------------------------------------------//
 	public function place($order_token)
 	{
 		$order = new Order($order_token);
@@ -79,7 +87,9 @@ class CheckoutController extends Controller
 		return view('checkout.placed', compact('order_id'));
 	}
 
-	// STEP 5: Paypal Payment
+//----------------------------------------------------------------------------//
+// STEP 5: PAYPAL PAYMENT
+//----------------------------------------------------------------------------//
 	public function payment($order_token)
 	{
 		$order = DB::table('orders')->where('order_token', $order_token)->first();
@@ -229,6 +239,14 @@ class CheckoutController extends Controller
 			->where('order_token', $order_token)
 			->update(['is_payed' => 1]);
 
+		// send emails
+		$order_id = DB::table('orders')
+						->where('order_token', $order_token)
+						->pluck('id');
+
+		EMailGenerator::send_papi_payed_order($order_id);
+		EMailGenerator::send_cust_thank_you($order_id);
+
 		// detroy Basket
 		Basket::empty_basket();
 
@@ -236,7 +254,9 @@ class CheckoutController extends Controller
 
 	}
 
-	// STEP 6: Thank You
+//----------------------------------------------------------------------------//
+// STEP 6: THANK YOU
+//----------------------------------------------------------------------------//
 	public function thanks($order_token)
 	{
 		$order = DB::table('orders')->where('order_token', $order_token)->first();

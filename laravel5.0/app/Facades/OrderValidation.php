@@ -344,6 +344,10 @@ class OrderValidation
 						'is_payed' => 1
 					]);
 
+		// send emails
+		EMailGenerator::send_papi_payed_order($id);
+		EMailGenerator::send_cust_thank_you($id);
+
 		return false;
 	}
 

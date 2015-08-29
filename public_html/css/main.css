@@ -35,7 +35,7 @@ a
 }
 a:hover
 {
-	color: #BFFAA0;
+	color: #7CFFB1; /* #7CFFB1; /* #BFFAA0; */ *
 }
 h1
 {
@@ -71,7 +71,7 @@ h3
 button, input[type='submit']
 {
 	color: #FFFFFF;
-	background-color: #BFFAA0;
+	background-color: #7CFFB1; /* #BFFAA0; */
 	border: none;
 	height: 30px;
 	padding: 1px 10px 1px 10px;
@@ -83,7 +83,7 @@ button, input[type='submit']
 a.a-button-style
 {
 	color: #FFFFFF;
-	background-color: #BFFAA0;
+	background-color: #7CFFB1; /* #BFFAA0; */
 	border: none;
 	height: 30px;
 	width: auto;
@@ -295,7 +295,7 @@ ul#shopwindow
 	width: 100%;
 	height: 50%;
 	padding: 40px;
-	border-bottom: 20px solid #BFFAA0;
+	border-bottom: 20px solid #7CFFB1; /* #BFFAA0; */
 }
 #block-link-silverware
 {
@@ -372,7 +372,7 @@ ul#shopwindow
 	position: fixed;
 	left: 0px;
 	top: 100px;
-	background-color: #BFFAA0;
+	background-color: #7CFFB1; /* #BFFAA0; */
 	padding: 13px 10px 10px 10px;
 }
 
