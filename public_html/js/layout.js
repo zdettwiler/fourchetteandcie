@@ -174,7 +174,7 @@ function toggle_payed()
 }
 function submit_validated_order()
 {
-	window.location.replace("/submit");
+	window.location.replace("validate/submit");
 }
 
 function placeholder()
@@ -200,6 +200,7 @@ $(function()
 	$("#fade").on("click", function() {
 		toggle_basket('close');
 		toggle_nav_links('close');
+		confirm_action();
 	});
 
 	$("li.item, #close-viewer").on("click", function() {
@@ -238,6 +239,8 @@ $(function()
 	// SUBMIT VALIDATED ORDER
 	$("#submit-validation").on("click", function() {
 		confirm_action("Are you sure the order is ready for the customer?", "submit_validated_order");
+		$("html, body").animate({ scrollTop: 0 }, "slow");
+  		return false;
 	});
 
 
