@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>@yield('page_title')</title>	
+	<title>@yield('page_title')</title>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
 	<div style="width: 100%">
 
 		<div style="max-width: 600px; width: 70%; margin: auto; padding: 10px; ">
-			<img src="http://www.fourchetteandcie.com/pictures/logo.png" style="width: 60%; margin: 50px auto; display: block;">
+			<img src="http://www.fourchetteandcie.com/pictures/logo.png" width="300px" height="172px" style="margin: 50px auto; display: block;">
 		</div>
 
 		<div style="width: 70%; margin: 0px auto; padding: 10px;">
