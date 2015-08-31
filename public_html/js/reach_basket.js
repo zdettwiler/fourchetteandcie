@@ -2,7 +2,7 @@ function reach_basket(command)
 {
 	var xhr = new XMLHttpRequest();
 
-	xhr.open('GET', '../basket/' + command, true);
+	xhr.open('GET', 'basket/' + command, true);
 	xhr.addEventListener('readystatechange', function() {
 
 		if (xhr.readyState === 4 && xhr.status === 200)
@@ -12,7 +12,7 @@ function reach_basket(command)
 
 			$("#basket-count span").html(basket_count);
 			blink_basket_count();
-			
+
 			var html_basket = xhr.responseText.substring(end_pos, xhr.responseText.length);
 			$("table#basket-contents").html(html_basket);
 		}

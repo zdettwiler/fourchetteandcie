@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="http://www.fourchetteandcie.com/css/nav.css" type="text/css" media="all"/>
 	<link rel="stylesheet" href="http://www.fourchetteandcie.com/css/basket.css" type="text/css" media="all"/>
 	<link rel="stylesheet" href="http://www.fourchetteandcie.com/css/checkout-progress-bar.css" type="text/css" media="all"/>
-	
+
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="http://www.fourchetteandcie.com/js/layout.js"></script>
@@ -53,8 +53,9 @@
 
 	</table>
 
-	<br><br><br><br>
-	<a href="http://www.fourchetteandcie.com" class="a-button-style" style="float: left;">PREVIOUS</a>
-	<a href="http://www.fourchetteandcie.com/checkout/shipping" class="a-button-style" style="float: right;">NEXT</a>
+	<br><br>
+	@if(count($basket) != 0)
+		<a href="http://www.fourchetteandcie.com/checkout/shipping" class="a-button-style" style="float: right;">NEXT</a>
+	@endif
 
 @stop

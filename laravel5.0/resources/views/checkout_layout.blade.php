@@ -16,11 +16,11 @@
 		ga('create', 'UA-62374327-1', 'auto');
 		ga('send', 'pageview');
 	</script>
-	
+
 </head>
 
 <body>
-<div style="height: 100%; min-height:100%; position:relative;">
+<div style="min-height: 100%;overflow:auto;	padding-bottom: 150px;">
 
 	<div id="fade"></div>
 	<div id="nav">
@@ -47,30 +47,41 @@
 		</ul>
 	</div>
 
-	
-	<div id="checkout-progress-bar">	
+
+	<div id="checkout-progress-bar">
 		@yield('checkout-progress-bar')
 	</div>
 
 	<div id="content">
-
-
 		@yield('content')
-		{{-- @yield('basket') --}}
 	</div>
 
-	{{-- <div id="footer">
-		<div id="footer-links">
-			<ul>
-				<li><a href="http://www.fourchetteandcie.com/handstamped-silverware">Cake Servers</a></li>
-				<li><a href="http://www.fourchetteandcie.com/cake-servers">Cake Servers</a></li>
-				<li><a href="http://www.fourchetteandcie.com/cake-servers">Cake Servers</a></li>
-				<li><a href="http://www.fourchetteandcie.com/cake-servers">Cake Servers</a></li>
-				<li><a href="http://www.fourchetteandcie.com/cake-servers">Cake Servers</a></li>
-			</ul>
-		</div>
-	</div> --}}
-
 </div>
+
+<footer>
+	<div id="footer-fandcie-details">
+		<p>Fourchette & Cie<br>
+			383, rue du Général de Gaulle<br>
+			62110 - Hénin-Beaumont<br>
+			FRANCE</p>
+	</div>
+
+	<div id="footer-various-details">
+		<a href=""><img src="http://www.fourchetteandcie.com/pictures/facebook.png" width="29px" alt="PayPal Logo" /></a>
+		<a href="https://instagram.com/fourchetteandcie/"><img src="http://www.fourchetteandcie.com/pictures/instagram.png" width="29px" alt="PayPal Logo" /></a>
+		<a href=""><img src="http://fourchetteandcie.com/pictures/paypal.jpg" height="29px" alt="PayPal Logo" /></a>
+	</div>
+
+	<div id="footer-links">
+		<ul>
+			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware">Handstamped Silverware</a></li>
+			<li><a href="http://www.fourchetteandcie.com/cake-stands">Cake Stands</a></li>
+		</ul>
+	</div><br>
+
+	<div id="signature">
+		<p>webdesigned by <a href="mailto:z.dettwiler@gmail.com">zach dettwiler</a></p>
+	</div>
+</footer>
 </body>
 </html>
