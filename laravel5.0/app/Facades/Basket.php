@@ -42,7 +42,7 @@ class Basket
 				break;
 			}
 		}
-		
+
 		// If NO, add the item in the basket
 		if(!$found)
 		{
@@ -62,7 +62,7 @@ class Basket
 
 		return false;
 	}
-	
+
 	public static function update($ref, $new_qty)
 	{
 		if($new_qty == 0)
@@ -83,7 +83,7 @@ class Basket
 				break;
 			}
 		}
-		
+
 
 		Session::set('basket', $BASKET);
 
@@ -104,7 +104,7 @@ class Basket
 				break;
 			}
 		}
-		
+
 		$BASKET = array_values($BASKET);
 
 		Session::set('basket', $BASKET);
@@ -135,14 +135,13 @@ class Basket
 				$plural = 's';
 
 			echo $nb_items_in_basket."\n";
-			
-			
 
-			// Make basket		
+
+
+			// Make basket
 			foreach ($BASKET as $item)
 			{
 				$ref = $item['ref'];
-				$ref_char = $ref[0];
 
 				// echo $item['qty'].'<br>';
 				// echo $item['ref'].'<br>';
@@ -157,7 +156,7 @@ class Basket
 					$minus_button = "<img src='http://www.fourchetteandcie.com/pictures/bin.png' height='20'>";
 
 				echo "<tr item-ref='".$item['ref']."'>\n";
-				echo "	<td><img class='item-img' src='http://www.fourchetteandcie.com/pictures/".$section_ref_code[$ref_char]."/100px/".$item['ref']."_thumb.jpg' height='50'></td>\n";
+				echo "	<td><img class='item-img' src='http://www.fourchetteandcie.com/pictures/". $ref[0] ."/100px/".$item['ref']."_thumb.jpg' height='50'></td>\n";
 				echo "	<td style='width: 100%;'>".$item['name'].$item['stamped']."<br>";
 				if (isset($item['descr']))
 					{echo "<span>".$item['descr']."</span></td>\n";}
@@ -175,7 +174,7 @@ class Basket
 
 
 		}
-		
+
 
 		return false;
 	}
@@ -205,7 +204,7 @@ class Basket
 		$shipping_categ = array(
 			'class1' => 10
 			);
-		
+
 		$cutlery_category_mass = Config::get('fandc_arrays')['cutlery_category_mass'];
 
 		$BASKET = Session::get('basket', []);
@@ -272,7 +271,7 @@ class Basket
 	public static function get_nb_items_subtotal()
 	{
 		$BASKET = Session::get('basket', []);
-		$nb_items = 0;		
+		$nb_items = 0;
 		$subtotal = 0;
 
 		foreach ($BASKET as $item)
