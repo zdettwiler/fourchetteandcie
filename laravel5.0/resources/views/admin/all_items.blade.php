@@ -12,7 +12,7 @@
 	<style>
 		table
 		{
-			width: 100%;
+			width: 70%;
 			border-collapse: collapse;
 		}
 		td
@@ -33,6 +33,8 @@
 		td.cell-details
 		{
 			text-align: left;
+			padding: 10px;
+			vertical-align: middle;
 		}
 
 
@@ -120,12 +122,12 @@
 
 							<tr item-ref="{{ $item->ref }}">
 								<td class="cell-img">
-									<img class='item-img' src='http://www.fourchetteandcie.com/pictures/{{ $item->ref[0] }}/100px/{{ $item->ref }}_thumb.jpg' height='50'>
+									<img class='item-img' src='http://www.fourchetteandcie.com/pictures/{{ $item->ref[0] }}/500px/{{ $item->ref }}.jpg' height='200'>
 								</td>
 								<td class="cell-details">
 									<span class="ref-box">{{ $item->ref }}</span>
-									<b><span class="edit-text" target="EDIT_STAMPED">{{ $item->stamped }}</span></b></<br>
-									<span class="edit-text" target="EDIT_DESCR">{{ $item->descr }}</span>
+									<b><span class="edit-text" target="EDIT_STAMPED">{{ $item->stamped }}</span></b><br>
+									<span class="edit-text" target="EDIT_DESCR">{{ $item->descr }}</span><br>
 									(<span class="edit-text" target="EDIT_CATEG">{{ $item->categ }}</span>)
 								</td>
 								<td class="cell-check">
