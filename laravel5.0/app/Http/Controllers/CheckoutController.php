@@ -186,8 +186,8 @@ class CheckoutController extends Controller
 
 		// define redirect urls
 		$redirect_urls = new RedirectUrls();
-		$redirect_urls->setReturnUrl('http://localhost/display-only/fourchetteandcie/public_html/checkout/'. $order_token .'/shipping/confirm/placed/payment/pay')
-					  ->setCancelUrl('http://localhost/display-only/fourchetteandcie/public_html/checkout/'. $order_token .'/shipping/confirm/placed/payment');
+		$redirect_urls->setReturnUrl('http://www.fourchetteandcie.com/checkout/'. $order_token .'/shipping/confirm/placed/payment/pay')
+					  ->setCancelUrl('http://www.fourchetteandcie.com/checkout/'. $order_token .'/shipping/confirm/placed/payment');
 
 		// define payment
 		$payment = new Payment();
@@ -203,7 +203,7 @@ class CheckoutController extends Controller
 		}
 		catch(\PayPal\Exception\PayPalConnectionException $e)
 		{
-			return redirect('http://localhost/display-only/fourchetteandcie/public_html/checkout/'.$order_token.'/shipping/confirm/placed/payment')
+			return redirect('http://www.fourchetteandcie.com/checkout/'.$order_token.'/shipping/confirm/placed/payment')
 				->with('notification', ['type' => 'negative', 'message' => 'There has been an error when connecting with PayPal...<br>'.$e->getData()]);
 			// dd($e->getData()); //Change this later
 		}
@@ -222,7 +222,7 @@ class CheckoutController extends Controller
 
 		if(!isset($_GET['paymentId'], $_GET['PayerID']))
 		{
-			return redirect('http://localhost/display-only/fourchetteandcie/public_html/checkout/'.$order_token.'/shipping/confirm/placed/payment')
+			return redirect('http://www.fourchetteandcie.com/checkout/'.$order_token.'/shipping/confirm/placed/payment')
 				->with('notification', ['type' => 'negative', 'message' => 'There has been an error when connecting with PayPal...']);
 		}
 
@@ -240,7 +240,7 @@ class CheckoutController extends Controller
 		}
 		catch (\Exception $e)
 		{
-			return redirect('http://localhost/display-only/fourchetteandcie/public_html/checkout/'.$order_token.'/shipping/confirm/placed/payment')
+			return redirect('http://www.fourchetteandcie.com/checkout/'.$order_token.'/shipping/confirm/placed/payment')
 				->with('notification', ['type' => 'negative', 'message' => 'There has been an error when trying to execute the payment with PayPal...<br>'.$e]);
 			//die($e);
 		}
@@ -261,7 +261,7 @@ class CheckoutController extends Controller
 		// detroy Basket
 		Basket::empty_basket();
 
-		return redirect('http://localhost/display-only/fourchetteandcie/public_html/checkout/'. $order_token .'/shipping/confirm/placed/payment/thanks');
+		return redirect('http://www.fourchetteandcie.com/checkout/'. $order_token .'/shipping/confirm/placed/payment/thanks');
 
 	}
 
