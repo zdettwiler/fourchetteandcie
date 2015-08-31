@@ -101,7 +101,7 @@ class CheckoutController extends Controller
 		elseif($order->order_currency == 'aud')
 			$currency = 'AU$';
 
-		// If order hasn't beem validated, don't allow access
+		// If order hasn't been validated, don't allow access
 		if($order->is_validated == 0)
 		{
 			// Custom Error Message...
@@ -160,6 +160,7 @@ class CheckoutController extends Controller
 				 ->setPrice(-0.3 * $subtotal)
 				 ->setCurrency('EUR');
 			$items[] = $item;
+			$subtotal = 0.7 * $subtotal;
 		}
 
 		// define item list
@@ -169,7 +170,7 @@ class CheckoutController extends Controller
 		// define details
 		$details = new Details();
 		$details->setShipping($shipping)
-				->setSubtotal(0.7 * $subtotal);
+				->setSubtotal($subtotal);
 
 		// define amount
 		$amount = new Amount();
