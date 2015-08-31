@@ -121,7 +121,8 @@ class CheckoutController extends Controller
 		$order = DB::table('orders')->where('order_token', $order_token)->first();
 		$order_details = Basket::json_encode_decode($order->val_order);
 
-		require '../vendor/autoload.php';
+		// echo getcwd();
+		require '../laravel5.0/vendor/autoload.php';
 
 		// get PayPal credentials
 		$paypal_conf = Config::get('paypal');
@@ -138,7 +139,6 @@ class CheckoutController extends Controller
 		$payer->setPaymentMethod('paypal');
 
 		// define items
-
 		$items = [];
 		$test = 0;
 		foreach($order_details as $order_item)
@@ -151,6 +151,17 @@ class CheckoutController extends Controller
 			$items[] = $item;
 		}
 
+		// define wholesale discount if set
+		if($order->is_wholesale)
+		{
+			$item = new Item();
+			$item->setName('--WHOLESALE DISCOUNT--')
+				 ->setQuantity(1)
+				 ->setPrice(-0.3 * $subtotal)
+				 ->setCurrency('EUR');
+			$items[] = $item;
+		}
+
 		// define item list
 		$item_list = new ItemList();
 		$item_list->setItems($items);
@@ -158,7 +169,7 @@ class CheckoutController extends Controller
 		// define details
 		$details = new Details();
 		$details->setShipping($shipping)
-				->setSubtotal($subtotal);
+				->setSubtotal(0.7 * $subtotal);
 
 		// define amount
 		$amount = new Amount();
@@ -175,8 +186,8 @@ class CheckoutController extends Controller
 
 		// define redirect urls
 		$redirect_urls = new RedirectUrls();
-		$redirect_urls->setReturnUrl('http://localhost/fourchetteandcie/public/checkout/'. $order_token .'/shipping/confirm/placed/payment/pay')
-					  ->setCancelUrl('http://localhost/fourchetteandcie/public/checkout/'. $order_token .'/shipping/confirm/placed/payment');
+		$redirect_urls->setReturnUrl('http://localhost/display-only/fourchetteandcie/public_html/checkout/'. $order_token .'/shipping/confirm/placed/payment/pay')
+					  ->setCancelUrl('http://localhost/display-only/fourchetteandcie/public_html/checkout/'. $order_token .'/shipping/confirm/placed/payment');
 
 		// define payment
 		$payment = new Payment();
@@ -192,7 +203,7 @@ class CheckoutController extends Controller
 		}
 		catch(\PayPal\Exception\PayPalConnectionException $e)
 		{
-			return redirect('http://localhost/fourchetteandcie/public/checkout/'.$order_token.'/shipping/confirm/placed/payment')
+			return redirect('http://localhost/display-only/fourchetteandcie/public_html/checkout/'.$order_token.'/shipping/confirm/placed/payment')
 				->with('notification', ['type' => 'negative', 'message' => 'There has been an error when connecting with PayPal...<br>'.$e->getData()]);
 			// dd($e->getData()); //Change this later
 		}
@@ -211,7 +222,7 @@ class CheckoutController extends Controller
 
 		if(!isset($_GET['paymentId'], $_GET['PayerID']))
 		{
-			return redirect('http://localhost/fourchetteandcie/public/checkout/'.$order_token.'/shipping/confirm/placed/payment')
+			return redirect('http://localhost/display-only/fourchetteandcie/public_html/checkout/'.$order_token.'/shipping/confirm/placed/payment')
 				->with('notification', ['type' => 'negative', 'message' => 'There has been an error when connecting with PayPal...']);
 		}
 
@@ -229,7 +240,7 @@ class CheckoutController extends Controller
 		}
 		catch (\Exception $e)
 		{
-			return redirect('http://localhost/fourchetteandcie/public/checkout/'.$order_token.'/shipping/confirm/placed/payment')
+			return redirect('http://localhost/display-only/fourchetteandcie/public_html/checkout/'.$order_token.'/shipping/confirm/placed/payment')
 				->with('notification', ['type' => 'negative', 'message' => 'There has been an error when trying to execute the payment with PayPal...<br>'.$e]);
 			//die($e);
 		}
@@ -250,7 +261,7 @@ class CheckoutController extends Controller
 		// detroy Basket
 		Basket::empty_basket();
 
-		return redirect('http://localhost/fourchetteandcie/public/checkout/'. $order_token .'/shipping/confirm/placed/payment/thanks');
+		return redirect('http://localhost/display-only/fourchetteandcie/public_html/checkout/'. $order_token .'/shipping/confirm/placed/payment/thanks');
 
 	}
 

@@ -137,6 +137,7 @@
 
 	@if($order->order_currency == 'eur')
 		<a href="http://www.fourchetteandcie.com/checkout/{{ $order->order_token }}/shipping/confirm/placed/payment/init" class="a-button-style" style="float: right;">PAY WITH PAYPAL</a>
+		<br><br><br><br><br><br>
 	@endif
 
 @stop

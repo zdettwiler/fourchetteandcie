@@ -87,9 +87,9 @@
 		</tr>
 
 	@if($order->is_wholesale == 1)
-		<tr id='subtotal-row'>\n
-			<td colspan='4'>WHOLESALE (-30%)</td>\n
-			<td class="center-col">€{{ number_format( 0.7 * $order->val_order_subtotal, 2 ) }}</td>\n
+		<tr id='subtotal-row'>
+			<td colspan='4'>WHOLESALE (-30%)</td>
+			<td class="center-col">€{{ number_format( 0.7 * $order->val_order_subtotal, 2 ) }}</td>
 		</tr>
 	@endif
 
