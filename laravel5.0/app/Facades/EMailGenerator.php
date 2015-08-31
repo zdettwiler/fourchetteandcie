@@ -34,7 +34,7 @@ class EMailGenerator
 
 		$sent = Mail::send('emails.cust_placed_order', compact('order'), function($message) use ($order_id)
 		{
-			$message->from('orders@fourchetteandcie.com', 'Fourchette & Cie - Admin');
+			$message->from('orders@fourchetteandcie.com', 'Fourchette & Cie');
 
 			$message->subject('We have received your order (nº'. sprintf('%03u', $order_id) .')');
 
@@ -55,7 +55,7 @@ class EMailGenerator
 
 		$sent = Mail::send('emails.cust_validated_order', compact('order'), function($message) use ($order_id, $order_token)
 		{
-			$message->from('orders@fourchetteandcie.com', 'Fourchette & Cie - Admin');
+			$message->from('orders@fourchetteandcie.com', 'Fourchette & Cie');
 
 			$message->subject('Your order (nº'. sprintf('%03u', $order_id) .') has been validated!');
 
@@ -91,13 +91,11 @@ class EMailGenerator
 
 		$sent = Mail::send('emails.cust_thank_you', compact('order'), function($message)
 		{
-			$message->from('orders@fourchetteandcie.com', 'Fourchette & Cie - Admin');
+			$message->from('orders@fourchetteandcie.com', 'Fourchette & Cie');
 
 			$message->subject('Thank You!');
 
 			$message->to('z.dettwiler@gmail.com');
-
-			// $message->attach($pathToFile);
 		});
 	}
 
