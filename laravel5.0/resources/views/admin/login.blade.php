@@ -37,8 +37,8 @@
 		@endforeach --}}
 
 		{!! Form::open() !!}
-			{!! Form::text('username', 'username', ['placeholder' => 'username']) !!}<br>
-			{!! Form::password('password', '', ['placeholder' => 'password']) !!}<br><br>
+			{!! Form::text('username', null, ['placeholder' => 'username']) !!}<br>
+			{!! Form::password('password', ['placeholder' => 'password']) !!}<br><br>
 
 			{!! Form::submit('LOGIN'); !!}
 		{!! Form::close() !!}
