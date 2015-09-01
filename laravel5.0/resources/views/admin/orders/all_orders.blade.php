@@ -72,7 +72,7 @@
 							AU$
 						@endif
 
-						{{ number_format ( $order->order_shipping, 2 ) }}
+						 {{ number_format ( $order->order_shipping, 2 ) }}
 					</td>
 					<td>
 						@if($order->order_currency == 'eur')
@@ -81,7 +81,7 @@
 							AU$
 						@endif
 
-						{{ number_format ( $order->order_subtotal, 2 ) }}
+						 {{ number_format ( $order->order_subtotal, 2 ) }}
 					</td>
 				</tr>
 			@endif
@@ -124,7 +124,7 @@
 							AU$
 						@endif
 
-						{{ number_format ( $order->val_order_shipping, 2 ) }}
+						 {{ number_format ( $order->val_order_shipping, 2 ) }}
 					</td>
 					<td>
 						@if($order->order_currency == 'eur')
@@ -133,7 +133,7 @@
 							AU$
 						@endif
 
-						{{ number_format ( $order->val_order_subtotal, 2 ) }}
+						 {{ number_format ( $order->val_order_subtotal, 2 ) }}
 					</td>
 				</tr>
 			@endif
@@ -175,7 +175,7 @@
 							AU$
 						@endif
 
-						{{ number_format ( $order->val_order_shipping, 2 ) }}
+						 {{ number_format ( $order->val_order_shipping, 2 ) }}
 					</td>
 					<td>
 						@if($order->order_currency == 'eur')
@@ -184,7 +184,7 @@
 							AU$
 						@endif
 
-						{{ number_format ( $order->val_order_subtotal, 2 ) }}
+						 {{ number_format ( $order->val_order_subtotal, 2 ) }}
 					</td>
 				</tr>
 			@endif

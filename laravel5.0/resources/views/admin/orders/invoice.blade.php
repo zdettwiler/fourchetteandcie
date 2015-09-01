@@ -33,15 +33,15 @@
 					<span style="font-size: 10px;"><i>{{ $item['comment'] }}</span></td>
 
 				<td class="center-col">{{ $item['qty'] }}</td>
-				<td class="center-col">{{ $currency }}{{ number_format($item['price'], 2) }}</td>
-				<td class="center-col">{{ $currency }}{{ number_format($item['qty'] * $item['price'], 2) }}</td>
+				<td class="center-col">{{ $currency }} {{ number_format($item['price'], 2) }}</td>
+				<td class="center-col">{{ $currency }} {{ number_format($item['qty'] * $item['price'], 2) }}</td>
 			</tr>
 
 		@endforeach
 
 			<tr id='subtotal-row'>
 				<td class="right-col" colspan='3'>SUBTOTAL ({{ $order->val_order_nb_items }} item(s))</td>
-				<td class="center-col">{{ $currency }}{{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
+				<td class="center-col">{{ $currency }} {{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
 			</tr>
 
 			@if($order->is_wholesale == 1)
@@ -53,13 +53,13 @@
 
 			<tr id='shipping-row'>
 				<td class="right-col" colspan='3'>SHIPPING ({{ $order->val_order_shipping_details }})</td>
-				<td class="center-col">{{ $currency }}{{ number_format( $order->val_order_shipping, 2 ) }}</td>
+				<td class="center-col">{{ $currency }} {{ number_format( $order->val_order_shipping, 2 ) }}</td>
 			</tr>
 
 			<tr id='total-row'>
 				<td></td>
 				<td  class="right-col bordered" colspan='2'>TOTAL</td>
-				<td class="center-col bordered">{{ $currency }}{{ number_format( $order->val_order_total, 2 ) }}</td>
+				<td class="center-col bordered">{{ $currency }} {{ number_format( $order->val_order_total, 2 ) }}</td>
 			</tr>
 		</table>
 @stop

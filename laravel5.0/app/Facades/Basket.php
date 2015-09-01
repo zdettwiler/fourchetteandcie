@@ -162,14 +162,14 @@ class Basket
 					{echo "<span>".$item['descr']."</span></td>\n";}
 
 				echo "	<td><div class='item-qty'><div class='item-qty-plus-button'>+</div> <div class='item-qty-value'>".$item['qty']."</div> <div class='item-qty-minus-button'>".$minus_button."</div></div></td>\n";
-				echo "	<td>&euro;". number_format((float)$item['qty'] * $item['price'], 2, '.', '') ."</td>\n";
+				echo "	<td>&euro; ". number_format((float)$item['qty'] * $item['price'], 2, '.', '') ."</td>\n";
 				echo "</tr>\n";
 			}
 
 			// Make Total Row
 			echo "<tr id='subtotal-row'>\n";
 			echo "	<td colspan='3'>SUBTOTAL (".$nb_items_in_basket." item". $plural .")</td>\n";
-			echo "	<td>&euro;". number_format((float)$subtotal, 2, '.', '') ."</td>\n";
+			echo "	<td>&euro; ". number_format((float)$subtotal, 2, '.', '') ."</td>\n";
 			echo "</tr>\n";
 
 

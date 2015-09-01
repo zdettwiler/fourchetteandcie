@@ -146,7 +146,7 @@
 									</span>
 								</td>
 								<td class="cell-price">
-									€<span class="edit-text" target="EDIT_PRICE">{{ $item->price }}</span>
+									€ <span class="edit-text" target="EDIT_PRICE">{{ $item->price }}</span>
 								</td>
 
 							</tr>
