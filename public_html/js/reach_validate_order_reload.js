@@ -1,5 +1,7 @@
 function reach_validate_order_reload(id, command)
 {
+	$("#loading").show();
+
 	var xhr = new XMLHttpRequest();
 
 	xhr.open('GET', '../../../admin/orders/'+id+'/validate/'+encodeURIComponent(command), true);
@@ -9,11 +11,7 @@ function reach_validate_order_reload(id, command)
 		{
 			$("#wholesale-status").attr("src", "http://www.fourchetteandcie.com/pictures/"+ xhr.responseText.substring(0,1) +".png")
 
-			// if(!doneitonce)
-			// {
-				toggle_currency(xhr.responseText.substring(1,4));
-			// 	doneitonce = 1;
-			// }
+			toggle_currency(xhr.responseText.substring(1,4));
 
 			$("table#validation-table").html(xhr.responseText.substring(4));
 
@@ -25,6 +23,8 @@ function reach_validate_order_reload(id, command)
 	}, false);
 
 	xhr.send(null);
+
+	$("#loading").hide();
 
 	return false;
 }
