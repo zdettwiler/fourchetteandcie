@@ -95,7 +95,7 @@
 
 	{{-- ORDER STATUS AT A GLANCE --}}
 	<div class="width-50" style="float: left;">
-		<h3>Order Status <span id="loading">WAIT</span><h3>
+		<h3>Order Status<h3>
 		<table id="order-status" style="width: 300px;">
 			<tr>
 				<td colspan="3">Order placed on <b>{{ date('d/m/Y H:i:s', $order->placed_datetime) }}</b></td>
@@ -149,7 +149,7 @@
 	<br>
 	<br>
 	<div style="margin: auto; width: 90%; float: left;">
-		<h3>Order Details</h3>
+		<h3>Order Details <span id="loading">WAIT</span></h3>
 		<table id="validation-table">
 		</table>
 	</div>
