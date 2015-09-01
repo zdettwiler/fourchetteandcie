@@ -45,7 +45,7 @@ Route::get('/checkout/{order_token}/shipping/confirm/placed/payment/thanks', 'Ch
 Route::get('/search/{query}', 'HomeController@search_query');
 
 //
-Route::get('/invoice/{order_token}', 'HomeController@invoice');
+// Route::get('/invoice/{order_token}', 'HomeController@invoice');
 
 //-------------------------------------------- ADMIN --------------------------------------------//
 // Login
