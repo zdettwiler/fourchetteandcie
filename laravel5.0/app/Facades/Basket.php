@@ -51,7 +51,7 @@ class Basket
 				'qty'     => $qty,
 				'name'    => $item_to_add->get_name(),
 				'descr'   => $item_to_add->get_descr(),
-				'stamped' => $item_to_add->get_stamped(),
+				'name'    => $item_to_add->get_name(),
 				'price'   => $item_to_add->get_price(),
 				'img'     => $item_to_add->get_img_count(),
 				'categ'   => $item_to_add->get_categ()
@@ -146,7 +146,7 @@ class Basket
 				// echo $item['qty'].'<br>';
 				// echo $item['ref'].'<br>';
 				// echo $item['name'].'<br>';
-				// echo $item['stamped'].'<br>';
+				// echo $item['name'].'<br>';
 				// echo $item['descr'].'<br>';
 				// echo $item['price'].'<br>';
 
@@ -157,7 +157,7 @@ class Basket
 
 				echo "<tr item-ref='".$item['ref']."'>\n";
 				echo "	<td><img class='item-img' src='http://www.fourchetteandcie.com/pictures/". $ref[0] ."/100px/".$item['ref']."_thumb.jpg' height='50'></td>\n";
-				echo "	<td style='width: 100%;'>".$item['name'].$item['stamped']."<br>";
+				echo "	<td style='width: 100%;'>".$item['name'].$item['name']."<br>";
 				if (isset($item['descr']))
 					{echo "<span>".$item['descr']."</span></td>\n";}
 

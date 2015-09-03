@@ -33,7 +33,7 @@ class Item
 		{
 			case 'cutlery':
 				$this->_descr = $item_details->descr;
-				$this->_stamped = $item_details->stamped;
+				$this->_name = $item_details->name;
 				$this->_price = $item_details->price;
 				$this->_img_count = $item_details->img_count;
 				$this->_categ = explode(', ', $item_details->categ); // here teaspoon, big-spoon, etc...

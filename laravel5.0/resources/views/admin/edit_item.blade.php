@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="http://www.fourchetteandcie.com/css/ondisplay.css" type="text/css" media="all"/>
 	<link rel="stylesheet" href="http://www.fourchetteandcie.com/css/nav.css" type="text/css" media="all"/>
 	<link rel="stylesheet" href="http://www.fourchetteandcie.com/css/basket.css" type="text/css" media="all"/>
-	
+
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="http://www.fourchetteandcie.com/js/layout.js"></script>
@@ -30,9 +30,9 @@
 					reader.readAsDataURL(input.files[key]);
 				});
 			}
-			
+
 		}
-		
+
 		$(document).ready(function(){
 			$('#ondisplay-imgs').zoom();
 		});
@@ -46,7 +46,7 @@
 @section('content')
 
 
-	
+
 	<div id="ondisplay-imgs">
 		<img class="item-img" src="http://www.fourchetteandcie.com/pictures/{{ $item->sectionfullname() }}/500px/{{ $item->ref() }}.jpg">
 	</div>
@@ -60,7 +60,7 @@
 			<h2>{{ $item->stamped() }}</h2>
 			<h5>{{ $item->descr() }} ({{ implode(", ", $item->categ()) }})</h5>
 			<h5>€{{ $item->price() }}</h5>
-			
+
 			<br><br>
 
 			{!! Form::open() !!}
@@ -68,7 +68,7 @@
 
 
 				<input type='text' name='ref' value='{{ $item->ref() }}'><br>
-				<input type='text' name='stamped' value='{{ $item->stamped() }}'><br>
+				<input type='text' name='stamped' value='{{ $item->name() }}'><br>
 				<input type='text' name='descr' value='{{ $item->descr() }}'><br>
 				{{-- <select>
 					<option value="spoons">All Spoons</option>
@@ -100,7 +100,7 @@
 			<h2>{{ $item->name() }}</h2>
 			<h5>{{ $item->descr() }} ({{ implode(", ", $item->categ()) }})</h5>
 			<h5>€{{ $item->price() }}</h5>
-			
+
 			<br><br>
 
 			{!! Form::open() !!}

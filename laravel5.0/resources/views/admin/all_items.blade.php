@@ -126,7 +126,7 @@
 								</td>
 								<td class="cell-details">
 									<span class="ref-box">{{ $item->ref }}</span>
-									<b><span class="edit-text" target="EDIT_STAMPED">{{ $item->stamped }}</span></b><br>
+									<b><span class="edit-text" target="EDIT_STAMPED">{{ $item->name }}</span></b><br>
 									<span class="edit-text" target="EDIT_DESCR">{{ $item->descr }}</span><br>
 									(<span class="edit-text" target="EDIT_CATEG">{{ $item->categ }}</span>)
 								</td>

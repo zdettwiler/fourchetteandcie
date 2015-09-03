@@ -91,7 +91,7 @@
 			</td>
 
 			<td style='width: 60%;'>
-				<span class='ref-box'>{{ $item['ref'] }}</span> {{ $item['name'] }}{{ $item['stamped'] }} - <i>{{ $item['descr'] }}</i><br>
+				<span class='ref-box'>{{ $item['ref'] }}</span> {{ $item['name'] }} - <i>{{ $item['descr'] }}</i><br>
 				@if($item['comment'] != '')
 					<i>{{ '"'. $item['comment'] .'"' }}</i>
 				@endif

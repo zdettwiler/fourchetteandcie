@@ -59,7 +59,7 @@
 			<div class="item-details">
 				<div class="item-price"><span>€{{ $item->price }}</span></div>
 				<div class="item-stamped-descr">
-					<span class="item-stamped">{{ $item->stamped }} ({{ $item->ref }})</span><br>
+					<span class="item-stamped">{{ $item->name }} ({{ $item->ref }})</span><br>
 					<span class="item-descr"><i>{{ $item->descr }}</i></span>
 				</div>
 			</div>
