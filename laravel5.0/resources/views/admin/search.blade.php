@@ -137,7 +137,7 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="http://www.fourchetteandcie.com/js/layout.js"></script>
 	<script src="http://www.fourchetteandcie.com/js/mustache.js"></script>
-	<script src="http://www.fourchetteandcie.com/js/search_db.js"></script>
+	<script src="http://localhost/display-only/fourchetteandcie/public_html/js/search_db.js"></script>
 @stop
 
 @section('content')

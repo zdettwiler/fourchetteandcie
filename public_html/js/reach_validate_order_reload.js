@@ -47,13 +47,6 @@ function toggle_currency(currency, reload)
 
 $(function() {
 	reach_validate_order_reload(id, 'SHOW');
-	$.ajaxStart(function () {
-        $("#loading").html("WAIT");
-	});
-
-    $.ajaxStop(function () {
-        $("#loading").html("EDIT");
-    });
 
 	// CURRENCY SWITCH
 	$(document).on("click", "#currency-switch", function(){
