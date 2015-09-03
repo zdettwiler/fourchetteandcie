@@ -42,6 +42,7 @@ Route::get('/checkout/{order_token}/shipping/confirm/placed/payment/pay', 'Check
 Route::get('/checkout/{order_token}/shipping/confirm/placed/payment/thanks', 'CheckoutController@thanks');
 
 // Search Engine
+Route::get('/search', 'HomeController@search');
 Route::get('/search/{query}', 'HomeController@search_query');
 
 //

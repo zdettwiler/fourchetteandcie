@@ -16,11 +16,13 @@
 		ga('create', 'UA-62374327-1', 'auto');
 		ga('send', 'pageview');
 	</script>
-	
+
 </head>
 
 <body>
 <div style="height: 100%; min-height:100%; position:relative;">
+
+	@yield('mustache-templates')
 
 	<div id="fade"></div>
 	<div id="nav">
@@ -47,7 +49,7 @@
 		</ul>
 	</div>
 
-	
+
 
 	<div class="content">
 		@yield('notification-bar')

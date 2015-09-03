@@ -1,43 +1,38 @@
 function search_db(query)
 {
-	var xhr = new XMLHttpRequest();
+	var tags = '';
+	$('.search-tag').each(function() {
+	   tags += $(this).html() + '|';
+	});
 
-	xhr.open('GET', 'http://www.fourchetteandcie.com/search/' + encodeURIComponent(query), true);
-	xhr.addEventListener('readystatechange', function() {
-
-		if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0))
-		{
-			display_response(xhr.responseText);
-			// console.log(xhr.responseText);
+	$.ajax({
+		type: 'GET',
+		url: 'search/' + encodeURIComponent(tags+query),
+		success: function(results) {
+			display_response(results);
 		}
-		else if (xhr.readyState == 4 && xhr.status != 200)
-		{
-			// alert("ERROR!" + '\n\nCode :' + xhr.status + '\nText : ' + xhr.statusText + '\nMessage : ' + xhr.responseText);
-		}
-	}, false);
-
-	xhr.send(null);
-
-	return xhr;
+	});
 }
 
-function display_response(json)
+function display_response(json_results)
 {
-	var response = $.parseJSON(json);
-	var html_result;
+	var results = $.parseJSON(json_results);
+	console.log(results);
+	var result_template = $("#template-search-result").html();
+	$("#results-box table").html('');
 
-	if(response.results.length === 0)
+	if(results.length === 0)
 	{
 		html_result = "<tr class='result'>\n <td colspan='3'><p>No result...</p></td>\n </tr>";
 	}
-	else{
-	$.each( response.results, function( key, result ) {
-
-		//<img src='http://localhost/fourchetteandcie/public/pictures/". $section_ref_code[ $result->ref[0] ] ."/100px/". $result->ref ."_thumb.jpg' width='50px' />\n
-		html_result += "	<tr class='result' item-ref='"+ result.ref +"'>\n<td class='result-img'>\n </td>\n <td class='result-details'>\n <p><span class='ref-box'>"+ result.ref +"</span> "+ result.stamped +"<br>\n <i>"+ result.descr +"</i> (<span class='categ-box'>"+ result.categ +"</span>)</p>\n </td>\n <td class='result-price'>\n <p>€"+ result.price +"</p>\n </td>\n </tr>\n\n";
-	});
+	else
+	{
+		$.each( results, function( i, result ) {
+			console.log(result);
+			$("#results-box table").append( Mustache.render(result_template, result) );
+		});
 	}
-	$("#results-box table").html(html_result);
+
 	return false;
 }
 
@@ -49,19 +44,52 @@ function select_result(ref)
 }
 
 $(function() {
-	var previous_request;
-
-	// delete a search tag
-	$(document).on("keyup", function(event) {
-		if((event.keyCode == 8 || event.keyCode == 46) && $("#search-input").val() == '')
-		{
-			$("#search-tags .search-tag:last-child").remove();
-		}
-	});
+	var search_timer;
+	var no_search = ['', '#', '$', '@'];
 
 	$(document).on("keyup", "#search-input", function(event) {
+		var $query = $(this).val();
+		clearTimeout(search_timer);
 
-		// if no + tag i.e. not creating new item, then normal search
+		// search only if query !empty and !key-tag
+		if( $query != '' && $.inArray( $query.substr(0, 1), no_search ) == -1 )
+		{
+			search_timer = setTimeout(function() {
+				 search_db( $query );
+			 }, 500 );
+		}
+		else
+		{
+			$("#results-box table").html('');
+		}
+
+		// SEARCH TAGS
+		if(event.keyCode == 32)
+		{
+			var tag = $query.split(' ')[0];
+
+			// #ref search
+			if($query.substr(0, 1) == '#')
+			{
+				$("#search-input").val('');
+				$("#search-tags").append("<span class='search-tag'>"+tag+"</span>");
+			}
+			// $section search
+			if($query.substr(0, 1) == '$')
+			{
+				$("#search-input").val('');
+				$("#search-tags").append("<span class='search-tag'>"+tag+"</span>");
+			}
+			// @categ search
+			if($query.substr(0, 1) == '@')
+			{
+				$("#search-input").val('');
+				$("#search-tags").append("<span class='search-tag'>"+tag+"</span>");
+			}
+			search_db( $("#search-input").val() )
+		}
+
+		/*// if no + tag i.e. not creating new item, then normal search
 		if($("#search-tags span:first").html() != '+')
 		{
 			$("#search-input").attr('placeholder', 'search an item');
@@ -117,14 +145,6 @@ $(function() {
 				event.preventDefault();
 
 			}
-
-			setTimeout(function(){}, 500);
-
-			if($(this).val() != '')
-			{
-				previous_request = search_db($(this).val());
-			}
-
 		}
 
 		// if + tag new item creation process
@@ -183,7 +203,7 @@ $(function() {
 				return false;
 			}
 
-		}
+		}*/
 	});
 
 
@@ -192,11 +212,19 @@ $(function() {
 		{
 			var previous_request = search_db($(this).val());
 		}
-		$("#fade").show();
+		// $("#fade").show();
 		// $('html, body').css({
 		// 	'overflow': 'hidden',
 		// 	'height': '100%'
 		// });
+	});
+
+	// delete a search tag
+	$(document).on("keyup", function(event) {
+		if((event.keyCode == 8 || event.keyCode == 46) && $("#search-input").val() == '')
+		{
+			$("#search-tags .search-tag:last-child").remove();
+		}
 	});
 
 

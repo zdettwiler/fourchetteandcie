@@ -12,65 +12,150 @@
 		{
 			text-align: center;
 		}
+		/* SEARCH BOX */
+		#search-container
+		{
+			position: relative;
+			width: 70%;
+			margin: auto;
+		}
 		#search-box
 		{
-			display: table;
-			margin: auto;
-			width: 70%;
-			height: 42px;
-			padding: 0px 5px;
-			font-size: 18px;
-			font-family: "Roboto Condensed", Helvetica, sans-serif;
-			font-weight: 300;
-			border: 1px solid #555555;			
+			display: block;
+			position: relative;
+			width: 100%%;
+			height: 30px;
+			z-index: 100;
+			margin: 0 auto 10px auto;
+			padding: 3px 2px;
+			border-radius: 7px;
+			background: #FFFFFF;
 		}
 		#search-tags
 		{
-			display: table-cell;
+			display: inline-block;
+			float: left;
 		}
-		#search-text
+		.search-tag
 		{
-			display: table-cell;
-			height: 40px;
-			width: 100%;
-			border: none;
-			background-color: #EEEEEE;
-			outline: none;
-			font-size: 18px;
+			display: inline-block;
+			height: 24px;
+			font-size: 17px;
 			font-family: "Roboto Condensed", Helvetica, sans-serif;
 			font-weight: 300;
+			color: #FFFFFF;
+			background-color: #76F2A8;
+			border-radius: 7px;
+			font-style: normal;
+			padding: 1px 4px;
+			margin: 0 1px;
+		}
+		.search-tag .hidden-data
+		{
+			display: none;
+		}
+		#search-input
+		{
+			display: inline-block;
+			-moz-box-sizing: border-box;
+		    -webkit-box-sizing: border-box;
+		    box-sizing: border-box;
+
+		    width: 100%;
+			height: 24px;
+			margin-left: 5px;
+
+			font-size: 17px;
+			font-family: "Roboto Condensed", Helvetica, sans-serif;
+			font-weight: 300;
+			outline: none;
+			border: none;
+		}
+
+		#search-box #search-input:focus
+		{
+			border: 1px solid #000000;border-color: #FFFFFF;
+			box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+		}
+		p#search-info
+		{
+			display: block;
+			margin: 0px auto;
+			text-align: center;
+			padding: 0;
+			color: #FFFFFF;
+			z-index: 100;
+			position: relative;
 		}
 		#results-box
 		{
-			width: 50%;
+			width: 100%;
 			display: block;
 			margin: auto;
 			background-color: #FAFAFA;
+			z-index: 100;
+			position: absolute;
 		}
-		span.tag
+		#results-box table
 		{
-			padding: 3px 6px 3px 6px;
-			color: #FFFFFF;
-			background-color: #000000;
-			border-radius: 5px;
+			border-collapse: collapse;
+			box-shadow: 0 0 10px rgba(124, 255, 177, 0.7);
+		}
+		#results-box table tr:hover
+		{
+			background-color: #EEEEEE;
+			cursor: pointer;
+		}
+		#results-box table tr td
+		{
+			max-height: 50px;
+			overflow: hidden;
+			padding: 5px;
+			vertical-align: middle;
+			border-top: 1px solid #DDDDDD;
+		}
+		#results-box table tr td p
+		{
+			margin: 0px;
+			padding: 0px;
+			font-size: 15px;
+		}
+		#results-box table tr td img
+		{
+			margin: 0px;
+			padding: 0px;
+		}
+
+		#search-tag
+		{
+			color: #000000;
+			background-color: #EEEEEE;
 		}
 	</style>
-	
+
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="http://www.fourchetteandcie.com/js/layout.js"></script>
-	<script src="http://www.fourchetteandcie.com/js/searchdb.js"></script>
+	<script src="http://localhost/display-only/fourchetteandcie/public_html/js/mustache.js"></script>
+	<script src="http://localhost/display-only/fourchetteandcie/public_html/js/search_db.js"></script>
 @stop
 
 @section('content')
-	
+
 	<h2>Search Item</h2>
-	<div id="search-box">
-		<div id="search-tags"><span class="tag">&#64;section</span> <span class="tag">#ref</span></div>
-		<input id="search-text" type="text" >
+	<p id='search-info'>try <i>+{space}</i>, <i>#ref</i>, <i>&#36;section</i> or <i>@category</i>.</p>
+	<div id='search-container'>
+		<div id='search-box'>
+			<div id='search-tags'></div>
+			<div style='overflow: hidden'>
+				<input id='search-input' type='text' autocomplete='off' placeholder='search an item' >
+			</div>
+		</div>
+		<div id='results-box'><table> </table></div>
 	</div>
 
+@stop
 
-
-	
+@section('mustache-templates')
+	@include('mustache_template')
 @stop

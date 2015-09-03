@@ -71,8 +71,59 @@ class HomeController extends Controller {
 		return view('admin.search');
 	}
 
-	public function search_query($query, $nb_results=3)
+	public function search_query($query, $nb_results=10)
 	{
+		$section_ref_code = Config::get('fandc_arrays')['section_ref_code'];
+		$tag_keys = ['#', '@', '$'];
+		$query = urldecode($query);
+		$query = explode('|', $query);
+
+		$ref = '';
+		$categ = '';
+		$section = 'cutlery';
+		$keywords = '';
+
+		foreach($query as $tag)
+		{
+			if(isset($tag[0]) AND in_array($tag[0], $tag_keys))
+			{
+				switch($tag[0])
+				{
+					case '#':
+						$ref = substr($tag, 1);
+						$section = $section_ref_code[ $tag[1] ];
+						break;
+
+					case '@':
+						$categ = substr($tag, 1);
+						break;
+
+					case '$':
+						$section = substr($tag, 1);
+						break;
+				}
+			}
+			else
+			{
+				$keywords = $tag;
+			}
+		}
+
+		$results = DB::table($section)
+						->where('name', 'LIKE', '%'.$keywords.'%')
+						->where('categ', 'LIKE', '%'.$categ.'%')
+						->where('ref', 'LIKE', '%'.$ref.'%')
+						->take($nb_results)
+						->get();
+		// if($ref != '')
+		// {
+		// 	$results = DB::table($section)->where('stamped', 'LIKE', '%'.$keywords.'%')->take($nb_results)->get();
+		// }
+		// $results = DB::table($section)->where('stamped', 'LIKE', '%'.$keywords.'%')->take($nb_results)->get();
+		//
+		echo json_encode($results);
+
+
 		/*
 
 		$section_list = Config::get('fandc_arrays')['section_list'];
@@ -127,7 +178,7 @@ class HomeController extends Controller {
 		//
 
 
-		/**/
+
 
 		$query = urldecode($query);
 		$section_ref_code = Config::get('fandc_arrays')['section_ref_code'];
@@ -149,7 +200,7 @@ class HomeController extends Controller {
 			$results = DB::table($section)->where('stamped', 'LIKE', '%'.$query.'%')->take($nb_results)->get();
 		}
 
-		/**/
+
 
 
 

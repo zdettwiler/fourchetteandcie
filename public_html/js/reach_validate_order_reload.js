@@ -1,7 +1,5 @@
 function reach_validate_order_reload(id, command)
 {
-	$("#loading").show();
-
 	var xhr = new XMLHttpRequest();
 
 	xhr.open('GET', '../../../admin/orders/'+id+'/validate/'+encodeURIComponent(command), true);
@@ -14,7 +12,6 @@ function reach_validate_order_reload(id, command)
 			toggle_currency(xhr.responseText.substring(1,4));
 
 			$("table#validation-table").html(xhr.responseText.substring(4));
-
 		}
 		else if (xhr.readyState == 4 && xhr.status != 200)
 		{
@@ -23,9 +20,6 @@ function reach_validate_order_reload(id, command)
 	}, false);
 
 	xhr.send(null);
-
-	$("#loading").hide();
-
 	return false;
 }
 
@@ -53,6 +47,13 @@ function toggle_currency(currency, reload)
 
 $(function() {
 	reach_validate_order_reload(id, 'SHOW');
+	$.ajaxStart(function () {
+        $("#loading").html("WAIT");
+	});
+
+    $.ajaxStop(function () {
+        $("#loading").html("EDIT");
+    });
 
 	// CURRENCY SWITCH
 	$(document).on("click", "#currency-switch", function(){
