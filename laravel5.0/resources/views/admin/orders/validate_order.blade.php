@@ -160,3 +160,7 @@
 	<button id="submit-validation" style="float: right;">SUBMIT CHANGES</button>
 
 @stop
+
+@section('mustache-templates')
+	@include('mustache_template')
+@stop
