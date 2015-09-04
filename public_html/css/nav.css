@@ -22,7 +22,7 @@ h1#page-title
 	color: #000000;
 	/*font-weight: 200;*/
 }
-h1#page-title span
+h1#page-title span.initials
 {
 	float: left;
 	display: block;
@@ -32,6 +32,14 @@ h1#page-title span
 	font-size: 40px;
 	font-weight: bold;
 }
+@media screen and (max-width: 740px)
+{
+	span.page-title
+	{
+		display: none;
+	}
+}
+
 #svg-menu
 {
 	float: left;

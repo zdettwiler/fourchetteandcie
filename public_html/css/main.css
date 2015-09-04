@@ -301,41 +301,46 @@ ul#shopwindow
 {
 	background: url('../pictures/home/cutlery.jpg');
 	background-size: cover;
-	float: left;
 }
 #block-link-lighting
 {
 	background-color: #777777;
 	background: url('../pictures/home/unnamed2.jpg');
 	background-size: cover;
-	float: left;
 }
 #block-link-furniture
 {
 	background-color: #AAAAAA;
 	background: url('../pictures/home/unnamed5.jpg');
 	background-size: cover;
-	float: left;
 }
 #block-link-bric-a-brac
 {
 	background-color: #555555;
 	background: url('../pictures/home/unnamed4.jpg');
 	background-size: cover;
-	float: left;
 }
 #block-link-cake-stand
 {
 	background-color: #555555;
 	background: url('../pictures/home/cakestand.jpg') center;
 	background-size: cover;
-	float: left;
 }
 #block-link-about-us
 {
 	background-color: #EEEEEE;
-	float: left;
-	/*width: 100%;*/
+}
+
+@media screen and (max-width: 740px)
+{
+	.block-link-left,
+    .block-link-right
+	{
+        float: left;
+		width: 100%;
+		height: auto;
+		min-height: 300px;
+    }
 }
 
 /******************************************** NAV LINKS *********************************************/

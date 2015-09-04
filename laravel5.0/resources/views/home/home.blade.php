@@ -55,16 +55,14 @@
 			<a href="handstamped-silverware" class="a-button-style">EXPLORE</a>
 		</div>
 
-
+		<div class="block-link-right" id="block-link-cake-stand">
+		</div>
 		<div class="block-link-left">
 			<h3>CAKE STANDS</h3>
 			<p>Having a tea party, wedding party, birthday party, garden party or any other kind of party? These cake stands will bring height and delight to your table. Made with vintage French plates.</p>
 			<br>
 			<a href="cake-stand" class="a-button-style">EXPLORE</a>
 		</div>
-		<div class="block-link-right" id="block-link-cake-stand">
-		</div>
-
 
 		<div class="block-link-left" id="block-link-furniture">
 		</div>
@@ -75,16 +73,14 @@
 			<a href="#" class="a-button-style">COMING SOON</a>
 		</div>
 
-
+		<div class="block-link-right" id="block-link-bric-a-brac">
+		</div>
 		<div class="block-link-left">
 			<h3>BRIC-A-BRAC</h3>
 			<p>Bring your home some love and interest with something unique, cool and French from our curated collection of charming objects.</p>
 			<br>
 			<a href="#" class="a-button-style">COMING SOON</a>
 		</div>
-		<div class="block-link-right" id="block-link-bric-a-brac">
-		</div>
-
 
 		<div class="block-link-left" id="block-link-lighting">
 		</div>
@@ -95,18 +91,15 @@
 			<a href="#" class="a-button-style">COMING SOON</a>
 		</div>
 
-
-
-
-
+		<div class="block-link-right" id="block-link-about-us">
+		</div>
 		<div class="block-link-left">
 			<h3 style="color: #444444; ">ABOUT US</h3>
 			<p style="color: #444444;">fourchetteandcie@gmail.com</p>
 			<br>
 			<a href="#" class="a-button-style">COMING SOON</a>
 		</div>
-		<div class="block-link-right" id="block-link-about-us">
-		</div>
+
 	</div>
 
 @stop
