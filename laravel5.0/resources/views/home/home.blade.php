@@ -34,7 +34,7 @@
 		<div class="block-link" id="block-link-title">
 			<img id="title" src="pictures/home/title_mint.png" width="60%" style="display: block; margin: auto;">
 			<br><br><br>
-			<h2 style="color: #FFFFFF; text-align: center; display: block; margin: auto; font-weight: bold; border: 2px solid #FFFFFF; width: 500px;">SITE STILL IN CONSTRUCTION<h2>
+			<h2 style="color: #FFFFFF; text-align: center; margin: auto; font-weight: bold; border: 2px solid #FFFFFF;">SITE STILL IN CONSTRUCTION<h2>
 			<p style="color: #FFFFFF; text-align: center;">Sorry for the inconvenience. All will be finished soon.</p>
 		</div>
 
