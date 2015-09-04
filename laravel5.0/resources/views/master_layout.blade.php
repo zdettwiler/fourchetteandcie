@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="initial-scale=1">
 	<title>@yield('page_title')</title>
 
 	@yield('include')
@@ -52,12 +52,12 @@
 
 	<div id="nav-links">
 		<ul>
-			<li><a href="http://localhost/fourchetteandcie/public/">Home</a></li>
-			<li><a href="http://localhost/fourchetteandcie/public/handstamped-silverware">Handstamped Silverware</a></li>
-			<li><a href="http://localhost/fourchetteandcie/public/handstamped-silverware/looking-after-your-handstamped-cutlery">Look after your silverware</a></li>
-			<li><a href="http://localhost/fourchetteandcie/public/cake-stands">Cake Stands</a></li>
-			<li><a href="http://localhost/fourchetteandcie/public/furniture">Furniture</a></li>
-			<li><a href="http://localhost/fourchetteandcie/public/bric-a-brac">Bric-a-Brac</a></li>
+			<li><a href="http://www.fourchetteandcie.com/">Home</a></li>
+			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware">Handstamped Silverware</a></li>
+			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware/looking-after-your-handstamped-cutlery">Look after your silverware</a></li>
+			<li><a href="http://www.fourchetteandcie.com/cake-stands">Cake Stands</a></li>
+			<li><a href="http://www.fourchetteandcie.com/furniture">Furniture</a></li>
+			<li><a href="http://www.fourchetteandcie.com/bric-a-brac">Bric-a-Brac</a></li>
 		</ul>
 	</div>
 
@@ -69,11 +69,11 @@
 
 		<br><br>
 		<button id="button-empty-basket">EMPTY</button>
-		<a class="a-button-style" href="http://localhost/fourchetteandcie/public/checkout">CHECKOUT</a>
+		<a class="a-button-style" href="http://www.fourchetteandcie.com/checkout">CHECKOUT</a>
 	</div>
 
 	<div id="item-viewer">
-		<div id="close-viewer"><img src="http://localhost/fourchetteandcie/public/pictures/cross.png"></div>
+		<div id="close-viewer"><img src="http://www.fourchetteandcie.com/pictures/cross.png"></div>
 		<div id="item-viewer-content">
 
 			<div id="item-viewer-imgs">
@@ -90,7 +90,7 @@
 				<h5 id="item-viewer-price"></h5>
 
 				<br><br><br><br><br>
-				<!-- <button id="button-add-to-basket">ADD TO BASKET</button> -->
+				<button id="button-add-to-basket">ADD TO BASKET</button>
 			</div>
 		</div>
 	</div>
