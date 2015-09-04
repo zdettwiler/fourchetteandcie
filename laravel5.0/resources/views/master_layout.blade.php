@@ -70,6 +70,7 @@
 		<br><br>
 		<button id="button-empty-basket">EMPTY</button>
 		<a class="a-button-style" href="http://www.fourchetteandcie.com/checkout">CHECKOUT</a>
+		<br><br><br><br><br>
 	</div>
 
 	<div id="item-viewer">

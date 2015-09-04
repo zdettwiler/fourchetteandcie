@@ -32,17 +32,17 @@ class Basket
 		$found = false;
 
 		// Check if item is already in the basket
-		foreach($BASKET as $item)
+		foreach($BASKET as &$item)
 		{
 			// If YES, add a other one
 			if( $item['ref'] == $ref)
 			{
-				$item['qty']++;
+				$item['qty'] = $item['qty'] + 1;
 				$found = true;
 				break;
 			}
 		}
-
+echo "<pre>".print_r($BASKET)."</pre>";
 		// If NO, add the item in the basket
 		if(!$found)
 		{
@@ -157,7 +157,7 @@ class Basket
 
 				echo "<tr item-ref='".$item['ref']."'>\n";
 				echo "	<td><img class='item-img' src='http://www.fourchetteandcie.com/pictures/". $ref[0] ."/100px/".$item['ref']."_thumb.jpg' height='50'></td>\n";
-				echo "	<td style='width: 100%;'>".$item['name'].$item['name']."<br>";
+				echo "	<td style='width: 100%;'>".$item['name']."<br>";
 				if (isset($item['descr']))
 					{echo "<span>".$item['descr']."</span></td>\n";}
 
