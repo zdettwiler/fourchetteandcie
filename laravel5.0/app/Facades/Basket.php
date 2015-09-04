@@ -42,7 +42,7 @@ class Basket
 				break;
 			}
 		}
-echo "<pre>".print_r($BASKET)."</pre>";
+		
 		// If NO, add the item in the basket
 		if(!$found)
 		{
