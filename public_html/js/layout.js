@@ -4,8 +4,16 @@ function items_per_row()
 	var item_min_width = 300;
 	var item_width = 0;
 
-	nb_items_per_row = Math.floor(available_width / item_min_width);
-	item_width = (available_width / nb_items_per_row) - 60;
+	if($(window).width() > 450)
+	{
+		nb_items_per_row = Math.floor(available_width / item_min_width);
+		item_width = (available_width / nb_items_per_row) - 60;
+	}
+	else
+	{
+		nb_items_per_row = 1;
+		item_width = $(window).width();
+	}
 
 	$(".item").css({width: item_width});
 	$(".item .item-img").css({width: item_width, height: item_width});

@@ -145,6 +145,7 @@ table
 	display: block;
 	margin: auto;
 }
+
 #fade
 {
 	display: none;
@@ -257,6 +258,21 @@ ul#shopwindow
 	right: 10px;
 }
 
+@media screen and (max-width: 450px)
+{
+	#content,
+	.content,
+	.item
+	{
+		width: 100%;
+		margin: 0;
+
+	}
+	.item-details
+	{
+		padding: 0 20px;
+	}
+}
 
 /********************************************** HOME *********************************************/
 #home-content
