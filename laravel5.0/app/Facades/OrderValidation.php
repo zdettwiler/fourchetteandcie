@@ -409,7 +409,7 @@ class OrderValidation
 
 			$response .= "' height='50'></td>\n
 
-				<td style='width: 50%;'><span class='ref-box'>{$VALIDATION_ORDER[$i]['ref']}</span> {$VALIDATION_ORDER[$i]['name']}{$VALIDATION_ORDER[$i]['name']} <i>{$VALIDATION_ORDER[$i]['descr']}</i><br><input class='edit-comment' type='text' name='comment-{$VALIDATION_ORDER[$i]['ref']}' placeholder='comment' value='{$VALIDATION_ORDER[$i]['comment']}'></td>\n
+				<td style='width: 50%;'><span class='ref-box'>{$VALIDATION_ORDER[$i]['ref']}</span> {$VALIDATION_ORDER[$i]['name']} <i>{$VALIDATION_ORDER[$i]['descr']}</i><br><input class='edit-comment' type='text' name='comment-{$VALIDATION_ORDER[$i]['ref']}' placeholder='comment' value='{$VALIDATION_ORDER[$i]['comment']}'></td>\n
 
 				<td><div class='item-qty'><div class='item-qty-plus-button'>+</div> <div class='item-qty-value'>{$VALIDATION_ORDER[$i]['qty']}</div> <div class='item-qty-minus-button'>{$minus_button}</div></div></td>\n
 
