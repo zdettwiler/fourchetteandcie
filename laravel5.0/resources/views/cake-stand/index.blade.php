@@ -14,7 +14,10 @@
 	<script src="js/jquery.zoom.min.js"></script>
 	<script>
 		$(document).ready(function(){
-			$('div.item-img-zoom').zoom();
+			if($(window).width() > 450)
+			{
+				$('div.item-img-zoom').zoom();
+			}
 		});
 	</script>
 @stop

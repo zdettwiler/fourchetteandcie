@@ -12,7 +12,7 @@
 	<script src="js/layout.js"></script>
 	<script src="js/reach_basket.js"></script>
 	<script src="js/jquery.zoom.min.js"></script>
-	<script type="text/javascript">
+	<script>
 		$(document).ready(function(){
 			if($(window).width() > 450)
 			{
