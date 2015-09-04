@@ -29,7 +29,7 @@
 		@foreach($order_details as $item)
 
 			<tr>
-				<td style='width: 60%;'>{{ $item['ref'] }} {{ $item['name'] }}<span> - {{ $item['descr'] }}</span><br>
+				<td style='width: 60%;'>[{{ $item['ref'] }}] {{ $item['name'] }}<span> - {{ $item['descr'] }}</span><br>
 					<span style="font-size: 10px;"><i>{{ $item['comment'] }}</span></td>
 
 				<td class="center-col">{{ $item['qty'] }}</td>

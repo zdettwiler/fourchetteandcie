@@ -85,9 +85,9 @@ table#invoice-order
 	width: 80%;
 	margin: auto;
 	border-collapse: collapse;
-	page-break-inside: avoid;
+	/*page-break-inside: avoid;
 	page-break-before: avoid;
-	page-break-after: avoid;
+	page-break-after: avoid;*/
 }
 
 table#invoice-order td
