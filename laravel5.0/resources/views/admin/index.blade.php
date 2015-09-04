@@ -16,7 +16,7 @@
 			width: 46%;
 			padding: 20px;
 			color: #FFFFFF;
-			background-color: #7CFFB1;
+			background-color: #1abc9c;
 		}
 		.widget h3,
 		.widget span

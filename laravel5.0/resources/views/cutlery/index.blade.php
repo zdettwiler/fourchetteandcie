@@ -3,7 +3,7 @@
 @section('page_title', 'Handstamped Silverware')
 
 @section('include')
-	<link rel="stylesheet" href="css/main.css" type="text/css" media="all"/>
+	<link rel="stylesheet" href="http://localhost/display-only/fourchetteandcie/public_html/css/main.css" type="text/css" media="all"/>
 	<link rel="stylesheet" href="css/nav.css" type="text/css" media="all"/>
 	<link rel="stylesheet" href="css/basket.css" type="text/css" media="all"/>
 

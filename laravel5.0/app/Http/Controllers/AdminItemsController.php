@@ -263,7 +263,7 @@ class AdminItemsController extends Controller
 					DB::table('cutlery')->insert([
 						'ref'       => $new_ref,
 						'descr'     => $request->descr_cutlery,
-						'stamped'   => $request->stamped_cutlery,
+						'name'   => $request->stamped_cutlery,
 						'price'     => $request->price_cutlery,
 						'img_count' => $imgs_count,
 						'categ'     => $categ

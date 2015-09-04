@@ -59,6 +59,7 @@ Route::get('/admin/items', 'AdminItemsController@all_items');
 Route::get('/admin/items/pdf', 'AdminItemsController@all_items_pdf');
 
 Route::get('/admin/items/add', 'AdminItemsController@add_item');
+Route::get('/admin/items/add/cutlery', 'AdminItemsController@add_item');
 Route::post('/admin/items/add', 'AdminItemsController@post_add_item');
 
 Route::get('/admin/items/edit/{ref}', 'AdminItemsController@edit_item');

@@ -12,9 +12,9 @@ function items_per_row()
 	$(".item .item-details").css({width: item_width});
 
 
-	var img_viewer_available_height = $("#item-viewer-imgs").height();
-	$("#main-imgs img").height(0.8 * img_viewer_available_height);
-	$("#thumb-imgs img").height(0.2 * img_viewer_available_height);
+	// var img_viewer_available_height = $("#item-viewer-imgs").height();
+	// $("#main-imgs img").height(0.8 * img_viewer_available_height);
+	// $("#thumb-imgs img").height(0.2 * img_viewer_available_height);
 
 
 	return false;

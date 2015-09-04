@@ -2,7 +2,7 @@ function reach_basket(command)
 {
 	var xhr = new XMLHttpRequest();
 
-	xhr.open('GET', 'basket/' + command, true);
+	xhr.open('GET', '/basket/' + command, true);
 	xhr.addEventListener('readystatechange', function() {
 
 		if (xhr.readyState === 4 && xhr.status === 200)
@@ -28,7 +28,7 @@ function reach_basket(command)
 }
 
 $(function() {
-	// reach_basket('HTML');
+	reach_basket('HTML');
 
 	$("#button-add-to-basket").on("click", function() {
 		// $(this).attr('item-ref');
