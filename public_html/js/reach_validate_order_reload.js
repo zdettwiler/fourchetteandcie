@@ -2,13 +2,13 @@ function reach_validate_order_reload(id, command)
 {
 	$.ajax({
 		type: 'GET',
-		url: '../../../admin/orders/'+id+'/validate/'+encodeURIComponent(command),
+		url: '/admin/orders/'+id+'/validate/'+encodeURIComponent(command),
 		success: function(response) {
-			$("#wholesale-status").attr("src", "http://www.fourchetteandcie.com/pictures/"+ xhr.response.substring(0,1) +".png");
+			$("#wholesale-status").attr("src", "http://www.fourchetteandcie.com/pictures/"+ response.substring(0,1) +".png");
 
-			toggle_currency(xhr.response.substring(1,4));
+			toggle_currency(response.substring(1,4));
 
-			$("table#validation-table").html(xhr.response.substring(4));
+			$("table#validation-table").html(response.substring(4));
 		}
 	});
 
