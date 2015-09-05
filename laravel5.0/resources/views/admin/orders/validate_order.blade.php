@@ -153,6 +153,7 @@
 	<div style="margin: auto; width: 90%; float: left;">
 		<h3>Order Details <span id="loading">WAIT</span></h3>
 		<table id="validation-table">
+			
 		</table>
 	</div>
 

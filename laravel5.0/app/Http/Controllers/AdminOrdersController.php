@@ -70,51 +70,51 @@ class AdminOrdersController extends Controller
 		switch ($command)
 		{
 			case 'SHOW':
-				OrderValidation::validation_table_html();
+				OrderValidation::validation_table_html($id);
 				break;
 
 			case 'TOGGLE_CURRENCY':
-				OrderValidation::toggle_currency();
-				OrderValidation::validation_table_html();
+				OrderValidation::toggle_currency($id);
+				OrderValidation::validation_table_html($id);
 				break;
 
 			case 'UPDATE_QTY':
-				OrderValidation::update_qty($ref, $value);
-				OrderValidation::validation_table_html();
+				OrderValidation::update_qty($id, $ref, $value);
+				OrderValidation::validation_table_html($id);
 				break;
 
 			case 'UPDATE_COMMENT':
-				OrderValidation::update_comment($ref, $value);
-				OrderValidation::validation_table_html();
+				OrderValidation::update_comment($id, $ref, $value);
+				OrderValidation::validation_table_html($id);
 				break;
 
 			case 'UPDATE_UNIT_PRICE':
-				OrderValidation::update_unit_price($ref, $value);
-				OrderValidation::validation_table_html();
+				OrderValidation::update_unit_price($id, $ref, $value);
+				OrderValidation::validation_table_html($id);
 				break;
 
 			case 'UPDATE_SHIPPING':
-				OrderValidation::update_shipping($value);
+				OrderValidation::update_shipping($id, $value);
 				OrderValidation::validation_table_html($id);
 				break;
 
 			case 'UPDATE_SHIPPING_DETAILS':
-				OrderValidation::update_shipping_details($value);
+				OrderValidation::update_shipping_details($id, $value);
 				OrderValidation::validation_table_html($id);
 				break;
 
 			case 'ADD':
-				OrderValidation::add($ref);
+				OrderValidation::add($id, $ref);
 				OrderValidation::validation_table_html($id);
 				break;
 
 			case 'ADD_CUSTOM':
-				OrderValidation::add_custom($value);
+				OrderValidation::add_custom($id, $value);
 				OrderValidation::validation_table_html($id);
 				break;
 
 			case 'TOGGLE_WHOLESALE':
-				OrderValidation::toggle_wholesale();
+				OrderValidation::toggle_wholesale($id);
 				OrderValidation::validation_table_html($id);
 				break;
 
@@ -123,7 +123,7 @@ class AdminOrdersController extends Controller
 				break;
 
 			case 'UPDATE_MESSAGE':
-				OrderValidation::update_message($value);
+				OrderValidation::update_message($id, $value);
 				OrderValidation::validation_table_html($id);
 				break;
 		}

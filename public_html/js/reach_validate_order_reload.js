@@ -2,13 +2,87 @@ function reach_validate_order_reload(id, command)
 {
 	$.ajax({
 		type: 'GET',
-		url: '/admin/orders/'+id+'/validate/'+encodeURIComponent(command),
-		success: function(response) {
-			$("#wholesale-status").attr("src", "http://www.fourchetteandcie.com/pictures/"+ response.substring(0,1) +".png");
+		url: '../../../admin/orders/'+id+'/validate/'+encodeURIComponent(command),
+		beforeSend: function() {
+			$("#loading").html('WAIT');
+			$("#validation-table").css('cursor', 'not-allowed');
+		},
+		success: function(order) {
+			var order = $.parseJSON(order);
+			order.val_order = $.parseJSON( order.val_order );
 
-			toggle_currency(response.substring(1,4));
+			$("#wholesale-status").attr("src", "http://www.fourchetteandcie.com/pictures/"+ order.is_wholesale +".png");
+			toggle_currency(order.order_currency);
 
-			$("table#validation-table").html(response.substring(4));
+			// fill html table from template
+			var template_order_validation_table_item = $("#template-order-validation-table-item").html();
+			var template_order_validation_table_totals = $("#template-order-validation-table-totals").html();
+
+			// table header
+			$("#validation-table").html(""
+				+ "<tr class='table-header'>"
+				+ "<td></td>"
+				+ "<td style='width:50%;'>Item Description</td>"
+				+ "<td>Qty</td>"
+				+ "<td>Unit. Price</td>"
+				+ "<td>Total</td>"
+				+ "</tr>"
+			);
+
+			// order items
+			$.each( order.val_order, function( i, item ) {
+				item.price       = Number(item.price).toFixed(2);
+				item.total       = Number(item.qty * item.price).toFixed(2);
+				item.ref_section = item.ref.substr(0,1);
+
+				if(item.ref_section == '_') {
+					item.img_path = "0.png";
+				} else {
+					item.img_path = item.ref_section + "/100px/"+ item.ref +"_thumb.jpg";
+				}
+
+				if(item.qty == 1) {
+					item.minus_button = "<img src='http://www.fourchetteandcie.com/pictures/bin.png' height='20'>";
+				} else {
+					item.minus_button = "-";
+				}
+
+				if(order.order_currency == 'eur') {
+					item.currency = '€';
+				} else if(order.order_currency == 'aud') {
+					item.currency = 'AU$';
+				}
+
+				$("#validation-table").append( Mustache.render(template_order_validation_table_item, item) );
+			});
+
+			// order totals
+			order.val_order_subtotal = Number(order.val_order_subtotal).toFixed(2);
+			order.val_order_shipping = Number(order.val_order_shipping).toFixed(2);
+			order.val_order_total    = Number(order.val_order_total).toFixed(2);
+
+			if(order.is_wholesale == 1) {
+				order.wholesale_subtotal = Number(0.7 * order.val_order_subtotal).toFixed(2);
+			}
+
+			if(order.order_currency == 'eur') {
+				order.order_currency = '€';
+			} else if(order.order_currency == 'aud') {
+				order.order_currency = 'AU$';
+			}
+
+			if(order.val_order_nb_items > 1) {
+				order.nb_items_plural = 's';
+			} else {
+				order.nb_items_plural = '';
+			}
+
+			$("#validation-table").append( Mustache.render(template_order_validation_table_totals, order) );
+
+		},
+		complete: function () {
+			$("#loading").html('EDIT');
+			$("#validation-table").css('cursor', 'auto');
 		}
 	});
 

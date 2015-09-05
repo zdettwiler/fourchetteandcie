@@ -7,97 +7,50 @@ use Session;
 
 class OrderValidation
 {
+//----------------------------------------------------------------------------//
+// CONSTRUCTOR
+//----------------------------------------------------------------------------//
 	public function __construct($order_id)
 	{
-		// Session::forget('validation_order');
+		$val_order = DB::table('orders')->where('id', $order_id)->pluck('val_order');
 
-		// If is exists and we want to create a new oneMake validation_order in Session for easy manips.
-		if(!Session::has('validation_order') OR (Session::has('validation_order') AND Session::get('validation_order')['order_id'] != $order_id))
-			//isset(Session::get('validation_order')['order_id']) AND Session::get('validation_order')['order_id'] != $order_id))
+		if(strlen($val_order) < 2)
 		{
+			$order = DB::table('orders')
+						->where('id', $order_id)
+						->pluck('order');
 
-			$order = DB::table('orders')->where('id', $order_id)->first();
+			DB::table('orders')
+				->where('id', $order_id)
+				->update(['val_order' => $order]);
 
-			$order_details = Basket::json_encode_decode($order->order);
-			$VALIDATION_ORDER = [];
-
-			// Add Subtotal, Nb Items, Shipping and Total rows
-			$VALIDATION_ORDER['order_id']         = $order->id;
-			$VALIDATION_ORDER['order_token']      = $order->order_token;
-			$VALIDATION_ORDER['is_wholesale']     = $order->is_wholesale;
-			$VALIDATION_ORDER['subtotal']         = $order->order_subtotal;
-			$VALIDATION_ORDER['nb_items']         = $order->order_nb_items;
-			$VALIDATION_ORDER['shipping']         = $order->order_shipping;
-			$VALIDATION_ORDER['shipping_details'] = $order->val_order_shipping_details;
-			$VALIDATION_ORDER['currency']         = $order->order_currency;
-			$VALIDATION_ORDER['total']            = $order->order_total;
-			$VALIDATION_ORDER['message']          = $order->val_order_message;
-
-			$VALIDATION_ORDER = array_merge($VALIDATION_ORDER, $order_details);
-
-			// dd($VALIDATION_ORDER);
-			// Add the 'comment' for each item
-			for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
-			{
-				$VALIDATION_ORDER[$i]['comment'] = '';
-			}
-
-			Session::set('validation_order', $VALIDATION_ORDER);
+			$VALIDATED_ORDER = json_decode(DB::table('orders')->where('id', $order_id)->pluck('val_order'));
+			self::save_order_to_db($order_id, $VALIDATED_ORDER);
+			return false;
 		}
 
-	}
-
-//----------------------------------------------------------------------------//
-// RECOMPUTE TOTALS
-//----------------------------------------------------------------------------//
-	private static function recompute_totals()
-	{
-		$VALIDATION_ORDER = Session::get('validation_order', []);
-
-		$subtotal = 0;
-		$nb_items = 0;
-		$total = 0;
-
-		for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
-		{
-			$subtotal += $VALIDATION_ORDER[$i]['qty'] * $VALIDATION_ORDER[$i]['price'];
-			$nb_items += $VALIDATION_ORDER[$i]['qty'];
-		}
-
-		$VALIDATION_ORDER['subtotal'] = $subtotal;
-		$VALIDATION_ORDER['nb_items'] = $nb_items;
-
-		if($VALIDATION_ORDER['is_wholesale'])
-		{
-			$VALIDATION_ORDER['total'] = $VALIDATION_ORDER['shipping'] + 0.7 * $subtotal;
-		}
-		elseif(!($VALIDATION_ORDER['is_wholesale']))
-		{
-			// dd($VALIDATION_ORDER);
-			$VALIDATION_ORDER['total'] = $VALIDATION_ORDER['shipping'] + $subtotal;
-		}
-
-
-		Session::set('validation_order', $VALIDATION_ORDER);
+		return false;
 	}
 
 //----------------------------------------------------------------------------//
 // TOGGLE ORDER CURRENCY EUR OR AUD
 //----------------------------------------------------------------------------//
-	public static function toggle_currency()
+	public static function toggle_currency($order_id)
 	{
-		$VALIDATION_ORDER = Session::get('validation_order', []);
+		$ORDER = DB::table('orders')->where('id', $order_id)->first();
 
-		if($VALIDATION_ORDER['currency'] == 'eur')
+		if($ORDER->order_currency == 'eur')
 		{
-			$VALIDATION_ORDER['currency'] = 'aud';
+			DB::table('orders')
+				->where('id', $order_id)
+				->update(['order_currency' => 'aud']);
 		}
-		elseif($VALIDATION_ORDER['currency'] == 'aud')
+		elseif($ORDER->order_currency == 'aud')
 		{
-			$VALIDATION_ORDER['currency'] = 'eur';
+			DB::table('orders')
+				->where('id', $order_id)
+				->update(['order_currency' => 'eur']);
 		}
-
-		Session::set('validation_order', $VALIDATION_ORDER);
 
 		return false;
 	}
@@ -105,158 +58,165 @@ class OrderValidation
 //----------------------------------------------------------------------------//
 // UPDATE ITEM QUANTITY
 //----------------------------------------------------------------------------//
-	public static function update_qty($ref, $new_qty)
+	public static function update_qty($order_id, $ref, $new_qty)
 	{
+		$ORDER = DB::table('orders')->where('id', $order_id)->first();
+		$VALIDATED_ORDER = json_decode($ORDER->val_order);
+
 		if($new_qty == 0)
 		{
 			self::remove($ref);
 			return;
 		}
 
-		$VALIDATION_ORDER = Session::get('validation_order', []);
-
 		// Check/Find if item is already in the basket
-		for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
+		foreach($VALIDATED_ORDER as $item)
 		{
 			// If YES, update its qty
-			if($VALIDATION_ORDER[$i]['ref'] == $ref)
+			if($item->ref == $ref)
 			{
-				$VALIDATION_ORDER[$i]['qty'] = $new_qty;
+				$item->qty = $new_qty;
 				break;
 			}
 		}
 
-		Session::set('validation_order', $VALIDATION_ORDER);
-		self::recompute_totals();
-
-
+		self::save_order_to_db($order_id, $VALIDATED_ORDER);
 		return false;
 	}
 
 //----------------------------------------------------------------------------//
 // UPDATE ITEM COMMENT
 //----------------------------------------------------------------------------//
-	public static function update_comment($ref, $comment)
+	public static function update_comment($order_id, $ref, $comment)
 	{
+		$ORDER = DB::table('orders')->where('id', $order_id)->first();
+		$VALIDATED_ORDER = json_decode($ORDER->val_order);
+
 		if($comment == '--null')
 		{
 			$comment = '';
 		}
 
-		$VALIDATION_ORDER = Session::get('validation_order', []);
-
 		// Check/Find if item is already in the basket
-		for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
+		foreach($VALIDATED_ORDER as $item)
 		{
 			// If YES, update its qty
-			if($VALIDATION_ORDER[$i]['ref'] == $ref)
+			if($item->ref == $ref)
 			{
-				$VALIDATION_ORDER[$i]['comment'] = $comment;
+				$item->comment = $comment;
 				break;
 			}
 		}
 
-
-		Session::set('validation_order', $VALIDATION_ORDER);
+		self::save_order_to_db($order_id, $VALIDATED_ORDER);
 		return false;
 	}
 
 //----------------------------------------------------------------------------//
 // UPDATE ITEM UNITARY PRICE
 //----------------------------------------------------------------------------//
-	public static function update_unit_price($ref, $unit_price)
+	public static function update_unit_price($order_id, $ref, $unit_price)
 	{
-		$VALIDATION_ORDER = Session::get('validation_order', []);
+		$ORDER = DB::table('orders')->where('id', $order_id)->first();
+		$VALIDATED_ORDER = json_decode($ORDER->val_order);
 
 		// Check/Find if item is already in the basket
-		for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
+		foreach($VALIDATED_ORDER as $item)
 		{
-			// If YES, update its qty
-			if($VALIDATION_ORDER[$i]['ref'] == $ref)
+			// If YES, update its unit price
+			if($item->ref == $ref)
 			{
-				$VALIDATION_ORDER[$i]['price'] = urldecode($unit_price);
+				$item->price = $unit_price;
 				break;
 			}
 		}
 
-
-		Session::set('validation_order', $VALIDATION_ORDER);
-		self::recompute_totals();
-
+		self::save_order_to_db($order_id, $VALIDATED_ORDER);
 		return false;
 	}
 
 //----------------------------------------------------------------------------//
 // UPDATE ORDER SHIPPING PRICE
 //----------------------------------------------------------------------------//
-	public static function update_shipping($shipping)
+	public static function update_shipping($order_id, $shipping)
 	{
-		$VALIDATION_ORDER = Session::get('validation_order', []);
+		DB::table('orders')
+			->where('id', $order_id)
+			->update([
+						'val_order_shipping' => $shipping
+					]);
 
-		$VALIDATION_ORDER['shipping'] = urldecode($shipping);
-
-		Session::set('validation_order', $VALIDATION_ORDER);
-		self::recompute_totals();
-
+		self::save_order_to_db($order_id);
 		return false;
 	}
 
 //----------------------------------------------------------------------------//
 // UPDATE ORDER SHIPPING DETAILS
 //----------------------------------------------------------------------------//
-	public static function update_shipping_details($shipping_details)
+	public static function update_shipping_details($order_id, $shipping_details)
 	{
-		$VALIDATION_ORDER = Session::get('validation_order', []);
+		DB::table('orders')
+			->where('id', $order_id)
+			->update([
+						'val_order_shipping_details' => $shipping_details
+					]);
 
-		$VALIDATION_ORDER['shipping_details'] = $shipping_details;
-
-		Session::set('validation_order', $VALIDATION_ORDER);
 		return false;
 	}
 
 //----------------------------------------------------------------------------//
 // ADD A NEW ITEM TO ORDER
 //----------------------------------------------------------------------------//
-	public static function add($ref)
+	public static function add($order_id, $ref)
 	{
-		$VALIDATION_ORDER = Session::get('validation_order', []);
+		$ORDER = DB::table('orders')->where('id', $order_id)->first();
+		$VALIDATED_ORDER = json_decode($ORDER->val_order);
+
+		// Check is already in the order...
+		foreach($VALIDATED_ORDER as $item)
+		{
+			// ...if yes, increment its qty
+			if($item->ref == $ref)
+			{
+				self::update_qty($order_id, $ref, $item->qty+1);
+				return false;
+			}
+		}
+
+		// If not already in the order make the item
 		$item_to_add = new Item($ref);
 
-		// Check is already in basket
-
 		// Add item
-		$VALIDATION_ORDER[] = [
+		$VALIDATED_ORDER[] = [
 				'ref'     => $ref,
 				'qty'     => 1,
 				'name'    => $item_to_add->get_name(),
 				'descr'   => $item_to_add->get_descr(),
-				'name' => $item_to_add->get_name(),
+				'name'    => $item_to_add->get_name(),
 				'price'   => $item_to_add->get_price(),
 				'img'     => $item_to_add->get_img_count(),
 				'categ'   => $item_to_add->get_categ(),
 				'comment' => 'has been added'
 			];
 
-
-
-		Session::set('validation_order', $VALIDATION_ORDER);
-		self::recompute_totals();
-
+		self::save_order_to_db($order_id, $VALIDATED_ORDER);
 		return false;
 	}
 
 //----------------------------------------------------------------------------//
 // ADD A CUSTOM ITEM TO THE ORDER
 //----------------------------------------------------------------------------//
-	public static function add_custom($value)
+	public static function add_custom($order_id, $value)
 	{
-		$VALIDATION_ORDER = Session::get('validation_order', []);
+		$ORDER = DB::table('orders')->where('id', $order_id)->first();
+		$VALIDATED_ORDER = json_decode($ORDER->val_order);
+
 		$new_item = explode("--", $value);
 		$max_custom_item = 0;
 
-		for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
+		foreach($VALIDATED_ORDER as $item)
 		{
-			list($custom_item_id) = sscanf($VALIDATION_ORDER[$i]['ref'], "custom%d");
+			list($custom_item_id) = sscanf($item->ref, "_%d");
 
 			if($custom_item_id > $max_custom_item)
 			{
@@ -266,87 +226,82 @@ class OrderValidation
 
 		// Add custom item
 		$VALIDATION_ORDER[] = [
-				'ref'     => 'custom'.($max_custom_item + 1),
+				'ref'     => '_'.($max_custom_item + 1),
 				'qty'     => 1,
 				'name'    => $new_item[0],
 				'descr'   => $new_item[1],
-				'name' => '',
 				'price'   => $new_item[2],
 				'img'     => 0,
 				'categ'   => '',
 				'comment' => 'custom item'
 			];
 
-		Session::set('validation_order', $VALIDATION_ORDER);
-		self::recompute_totals();
-
+		self::save_order_to_db($order_id, $VALIDATED_ORDER);
 		return false;
 	}
 
 //----------------------------------------------------------------------------//
 // REMOVE AN ITEM FROM THE ORDER
 //----------------------------------------------------------------------------//
-	public static function remove($ref)
+	public static function remove($order_id, $ref)
 	{
-		$VALIDATION_ORDER = Session::get('validation_order', []);
-		$VALIDATION_ORDER_DETAILS = array_slice($VALIDATION_ORDER, 0, 9);
-		// dd($VALIDATION_ORDER);
-		for($i=0 ; $i<=count($VALIDATION_ORDER)-11 ; $i++)
+		$ORDER = DB::table('orders')->where('id', $order_id)->first();
+		$VALIDATED_ORDER = json_decode($ORDER->val_order);
+
+		foreach($VALIDATED_ORDER as $item)
 		{
 			// If YES, remove it
-			if($VALIDATION_ORDER[$i]['ref'] == $ref)
+			if($item->ref == $ref)
 			{
-				unset($VALIDATION_ORDER[$i]);
+				unset($item);
 				break;
 			}
 		}
 
-		$VALIDATION_ORDER = array_values(array_slice($VALIDATION_ORDER, 9));
+		// $VALIDATION_ORDER = array_values(array_slice($VALIDATION_ORDER, 9));
+		//
+		// $VALIDATION_ORDER = array_merge($VALIDATION_ORDER_DETAILS, $VALIDATION_ORDER);
 
-		$VALIDATION_ORDER = array_merge($VALIDATION_ORDER_DETAILS, $VALIDATION_ORDER);
-
-		Session::set('validation_order', $VALIDATION_ORDER);
-		self::recompute_totals();
-
+		self::save_order_to_db($order_id, $VALIDATED_ORDER);
 		return false;
 	}
 
 //----------------------------------------------------------------------------//
 // TOGGLE ORDER TO WHOLESALE OR NOT
 //----------------------------------------------------------------------------//
-	public static function toggle_wholesale()
+	public static function toggle_wholesale($order_id)
 	{
-		$VALIDATION_ORDER = Session::get('validation_order', []);
+		$ORDER = DB::table('orders')->where('id', $order_id)->first();
 
-		if($VALIDATION_ORDER['is_wholesale'] == 1)
+		if($ORDER->is_wholesale == 1)
 		{
-			$VALIDATION_ORDER['is_wholesale'] = 0;
+			DB::table('orders')
+				->where('id', $order_id)
+				->update(['is_wholesale' => 0]);
 		}
-		elseif($VALIDATION_ORDER['is_wholesale'] == 0)
+		elseif($ORDER->is_wholesale == 0)
 		{
-			$VALIDATION_ORDER['is_wholesale'] = 1;
+			DB::table('orders')
+				->where('id', $order_id)
+				->update(['is_wholesale' => 1]);
 		}
 
-		Session::set('validation_order', $VALIDATION_ORDER);
-		self::recompute_totals();
-
+		self::save_order_to_db($order_id);
 		return false;
 	}
 
 //----------------------------------------------------------------------------//
 // TOGGLE ORDER TO PAYED FOR AUD$ PAYMENTS
 //----------------------------------------------------------------------------//
-	public static function toggle_payed($id)
+	public static function toggle_payed($order_id)
 	{
 		DB::table('orders')
-			->where('id', $id)
-			->update([
-						'is_payed' => 1
-					]);
+			->where('id', $order_id)
+			->update(['is_payed' => 1]);
 
 		// send emails
-		EMailGenerator::send_papi_paid_order($id);
-		EMailGenerator::send_cust_thank_you($id);
+		EMailGenerator::send_papi_paid_order($order_id);
+		EMailGenerator::send_cust_thank_you($order_id);
 
 		return false;
 	}
@@ -354,22 +309,25 @@ class OrderValidation
 //----------------------------------------------------------------------------//
 // UPDATE ORDER MESSAGE
 //----------------------------------------------------------------------------//
-	public static function update_message($message)
+	public static function update_message($order_id, $message)
 	{
-		$VALIDATION_ORDER = Session::get('validation_order', []);
+		DB::table('orders')
+			->where('id', $order_id)
+			->update(['val_order_message' => $message]);
 
-		$VALIDATION_ORDER['message'] = $message;
-
-		Session::set('validation_order', $VALIDATION_ORDER);
 		return false;
 	}
 
 //----------------------------------------------------------------------------//
 // MAKE THE HTML TABLE CONTAINING THE ORDER AND DETAILS
 //----------------------------------------------------------------------------//
-	public static function validation_table_html()
+	public static function validation_table_html($order_id)
 	{
-		$VALIDATION_ORDER = Session::get('validation_order', []);
+		$ORDER = DB::table('orders')->where('id', $order_id)->first();
+
+		echo json_encode($ORDER, JSON_PRETTY_PRINT);
+		return false;
+		/*$VALIDATION_ORDER = Session::get('validation_order', []);
 		$section_ref_code = Config::get('fandc_arrays')['section_ref_code'];
 
 		if($VALIDATION_ORDER['currency'] == 'eur')
@@ -470,32 +428,63 @@ class OrderValidation
 				<td colspan='5'>Add a message:<br><textarea>{$VALIDATION_ORDER['message']}</textarea></td>\n
 			</tr>";
 
-		echo $response;
+		echo $response;*/
 	}
+
+//----------------------------------------------------------------------------//
+// RECOMPUTE TOTALS
+//----------------------------------------------------------------------------//
+	private static function recompute_totals($order_id, $VALIDATED_ORDER)
+	{
+		$ORDER = DB::table('orders')->where('id', $order_id)->first();
+
+		$subtotal = 0;
+		$nb_items = 0;
+		$total = 0;
+
+		foreach($VALIDATED_ORDER as $item)
+		{
+			$subtotal += $item->qty * $item->price;
+			$nb_items += $item->qty;
+		}
+
+		if($ORDER->is_wholesale)
+		{
+			$total = $ORDER->val_order_shipping + 0.7 * $subtotal;
+		}
+		elseif(!$ORDER->is_wholesale)
+		{
+			$total = $ORDER->val_order_shipping + $subtotal;
+		}
+
+		return [$nb_items, $subtotal, $total];
+	}
+
 
 //----------------------------------------------------------------------------//
 // SAVE THE VALIDATED ORDER
 //----------------------------------------------------------------------------//
-	public static function submit_validated_order($id)
+	public static function save_order_to_db($order_id, $VALIDATED_ORDER = 0)
 	{
-		$VALIDATION_ORDER = Session::get('validation_order', []);
-		// echo json_encode(array_slice($VALIDATION_ORDER, 7));
+		if($VALIDATED_ORDER == 0)
+		{
+			$VALIDATED_ORDER = json_decode(
+				$VALIDATED_ORDER = DB::table('orders')
+					->where('id', $order_id)
+					->pluck('val_order')
+			);
+		}
+
+		list($nb_items, $subtotal, $total) = self::recompute_totals($order_id, $VALIDATED_ORDER);
+
 
 		DB::table('orders')
-			->where('id', $id)
+			->where('id', $order_id)
 			->update([
-						'validated_datetime'         => time(),
-						'is_validated'               => 1,
-						'is_wholesale'               => $VALIDATION_ORDER['is_wholesale'],
-						'val_order'                  => json_encode(array_slice($VALIDATION_ORDER, 10)),
-						'val_order_nb_items'         => $VALIDATION_ORDER['nb_items'],
-						'val_order_subtotal'         => $VALIDATION_ORDER['subtotal'],
-						'val_order_shipping'         => $VALIDATION_ORDER['shipping'],
-						'val_order_shipping_details' => $VALIDATION_ORDER['shipping_details'],
-						'order_currency'             => $VALIDATION_ORDER['currency'],
-						'val_order_total'            => $VALIDATION_ORDER['total'],
-						'val_order_message'          => $VALIDATION_ORDER['message']
+						'val_order'          => json_encode($VALIDATED_ORDER),
+						'val_order_nb_items' => $nb_items,
+						'val_order_subtotal' => $subtotal,
+						'val_order_total'    => $total
 					]);
-
 	}
 }

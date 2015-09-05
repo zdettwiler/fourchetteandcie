@@ -7,7 +7,7 @@ function search_db(query)
 
 	$.ajax({
 		type: 'GET',
-		url: '../../../search/' + encodeURIComponent(tags+query),
+		url: '/search/' + encodeURIComponent(tags+query),
 		success: function(results) {
 			display_response(results);
 		}
@@ -112,7 +112,7 @@ $(function() {
 			// add name
 			if($("#search-tags .search-tag:last-child").html() == '+')
 			{
-				$("#results-box table").html("<tr class='result' item-ref='-custom'>\n<td class='result-img'>\n </td>\n <td class='result-details'>\n <p><span class='ref-box'>-custom</span> "+ $(this).val() +"<br>\n <i>[descr]</i></p>\n </td>\n <td class='result-price'>\n <p>€[price]</p>\n </td>\n </tr>");
+				$("#results-box table").html("<tr class='result' item-ref='_'>\n<td class='result-img'>\n </td>\n <td class='result-details'>\n <p><span class='ref-box'>-custom</span> "+ $(this).val() +"<br>\n <i>[descr]</i></p>\n </td>\n <td class='result-price'>\n <p>€[price]</p>\n </td>\n </tr>");
 
 				if(event.keyCode == 13)
 				{

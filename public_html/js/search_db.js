@@ -18,7 +18,7 @@ function display_response(json_results)
 {
 	var results = $.parseJSON(json_results);
 	console.log(results);
-	var result_template = $("#template-search-result-order-validation").html();
+	var template_search_result_order_validation = $("#template-search-result-order-validation").html();
 	$("#results-box table").html('');
 
 	if(results.length === 0)
@@ -29,7 +29,7 @@ function display_response(json_results)
 	{
 		$.each( results, function( i, result ) {
 			console.log(result);
-			$("#results-box table").append( Mustache.render(result_template, result) );
+			$("#results-box table").append( Mustache.render(template_search_result_order_validation, result) );
 		});
 	}
 
