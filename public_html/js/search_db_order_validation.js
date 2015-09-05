@@ -7,7 +7,7 @@ function search_db(query)
 
 	$.ajax({
 		type: 'GET',
-		url: '/search/' + encodeURIComponent(tags+query),
+		url: '../../../search/' + encodeURIComponent(tags+query),
 		success: function(results) {
 			display_response(results);
 		}
@@ -51,104 +51,63 @@ $(function() {
 		var $query = $(this).val();
 		clearTimeout(search_timer);
 
-		// search only if query !empty and !key-tag
-		if( $query != '' && $.inArray( $query.substr(0, 1), no_search ) == -1 )
-		{
-			search_timer = setTimeout(function() {
-				 search_db( $query );
-			 }, 500 );
-		}
-		else
-		{
-			$("#results-box table").html('');
-		}
-
-		// SEARCH TAGS
-		if(event.keyCode == 32)
-		{
-			var tag = $query.split(' ')[0];
-
-			// #ref search
-			if($query.substr(0, 1) == '#')
-			{
-				$("#search-input").val('');
-				$("#search-tags").append("<span class='search-tag'>"+tag+"</span>");
-			}
-			// $section search
-			if($query.substr(0, 1) == '$')
-			{
-				$("#search-input").val('');
-				$("#search-tags").append("<span class='search-tag'>"+tag+"</span>");
-			}
-			// @categ search
-			if($query.substr(0, 1) == '@')
-			{
-				$("#search-input").val('');
-				$("#search-tags").append("<span class='search-tag'>"+tag+"</span>");
-			}
-			search_db( $("#search-input").val() )
-		}
-
-		/*// if no + tag i.e. not creating new item, then normal search
+        // if no + tag i.e. not creating new item, then normal search
 		if($("#search-tags span:first").html() != '+')
 		{
-			$("#search-input").attr('placeholder', 'search an item');
-			if($(this).val() == '')
-			{
-				$("#results-box table").html('');
-				return;
-			}
 
-			// SEARCH TAGS
-			if(event.keyCode == 32)
-			{
-				var query = $(this).val();
-				var tag;
+    		// search only if query !empty and !key-tag
+    		if( $query != '' && $.inArray( $query.substr(0, 1), no_search ) == -1 )
+    		{
+    			search_timer = setTimeout(function() {
+    				 search_db( $query );
+    			 }, 500 );
+    		}
+    		else
+    		{
+    			$("#results-box table").html('');
+    		}
 
-				// #ref search
-				if(query.substr(0, 1) == '#')
-				{
-					tag = query.split(' ')[0];
-					$("#search-input").val('');
-					$("#search-tags").append("<span class='search-tag'>"+tag+"</span>");
-				}
-				// $section search
-				if(query.substr(0, 1) == '$')
-				{
-					tag = query.split(' ')[0];
-					$("#search-input").val('');
-					$("#search-tags").append("<span class='search-tag'>"+tag+"</span>");
-				}
-				// @categ search
-				if(query.substr(0, 1) == '@')
-				{
-					tag = query.split(' ')[0];
-					$("#search-input").val('');
-					$("#search-tags").append("<span class='search-tag'>"+tag+"</span>");
-				}
-				// +add custom item
-				if(query.substr(0, 1) == '+')
-				{
-					tag = query.split(' ')[0];
-					$("#search-input").val('');
-					$("#search-tags").append("<span class='search-tag'>"+tag+"</span>");
-					$("#search-input").attr('placeholder', 'enter custom item name');
-					$("#results-box table").html('');
+    		// SEARCH TAGS
+    		if(event.keyCode == 32)
+    		{
+    			var tag = $query.split(' ')[0];
+
+    			// #ref search
+    			if($query.substr(0, 1) == '#')
+    			{
+    				$("#search-input").val('');
+    				$("#search-tags").append("<span class='search-tag'>"+tag+"</span>");
+    			}
+    			// $section search
+    			if($query.substr(0, 1) == '$')
+    			{
+    				$("#search-input").val('');
+    				$("#search-tags").append("<span class='search-tag'>"+tag+"</span>");
+    			}
+    			// @categ search
+    			if($query.substr(0, 1) == '@')
+    			{
+    				$("#search-input").val('');
+    				$("#search-tags").append("<span class='search-tag'>"+tag+"</span>");
+    			}
+                // + custom item creation
+                if($query == '+ ')
+                {
+                    $("#search-input").val('');
+                    $("#search-tags").append("<span class='search-tag'>+</span>");
+                    $("#search-input").attr('placeholder', 'enter custom item name');
+                    $("#results-box table").html('');
 
 
-					// reach_validate_order_reload(id, 'ADD-'+ref);
-				}
-			}
+                    // reach_validate_order_reload(id, 'ADD-'+ref);
+                }
+    			search_db( $("#search-input").val() )
+    		}
+        }
 
-			if(event.keyCode == 13 && $("#search-tags span:first").html() == '+')
-			{
-				event.preventDefault();
-
-			}
-		}
 
 		// if + tag new item creation process
-		else if ($("#search-tags span:first").html() == '+')
+		else if($("#search-tags span:first").html() == '+')
 		{
 			// add name
 			if($("#search-tags .search-tag:last-child").html() == '+')
@@ -203,7 +162,7 @@ $(function() {
 				return false;
 			}
 
-		}*/
+		}
 	});
 
 
@@ -212,7 +171,7 @@ $(function() {
 		{
 			var previous_request = search_db($(this).val());
 		}
-		// $("#fade").show();
+		$("#fade").show();
 		// $('html, body').css({
 		// 	'overflow': 'hidden',
 		// 	'height': '100%'
@@ -230,11 +189,6 @@ $(function() {
 
 	$("#fade").on("click", function() {
 
-		if(previous_request && previous_request.readyState < 4)
-		{
-			previous_request.abort();
-		}
-
 		$("#results-box table").html('');
 		$("#fade").hide();
 		// $('html, body').css({
@@ -242,4 +196,11 @@ $(function() {
 		// 	'height': 'auto'
 		// });
 	});
+
+	$(document).on("click", "div#results-box table tr.result", function() {
+		var ref = $(this).attr('item-ref');
+		reach_validate_order_reload(id, 'ADD-'+ref);
+	});
+
+
 });

@@ -1,4 +1,4 @@
-<template id="template-search-result">
+<template id="template-search-result-order-validation">
     <tr class='result' item-ref='{{ref}}'>
         <td class='result-img'></td>
         <td class='result-details'>

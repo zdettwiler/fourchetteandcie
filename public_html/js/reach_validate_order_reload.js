@@ -1,26 +1,18 @@
 function reach_validate_order_reload(id, command)
 {
-	var xhr = new XMLHttpRequest();
+	$.ajax({
+		type: 'GET',
+		url: '../../../admin/orders/'+id+'/validate/'+encodeURIComponent(command),
+		success: function(response) {
+			$("#wholesale-status").attr("src", "http://www.fourchetteandcie.com/pictures/"+ xhr.response.substring(0,1) +".png");
 
-	xhr.open('GET', '../../../admin/orders/'+id+'/validate/'+encodeURIComponent(command), true);
-	xhr.addEventListener('readystatechange', function() {
+			toggle_currency(xhr.response.substring(1,4));
 
-		if (xhr.readyState === 4 && xhr.status === 200)
-		{
-			$("#wholesale-status").attr("src", "http://www.fourchetteandcie.com/pictures/"+ xhr.responseText.substring(0,1) +".png")
-
-			toggle_currency(xhr.responseText.substring(1,4));
-
-			$("table#validation-table").html(xhr.responseText.substring(4));
+			$("table#validation-table").html(xhr.response.substring(4));
 		}
-		else if (xhr.readyState == 4 && xhr.status != 200)
-		{
-			alert("ERROR!" + '\n\nCode :' + xhr.status + '\nText : ' + xhr.statusText + '\nMessage : ' + xhr.responseText);
-		}
-	}, false);
+	});
 
-	xhr.send(null);
-	return false;
+
 }
 
 function toggle_currency(currency, reload)
