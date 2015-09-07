@@ -69,9 +69,9 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="http://www.fourchetteandcie.com/js/mustache.js"></script>
 	<script src="http://www.fourchetteandcie.com/js/layout.js"></script>
-	<script src="http://localhost/display-only/fourchetteandcie/public_html/js/search_db_order_validation.js"></script>
-	{{-- <script src="http://www.fourchetteandcie.com/js/reach_validate_order_reload.js"></script> --}}
-	<script src="http://localhost/display-only/fourchetteandcie/public_html/js/reach_validate_order_reload.js"></script>
+	<script src="http://www.fourchetteandcie.com/js/search_db_order_validation.js"></script>
+	<script src="http://www.fourchetteandcie.com/js/reach_validate_order_reload.js"></script>
+	{{-- <script src="http://localhost/display-only/fourchetteandcie/public_html/js/reach_validate_order_reload.js"></script> --}}
 	<script>
 		var id={{ $order->id }};
 	</script>
@@ -153,7 +153,7 @@
 	<div style="margin: auto; width: 90%; float: left;">
 		<h3>Order Details <span id="loading">WAIT</span></h3>
 		<table id="validation-table">
-			
+
 		</table>
 	</div>
 
