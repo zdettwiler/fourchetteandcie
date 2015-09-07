@@ -149,10 +149,14 @@
 			width: 20%;
 		}
 
-		#search-tag
+		@media screen and (max-width: 450px)
 		{
-			color: #000000;
-			background-color: #EEEEEE;
+			#results-box table tr.result,
+			#results-box table tr td.result-img
+			{
+				display: block;
+				width: 100%;
+			}
 		}
 	</style>
 
