@@ -16,16 +16,20 @@ class OrderValidation
 
 		if(strlen($val_order) < 2)
 		{
-			$order = DB::table('orders')
+			$order = json_decode(DB::table('orders')
 						->where('id', $order_id)
-						->pluck('order');
+						->pluck('order'));
 
-			DB::table('orders')
-				->where('id', $order_id)
-				->update(['val_order' => $order]);
+			// add comment to each item
+			foreach($order as $key => $item)
+			{
+				$order[$key]->comment = '';
+			}
 
-			$VALIDATED_ORDER = json_decode(DB::table('orders')->where('id', $order_id)->pluck('val_order'));
-			self::save_order_to_db($order_id, $VALIDATED_ORDER);
+			// echo $order[0]->comment;
+			// echo json_encode($order);
+			// dd($order);
+			self::save_order_to_db($order_id, $order);
 			return false;
 		}
 
