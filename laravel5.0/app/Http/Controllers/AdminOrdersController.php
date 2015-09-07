@@ -43,6 +43,8 @@ class AdminOrdersController extends Controller
 			$order_details = Basket::json_encode_decode($order->order);
 		}
 
+		dd($order_details);
+
 		if($order->order_currency == 'eur')
 			$currency = '&euro;';
 		elseif($order->order_currency == 'aud')
