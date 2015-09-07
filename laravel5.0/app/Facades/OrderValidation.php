@@ -248,12 +248,12 @@ class OrderValidation
 		$ORDER = DB::table('orders')->where('id', $order_id)->first();
 		$VALIDATED_ORDER = json_decode($ORDER->val_order);
 
-		foreach($VALIDATED_ORDER as $item)
+		foreach($VALIDATED_ORDER as $key => $item)
 		{
 			// If YES, remove it
 			if($item->ref == $ref)
 			{
-				unset($item);
+				unset($VALIDATED_ORDER[$key]);
 				break;
 			}
 		}
