@@ -23,13 +23,14 @@
 		{
 			display: block;
 			position: relative;
-			width: 100%%;
-			height: 30px;
+			width: 100%;
+			height: 42px;
 			z-index: 50;
 			margin: 0 auto 10px auto;
 			padding: 3px 2px;
 			border-radius: 7px;
 			background: #FFFFFF;
+			box-shadow: 0 0 10px rgba(124, 255, 177, 0.7);
 		}
 		#search-tags
 		{
@@ -39,8 +40,8 @@
 		.search-tag
 		{
 			display: inline-block;
-			height: 24px;
-			font-size: 17px;
+			height: 36px;
+			font-size: 27px;
 			font-family: "Roboto Condensed", Helvetica, sans-serif;
 			font-weight: 300;
 			color: #FFFFFF;
@@ -59,12 +60,14 @@
 			display: none;
 			float: right;
 			overflow: hidden;
-			height: 24px
+			height: 35px;
+			width: 35px;
 		}
 		#loading img
 		{
 			overflow: hidden;
-			height: 24px;
+			height: 35px;
+			width: 35px;
 		}
 
 		#search-input
@@ -73,13 +76,13 @@
 			-moz-box-sizing: border-box;
 		    -webkit-box-sizing: border-box;
 		    box-sizing: border-box;
-			box-shadow: none;
+			-webkit-appearance: none;
 
 		    width: 100%;
-			height: 24px;
+			height: 35px;
 			margin-left: 5px;
 
-			font-size: 17px;
+			font-size: 27px;
 			font-family: "Roboto Condensed", Helvetica, sans-serif;
 			font-weight: 300;
 			outline: none;
@@ -88,7 +91,8 @@
 
 		#search-box #search-input:focus
 		{
-			border: 1px solid #000000;border-color: #FFFFFF;
+			border: 1px solid #000000;
+			border-color: #FFFFFF;
 			box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 		}
 		p#search-info
@@ -97,8 +101,7 @@
 			margin: 0px auto;
 			text-align: center;
 			padding: 0;
-			color: #888888;;
-			z-index: 100;
+			color: #888888;
 			position: relative;
 		}
 		#results-box
@@ -175,8 +178,7 @@
 
 @section('content')
 
-	<h2>Search an Item</h2>
-	<p id='search-info'>try [#]+ref+[space]</i>, <i>&#36;section</i> or <i>@category</i>.</p>
+	<p id='search-info'>try [#]+ref+[space]</i>, <i>&#36;section</i> or <i>@category</i>.</p><br>
 	<div id='search-container'>
 		<div id='search-box'>
 			<div id='search-tags'></div>
