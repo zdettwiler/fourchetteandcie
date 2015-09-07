@@ -134,7 +134,7 @@ class AdminOrdersController extends Controller
 	public function submit_validated_order($id)
 	{
 		DB::table('orders')
-			->where('id', $order_id)
+			->where('id', $id)
 			->update([
 						'is_validated' => 1
 					]);
