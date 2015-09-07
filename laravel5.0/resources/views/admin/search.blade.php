@@ -160,7 +160,7 @@
 	</div>
 
 	<br><br>
-	<h2 style="text-align: left;">Results:</h2>
+	<h2>Results:</h2>
 	<div id='results-box' class='big-results'><table> </table></div>
 
 @stop
