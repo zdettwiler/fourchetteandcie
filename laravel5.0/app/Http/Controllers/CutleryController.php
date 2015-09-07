@@ -84,9 +84,9 @@ class CutleryController extends Controller
 		$all_items = DB::table('cutlery')->get();
 		$in_categ_items = array();
 		$big_categories = array(
-				'spoons' => 'teaspoon big-spoon dessert-spoon baby-spoon',
-				'forks' => 'big-fork dessert-fork',
-				'servers' => 'server serving-fork serving-spoon cake-server ladle'
+				'spoon' => 'teaspoon big-spoon dessert-spoon baby-spoon',
+				'fork' => 'big-fork dessert-fork',
+				'server' => 'server serving-fork serving-spoon cake-server ladle'
 			);
 
 

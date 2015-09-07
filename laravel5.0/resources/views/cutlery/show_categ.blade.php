@@ -34,10 +34,10 @@
 	<div id="categ-bar">
 		<ul id="categ-links">
 			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware">ALL</a></li>
-			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware/category/spoons">SPOONS</a></li>
-			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware/category/forks">FORKS</a></li>
-			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware/category/knives">KNIVES</a></li>
-			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware/category/servers">SERVERS</a></li>
+			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware/category/spoon">SPOONS</a></li>
+			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware/category/fork">FORKS</a></li>
+			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware/category/knife">KNIVES</a></li>
+			<li><a href="http://www.fourchetteandcie.com/handstamped-silverware/category/server">SERVERS</a></li>
 		</ul>
 	</div>
 @stop
