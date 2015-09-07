@@ -43,7 +43,7 @@ class AdminOrdersController extends Controller
 			$order_details = Basket::json_encode_decode($order->order);
 		}
 
-		// var_dump($order);
+		var_dump($order);
 
 		if($order->order_currency == 'eur')
 			$currency = '&euro;';
