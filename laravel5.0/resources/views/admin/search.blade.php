@@ -25,7 +25,7 @@
 			position: relative;
 			width: 100%%;
 			height: 30px;
-			z-index: 100;
+			z-index: 50;
 			margin: 0 auto 10px auto;
 			padding: 3px 2px;
 			border-radius: 7px;
@@ -54,12 +54,26 @@
 		{
 			display: none;
 		}
+		#loading
+		{
+			display: none;
+			float: right;
+			overflow: hidden;
+			height: 24px
+		}
+		#loading img
+		{
+			overflow: hidden;
+			height: 24px;
+		}
+
 		#search-input
 		{
 			display: inline-block;
 			-moz-box-sizing: border-box;
 		    -webkit-box-sizing: border-box;
 		    box-sizing: border-box;
+			box-shadow: none;
 
 		    width: 100%;
 			height: 24px;
@@ -83,7 +97,7 @@
 			margin: 0px auto;
 			text-align: center;
 			padding: 0;
-			color: #FFFFFF;
+			color: #888888;;
 			z-index: 100;
 			position: relative;
 		}
@@ -128,7 +142,11 @@
 		}
 		#results-box table tr td.result-details
 		{
-			width: 90%;
+			width: 80%;
+		}
+		#results-box table tr td.result-price
+		{
+			width: 20%;
 		}
 
 		#search-tag
@@ -148,11 +166,12 @@
 
 @section('content')
 
-	<h2>Search Item</h2>
-	<p id='search-info'>try <i>+{space}</i>, <i>#ref</i>, <i>&#36;section</i> or <i>@category</i>.</p>
+	<h2>Search an Item</h2>
+	<p id='search-info'>try [#]+ref+[space]</i>, <i>&#36;section</i> or <i>@category</i>.</p>
 	<div id='search-container'>
 		<div id='search-box'>
 			<div id='search-tags'></div>
+			<div id='loading'><img src="http://fourchetteandcie.com/pictures/loading.gif"></div>
 			<div style='overflow: hidden'>
 				<input id='search-input' type='text' autocomplete='off' placeholder='search an item' >
 			</div>

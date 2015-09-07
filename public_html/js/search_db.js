@@ -8,8 +8,14 @@ function search_db(query)
 	$.ajax({
 		type: 'GET',
 		url: '/search/' + encodeURIComponent(tags+query),
+		beforeSend: function() {
+			$('#loading').css('display', 'inline-block');
+		},
 		success: function(results) {
 			display_response(results);
+		},
+		complete: function() {
+			$('#loading').css('display', 'none');
 		}
 	});
 }
@@ -21,9 +27,9 @@ function display_response(json_results)
 	var template_search_result_order_validation = $("#template-search-result").html();
 	$("#results-box table").html('');
 
-	if(results.length === 0)
+	if($.isEmptyObject(results))
 	{
-		html_result = "<tr class='result'>\n <td colspan='3'><p>No result...</p></td>\n </tr>";
+		$("#results-box table").append("<tr class='result'>\n <td colspan='3'><p>No result...</p></td>\n </tr>");
 	}
 	else
 	{
@@ -58,9 +64,27 @@ $(function() {
 				 search_db( $query );
 			 }, 500 );
 		}
+		else if($query == '')
+		{
+			$('p#search-info').html('try [#]+ref+[space]</i>, <i>&#36;section</i> or <i>@category</i>.');
+		}
 		else
 		{
 			$("#results-box table").html('');
+		}
+		// INSTRUCTIONS
+		// #ref instructions
+		if($query.split(' ')[0] == '#')
+		{
+			$('p#search-info').html('type the item ref and then [space]');
+		}
+		if($query.split(' ')[0] == '@')
+		{
+			$('p#search-info').html('try typing <i>teaspoon</i>, <i>fork</i>, <i>server</i> or similar and then [space].');
+		}
+		if($query.split(' ')[0] == '$')
+		{
+			$('p#search-info').html('try typing <i>cutlery</i> or <i>cake-stand</i> and then [space].');
 		}
 
 		// SEARCH TAGS
@@ -72,6 +96,7 @@ $(function() {
 			if($query.substr(0, 1) == '#')
 			{
 				$("#search-input").val('');
+				$('p#search-info').html("ok, I'm on it, just a sec...");
 				$("#search-tags").append("<span class='search-tag'>"+tag+"</span>");
 			}
 			// $section search
