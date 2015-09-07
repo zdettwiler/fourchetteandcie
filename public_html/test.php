@@ -1,7 +1,0 @@
-<?php
-
-$VALIDATED_ORDER = json_decode("{\"0\":{\"ref\":\"c109\",\"qty\":\"1\",\"name\":null,\"descr\":\"Big Fork\",\"stamped\":\"Mon Ch\\u00e9ri\",\"price\":\"15.00\",\"img\":\"1\",\"categ\":[\"big-fork\"],\"comment\":\"\"},\"1\":{\"ref\":\"c9\",\"qty\":\"2\",\"name\":null,\"descr\":\"Teaspoon\",\"stamped\":\"BELIEVE\",\"price\":\"15.00\",\"img\":\"1\",\"categ\":[\"teaspoon\"],\"comment\":\"\"},\"2\":{\"ref\":\"c100\",\"qty\":\"2\",\"name\":null,\"descr\":\"Clawed Serving Spoon\",\"stamped\":\"SERVE LOVE GENEROUSLY\",\"price\":\"25.00\",\"img\":\"1\",\"categ\":[\"serving-spoon\"],\"comment\":\"\"},\"3\":{\"ref\":\"c51\",\"qty\":5,\"name\":\"CHOOSE JOY\",\"descr\":\"Teaspoon\",\"price\":\"15.00\",\"img\":\"1\",\"categ\":[\"teaspoon\"],\"comment\":\"has been added\"},\"4\":{\"ref\":\"c42\",\"qty\":1,\"name\":\"SPREAD LOVE\",\"descr\":\"Mid-size Butter Knife with groovy handle - Collection\",\"price\":\"25.00\",\"img\":\"1\",\"categ\":[\"knife\"],\"comment\":\"has been added\"},\"6\":{\"ref\":\"c54\",\"qty\":1,\"name\":\"PEACE JOY & LOVE\",\"descr\":\"Big Spoon\",\"price\":\"15.00\",\"img\":\"1\",\"categ\":[\"big-spoon\"],\"comment\":\"has been added\"},\"7\":{\"ref\":\"c112\",\"qty\":1,\"name\":\"HE CARES ABOUT ME\",\"descr\":\"Dessert Spoon\",\"price\":\"18.00\",\"img\":\"1\",\"categ\":[\"pair\",\"big-fork\"],\"comment\":\"has been added\"}}");
-
-echo "<pre>";
-print_r($VALIDATED_ORDER);
-echo "</pre>";
