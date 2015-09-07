@@ -171,8 +171,8 @@ class OrderValidation
 	{
 		$ORDER = DB::table('orders')->where('id', $order_id)->first();
 		$VALIDATED_ORDER = json_decode($ORDER->val_order);
-
-		// Check is already in the order...
+		var_dump($VALIDATED_ORDER);
+		// Check if ref is already in the order...
 		foreach($VALIDATED_ORDER as $item)
 		{
 			// ...if yes, increment its qty
@@ -225,7 +225,7 @@ class OrderValidation
 		}
 
 		// Add custom item
-		$VALIDATION_ORDER[] = [
+		$VALIDATED_ORDER[] = [
 				'ref'     => '_'.($max_custom_item + 1),
 				'qty'     => 1,
 				'name'    => $new_item[0],
