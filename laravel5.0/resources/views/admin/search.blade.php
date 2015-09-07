@@ -116,7 +116,6 @@
 		#results-box table
 		{
 			border-collapse: collapse;
-			box-shadow: 0 0 10px rgba(124, 255, 177, 0.7);
 		}
 		#results-box table tr:hover
 		{

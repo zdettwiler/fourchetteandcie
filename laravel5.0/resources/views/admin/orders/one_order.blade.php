@@ -94,6 +94,7 @@
 			</tr>
 
 		@foreach($order_details as $item)
+			{{ $item }}
 
 			<tr item-ref='{{ $item['ref'] }}'>
 				<td>
