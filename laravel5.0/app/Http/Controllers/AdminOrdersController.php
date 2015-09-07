@@ -133,6 +133,11 @@ class AdminOrdersController extends Controller
 
 	public function submit_validated_order($id)
 	{
+		DB::table('orders')
+			->where('id', $order_id)
+			->update([
+						'is_validated' => 1
+					]);
 		$this->make_pdf_invoice($id);
 		EMailGenerator::send_cust_validated_order($id);
 
