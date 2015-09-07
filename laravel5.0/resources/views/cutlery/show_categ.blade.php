@@ -44,7 +44,7 @@
 
 @section('content')
 
-<p style="display: block;">Each piece is unique and individually handstamped. Expect variations.</p>
+<p style="display: block; text-align: center;">Each piece is unique and individually handstamped. Expect variations.</p>
 
 	<ul id="shopwindow">
 
