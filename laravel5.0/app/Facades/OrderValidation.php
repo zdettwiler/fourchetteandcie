@@ -65,7 +65,7 @@ class OrderValidation
 
 		if($new_qty == 0)
 		{
-			self::remove($ref);
+			self::remove($order_id, $ref);
 			return;
 		}
 
