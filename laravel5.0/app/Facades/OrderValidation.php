@@ -198,7 +198,6 @@ class OrderValidation
 				'categ'   => $item_to_add->get_categ(),
 				'comment' => 'has been added'
 			];
-		var_dump($VALIDATED_ORDER);
 
 		self::save_order_to_db($order_id, $VALIDATED_ORDER);
 		return false;
@@ -226,7 +225,7 @@ class OrderValidation
 		}
 
 		// Add custom item
-		$VALIDATED_ORDER[] = [
+		$VALIDATED_ORDER[] = (object) [
 				'ref'     => '_'.($max_custom_item + 1),
 				'qty'     => 1,
 				'name'    => $new_item[0],
