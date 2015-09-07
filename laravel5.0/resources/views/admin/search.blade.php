@@ -157,6 +157,11 @@
 				display: block;
 				width: 100%;
 			}
+			#results-box table tr td.result-img img
+			{
+				width: 100%;
+				height: 100%;
+			}
 		}
 	</style>
 
