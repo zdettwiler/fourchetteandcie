@@ -94,7 +94,7 @@
 			margin: auto;
 			background-color: #FAFAFA;
 			z-index: 100;
-			position: absolute;
+			position: relative;
 		}
 		#results-box table
 		{
@@ -108,7 +108,7 @@
 		}
 		#results-box table tr td
 		{
-			max-height: 50px;
+			/*max-height: 50px;*/
 			overflow: hidden;
 			padding: 5px;
 			vertical-align: middle;
@@ -120,10 +120,15 @@
 			padding: 0px;
 			font-size: 15px;
 		}
-		#results-box table tr td img
+		#results-box table tr td.result-img
 		{
 			margin: 0px;
 			padding: 0px;
+			width: 200px;
+		}
+		#results-box table tr td.result-details
+		{
+			width: 90%;
 		}
 
 		#search-tag
@@ -137,8 +142,8 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="http://www.fourchetteandcie.com/js/layout.js"></script>
 	<script src="http://www.fourchetteandcie.com/js/mustache.js"></script>
-	{{-- <script src="http://localhost/display-only/fourchetteandcie/public_html/js/search_db.js"></script> --}}
-	<script src="http://www.fourchetteandcie.com/js/search_db.js"></script>
+	<script src="http://localhost/display-only/fourchetteandcie/public_html/js/search_db.js"></script>
+	{{-- <script src="http://www.fourchetteandcie.com/js/search_db.js"></script> --}}
 @stop
 
 @section('content')
@@ -152,8 +157,11 @@
 				<input id='search-input' type='text' autocomplete='off' placeholder='search an item' >
 			</div>
 		</div>
-		<div id='results-box'><table> </table></div>
 	</div>
+
+	<br><br>
+	<h2 style="text-align: left;">Results:</h2>
+	<div id='results-box' class='big-results'><table> </table></div>
 
 @stop
 

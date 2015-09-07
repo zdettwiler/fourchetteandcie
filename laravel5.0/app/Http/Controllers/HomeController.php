@@ -78,7 +78,7 @@ class HomeController extends Controller {
 		$query = urldecode($query);
 		$query = explode('|', $query);
 
-		$ref = '';
+		$ref = '%%';
 		$categ = '';
 		$section = 'cutlery';
 		$keywords = '';
@@ -109,12 +109,25 @@ class HomeController extends Controller {
 			}
 		}
 
-		$results = DB::table($section)
-						->where('name', 'LIKE', '%'.$keywords.'%')
-						->where('categ', 'LIKE', '%'.$categ.'%')
-						->where('ref', 'LIKE', '%'.$ref.'%')
-						->take($nb_results)
-						->get();
+		// if($ref != '')
+		// {
+			$results = DB::table($section)
+							->where('name', 'LIKE', '%'.$keywords.'%')
+							->where('categ', 'LIKE', '%'.$categ.'%')
+							->where('ref', 'LIKE', $ref)
+							->take($nb_results)
+							->get();
+		// }
+		// else
+		// {
+		// 	$results = DB::table($section)
+		// 					->where('name', 'LIKE', '%'.$keywords.'%')
+		// 					->where('categ', 'LIKE', '%'.$categ.'%')
+		// 					->take($nb_results)
+		// 					->get();
+		// }
+
+
 		// if($ref != '')
 		// {
 		// 	$results = DB::table($section)->where('stamped', 'LIKE', '%'.$keywords.'%')->take($nb_results)->get();

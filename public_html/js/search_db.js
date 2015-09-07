@@ -7,7 +7,7 @@ function search_db(query)
 
 	$.ajax({
 		type: 'GET',
-		url: '/search/' + encodeURIComponent(tags+query),
+		url: 'search/' + encodeURIComponent(tags+query),
 		success: function(results) {
 			display_response(results);
 		}
@@ -18,7 +18,7 @@ function display_response(json_results)
 {
 	var results = $.parseJSON(json_results);
 	console.log(results);
-	var template_search_result_order_validation = $("#template-search-result-order-validation").html();
+	var template_search_result_order_validation = $("#template-search-result").html();
 	$("#results-box table").html('');
 
 	if(results.length === 0)
@@ -28,7 +28,7 @@ function display_response(json_results)
 	else
 	{
 		$.each( results, function( i, result ) {
-			console.log(result);
+			result.ref_section = result.ref.substr(0,1);
 			$("#results-box table").append( Mustache.render(template_search_result_order_validation, result) );
 		});
 	}
