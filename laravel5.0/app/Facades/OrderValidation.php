@@ -171,7 +171,7 @@ class OrderValidation
 	{
 		$ORDER = DB::table('orders')->where('id', $order_id)->first();
 		$VALIDATED_ORDER = json_decode($ORDER->val_order);
-		var_dump($VALIDATED_ORDER);
+
 		// Check if ref is already in the order...
 		foreach($VALIDATED_ORDER as $item)
 		{
@@ -187,7 +187,7 @@ class OrderValidation
 		$item_to_add = new Item($ref);
 
 		// Add item
-		$VALIDATED_ORDER[] = [
+		$VALIDATED_ORDER[] = {
 				'ref'     => $ref,
 				'qty'     => 1,
 				'name'    => $item_to_add->get_name(),
@@ -197,7 +197,8 @@ class OrderValidation
 				'img'     => $item_to_add->get_img_count(),
 				'categ'   => $item_to_add->get_categ(),
 				'comment' => 'has been added'
-			];
+			};
+		var_dump($VALIDATED_ORDER);
 
 		self::save_order_to_db($order_id, $VALIDATED_ORDER);
 		return false;
