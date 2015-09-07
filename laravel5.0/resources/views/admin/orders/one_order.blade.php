@@ -105,7 +105,7 @@
 				<td style='width: 60%;'>
 					<span class='ref-box'>{{ $item['ref'] }}</span>
 					{{ $item['name'] }} - <i>{{ $item['descr'] }}</i><br>
-					@if($order->is_validated AND $item['comment'] != '')
+					@if($order->is_validated AND isset($item['comment']) AND  $item['comment'] != '')
 						<i>{{ '"'. $item['comment'] .'"' }}</i>
 					@endif
 				</td>

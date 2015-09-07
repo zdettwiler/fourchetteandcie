@@ -250,10 +250,12 @@ class OrderValidation
 
 		foreach($VALIDATED_ORDER as $key => $item)
 		{
+
 			// If YES, remove it
 			if($item->ref == $ref)
 			{
 				unset($VALIDATED_ORDER[$key]);
+				$VALIDATED_ORDER = array_values($VALIDATED_ORDER);
 				break;
 			}
 		}
