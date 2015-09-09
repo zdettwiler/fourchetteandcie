@@ -29,7 +29,7 @@
 	<p id="invoice-nb">
 		<span class="mint">Invoice</span><br>
 		<span class="mint big">nº @yield('order-id')</span><br>
-		placed on @yield('order-validated-datetime')
+		@yield('order-validated-datetime')
 	</p>
 
 	@yield('order')
