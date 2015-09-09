@@ -120,24 +120,24 @@
 		@if($order->is_validated == 0)
 
 			<tr id='subtotal-row'>
-				<td colspan='4'>SUBTOTAL ({{ $order->order_nb_items }} @if($order->order_nb_items > 1) items) @else item) @endif</td>
+				<td colspan='4' class="right-col">SUBTOTAL ({{ $order->order_nb_items }} @if($order->order_nb_items > 1) items) @else item) @endif</td>
 				<td class="center-col">{{ $currency }} {{ number_format ( $order->order_subtotal, 2 ) }}</td>
 			</tr>
 
 			@if($order->is_wholesale == 1)
 			<tr id='subtotal-row'>
-				<td colspan='4'>WHOLESALE (-30%)</td>
+				<td colspan='4' class="right-col">WHOLESALE (-30%)</td>
 				<td class="center-col">{{ $currency }} {{ number_format( 0.7 * $order->val_order_subtotal, 2 ) }}</td>
 			</tr>
 			@endif
 
 			<tr id='shipping-row'>
-				<td colspan='4'>SHIPPING</td>
+				<td colspan='4' class="right-col">SHIPPING</td>
 				<td class="center-col">{{ $currency }} {{ number_format ( $order->val_order_shipping, 2 ) }}</td>
 			</tr>
 
 			<tr id='total-row'>
-				<td colspan='4'>TOTAL</td>
+				<td colspan='4' class="right-col">TOTAL</td>
 				<td class="center-col">{{ $currency }} {{ number_format ( $order->order_total, 2 ) }}</td>
 			</tr>
 
@@ -146,24 +146,24 @@
 		@if($order->is_validated == 1)
 
 			<tr id='subtotal-row'>
-				<td colspan='4'>SUBTOTAL ({{ $order->val_order_nb_items }} item(s))</td>
+				<td colspan='4' class="right-col">SUBTOTAL ({{ $order->val_order_nb_items }} item(s))</td>
 				<td class="center-col">{{ $currency }} {{ number_format ( $order->val_order_subtotal, 2 ) }}</td>
 			</tr>
 
 		@if($order->is_wholesale == 1)
 			<tr id='subtotal-row'>
-				<td colspan='4'>WHOLESALE (-30%)</td>
+				<td colspan='4' class="right-col">WHOLESALE (-30%)</td>
 				<td class="center-col">{{ $currency }} {{ number_format( 0.7 * $order->val_order_subtotal, 2 ) }}</td>
 			</tr>
 		@endif
 
 			<tr id='shipping-row'>
-				<td colspan='4'>SHIPPING ({{ $order->val_order_shipping_details }})</td>
+				<td colspan='4' class="right-col">SHIPPING ({{ $order->val_order_shipping_details }})</td>
 				<td class="center-col">{{ $currency }} {{ number_format ( $order->val_order_shipping, 2 ) }}</td>
 			</tr>
 
 			<tr id='total-row'>
-				<td colspan='4'>TOTAL</td>
+				<td colspan='4' class="right-col">TOTAL</td>
 				<td class="center-col">{{ $currency }} {{ number_format ( $order->val_order_total, 2 ) }}</td>
 			</tr>
 

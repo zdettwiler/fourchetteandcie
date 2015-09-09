@@ -100,4 +100,25 @@
     </a>
     </div>
 
+	<div class="widget">
+	<a href="admin/items">
+
+        <h3>Cutlery Sales</h3>
+		<table>
+			<tr>
+				<td><span style="font-size: 15px;">nb sold</span></td>
+				<td colspan="2"><span style="font-size: 15px;">item</span></td>
+			</tr>
+			@foreach($sales as $best_seller)
+				<tr>
+					<td><span style="font-size: 50px;">{{ $best_seller->nb_sold }}</span></td>
+					<td><span style="font-size: 15px;">[{{ $best_seller->ref }}]</span></td>
+					<td><span style="font-size: 15px;">{{ $best_seller->name }}</span></td>
+				</tr>
+			@endforeach
+		</table>
+
+    </a>
+    </div>
+
 @stop

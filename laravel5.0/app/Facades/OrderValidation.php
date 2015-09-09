@@ -64,6 +64,11 @@ class OrderValidation
 //----------------------------------------------------------------------------//
 	public static function update_qty($order_id, $ref, $new_qty)
 	{
+		if(!is_numeric($new_qty))
+		{
+			$new_qty = 1;
+		}
+
 		$ORDER = DB::table('orders')->where('id', $order_id)->first();
 		$VALIDATED_ORDER = json_decode($ORDER->val_order);
 
@@ -121,6 +126,11 @@ class OrderValidation
 //----------------------------------------------------------------------------//
 	public static function update_unit_price($order_id, $ref, $unit_price)
 	{
+		if(!is_numeric($unit_price))
+		{
+			$unit_price = 0.00;
+		}
+
 		$ORDER = DB::table('orders')->where('id', $order_id)->first();
 		$VALIDATED_ORDER = json_decode($ORDER->val_order);
 
@@ -144,6 +154,11 @@ class OrderValidation
 //----------------------------------------------------------------------------//
 	public static function update_shipping($order_id, $shipping)
 	{
+		if(!is_numeric($shipping))
+		{
+			$shipping = 0.00;
+		}
+
 		DB::table('orders')
 			->where('id', $order_id)
 			->update([
@@ -216,6 +231,11 @@ class OrderValidation
 		$VALIDATED_ORDER = json_decode($ORDER->val_order);
 
 		$new_item = explode("--", $value);
+		if(!is_numeric($new_item[2]))
+		{
+			$new_item[2] = 0.00;
+		}
+
 		$max_custom_item = 0;
 
 		foreach($VALIDATED_ORDER as $item)
@@ -264,10 +284,6 @@ class OrderValidation
 			}
 		}
 
-		// $VALIDATION_ORDER = array_values(array_slice($VALIDATION_ORDER, 9));
-		//
-		// $VALIDATION_ORDER = array_merge($VALIDATION_ORDER_DETAILS, $VALIDATION_ORDER);
-
 		self::save_order_to_db($order_id, $VALIDATED_ORDER);
 		return false;
 	}
@@ -304,6 +320,9 @@ class OrderValidation
 		DB::table('orders')
 			->where('id', $order_id)
 			->update(['is_payed' => 1]);
+
+		//update sales
+		self::update_sales($order_id);
 
 		// send emails
 		EMailGenerator::send_papi_paid_order($order_id);
@@ -390,5 +409,33 @@ class OrderValidation
 						'val_order_subtotal' => $subtotal,
 						'val_order_total'    => $total
 					]);
+	}
+
+//----------------------------------------------------------------------------//
+// UPDATE NUMBER ITEMS SOLD
+//----------------------------------------------------------------------------//
+	public static function update_sales($order_id)
+	{
+		$section_ref_code = Config::get('fandc_arrays')['section_ref_code'];
+
+		$VAL_ORDER = json_decode(DB::table('orders')
+			->where('id', $order_id)
+			->pluck('val_order'));
+
+		foreach($VAL_ORDER as $sold_item)
+		{
+			$nb_sold = DB::table($section_ref_code[ $sold_item->ref[0] ])
+				->where('ref', $sold_item->ref)
+				->pluck('nb_sold');
+
+			// echo $sold_item->name .': '. $nb_sold .' -> '. ($nb_sold + $sold_item->qty) .'<br>';
+			DB::table($section_ref_code[ $sold_item->ref[0] ])
+				->where('ref', $sold_item->ref)
+				->update([
+							'nb_sold' => $nb_sold + $sold_item->qty
+						]);
+		}
+
+		return false;
 	}
 }

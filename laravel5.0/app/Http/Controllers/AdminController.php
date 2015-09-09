@@ -28,6 +28,7 @@ class AdminController extends Controller
 		$nb_sold_out_items = 0;
 		$nb_items = 0;
 
+		// Orders widget
 		$nb_not_val_orders = DB::table('orders')
 			->where('is_validated', '0')
 			->count();
@@ -41,6 +42,7 @@ class AdminController extends Controller
 		$nb_orders = DB::table('orders')
 			->count();
 
+		// Items widget
 		foreach($section_list as $section)
 		{
 			$nb_new_items += DB::table($section)
@@ -56,7 +58,16 @@ class AdminController extends Controller
 				->count();
 		}
 
-		return view('admin.index', compact('nb_not_val_orders', 'nb_val_orders', 'nb_payed_orders', 'nb_orders', 'nb_new', 'nb_best_seller', 'nb_sold_out', 'nb_new_items', 'nb_best_seller_items', 'nb_sold_out_items', 'nb_items'));
+		// Sales widget
+		$sales = DB::table('cutlery')
+			->select('ref', 'name', 'nb_sold')
+			->orderBy('nb_sold', 'desc')
+			->take(5)
+			->get();
+
+		// dd($sales);
+
+		return view('admin.index', compact('nb_not_val_orders', 'nb_val_orders', 'nb_payed_orders', 'nb_orders', 'nb_new', 'nb_best_seller', 'nb_sold_out', 'nb_new_items', 'nb_best_seller_items', 'nb_sold_out_items', 'nb_items', 'sales'));
 	}
 
 	public function login()

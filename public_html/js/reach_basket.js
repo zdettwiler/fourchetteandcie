@@ -18,7 +18,7 @@ function reach_basket(command)
 		}
 		else if (xhr.readyState == 4 && xhr.status != 200)
 		{
-			//alert("ERROR!" + '\n\nCode :' + xhr.status + '\nText : ' + xhr.statusText + '\nMessage : ' + xhr.responseText);
+			console.log("ERROR!" + '\n\nCode :' + xhr.status + '\nText : ' + xhr.statusText + '\nMessage : ' + xhr.responseText);
 		}
 	}, false);
 

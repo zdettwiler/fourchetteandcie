@@ -10,7 +10,7 @@ use Config;
 use DB;
 use EMailGenerator;
 use FandC\Models\Order;
-
+use OrderValidation;
 
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
@@ -247,17 +247,13 @@ class CheckoutController extends Controller
 		}
 
 		// update database about payment
-		DB::table('orders')
-			->where('order_token', $order_token)
-			->update(['is_payed' => 1]);
-
 		// send emails
+		// update sales
 		$order_id = DB::table('orders')
 						->where('order_token', $order_token)
 						->pluck('id');
 
-		EMailGenerator::send_papi_paid_order($order_id);
-		EMailGenerator::send_cust_thank_you($order_id);
+		OrderValidation::toggle_payed($order_id);
 
 		// detroy Basket
 		Basket::empty_basket();
