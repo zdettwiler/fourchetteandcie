@@ -131,19 +131,22 @@ table
 }
 
 
-#content
-{
-	width: 80%;
-	padding: 0;
-	display: block;
-	margin: auto;
-}
+#content,
 .content
 {
 	width: 80%;
 	padding: 0;
 	display: block;
 	margin: auto;
+}
+
+@media screen and (min-width: 1200px)
+{
+	#content,
+	.content
+	{
+		width: 800px;
+	}
 }
 
 #fade

@@ -21,11 +21,11 @@ function reach_validate_order_reload(id, command)
 			// table header
 			$("#validation-table").html(""
 				+ "<tr class='table-header'>"
-				+ "<td></td>"
-				+ "<td style='width:50%;'>Item Description</td>"
-				+ "<td>Qty</td>"
-				+ "<td>Unit. Price</td>"
-				+ "<td>Total</td>"
+				+ "<td class='item-img'></td>"
+				+ "<td class='item-descr' style='width:50%;'>Item Description</td>"
+				+ "<td class='item-qty'>Qty</td>"
+				+ "<td class='item-unit-price'>Unit. Price</td>"
+				+ "<td class='item-total'>Total</td>"
 				+ "</tr>"
 			);
 

@@ -17,8 +17,11 @@
 		tr.table-header
 		{
 			color: #FFFFFF;
-			background-color: #222222;
-			border-bottom: 2px solid #000000;
+			background-color: #555555
+		}
+		tr.table-header:hover
+		{
+			background-color: #555555
 		}
 		tr:hover
 		{

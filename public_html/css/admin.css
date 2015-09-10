@@ -70,6 +70,30 @@ td.center-col
 	text-align: center;
 }
 
+td.item-img
+{
+	width: 52px;
+}
+td.item-descr
+{
+	width: auto;
+}
+td.item-qty
+{
+	width: 70px;
+	text-align: center;
+}
+td.item-unit-price
+{
+	width: 70px;
+	text-align: center;
+}
+td.item-total
+{
+	width: 70px;
+	text-align: center;
+}
+
 
 tr#search-add-item
 {

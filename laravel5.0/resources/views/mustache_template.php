@@ -26,16 +26,16 @@
 
 <template id="template-order-validation-table-item">
     <tr item-ref='{{ref}}'>
-        <td><img class='item-img' src='http://www.fourchetteandcie.com/pictures/{{img_path}}' height='50'></td>
+        <td class='item-img'><img class='item-img' src='http://www.fourchetteandcie.com/pictures/{{img_path}}' height='50'></td>
 
-        <td style='width: 50%;'><span class='ref-box'>{{ref}}</span> {{name}} <i>{{descr}}</i><br>
+        <td class='item-descr'><span class='ref-box'>{{ref}}</span> {{name}} <i>{{descr}}</i><br>
             <input class='edit-comment' type='text' name='comment-{{ref}}' placeholder='comment' value='{{comment}}'></td>
 
-        <td><div class='item-qty'><div class='item-qty-plus-button'>+</div> <div class='item-qty-value'>{{qty}}</div> <div class='item-qty-minus-button'>{{{minus_button}}}</div></div></td>
+        <td class='item-qty'><div class='item-qty'><div class='item-qty-plus-button'>+</div> <div class='item-qty-value'>{{qty}}</div> <div class='item-qty-minus-button'>{{{minus_button}}}</div></div></td>
 
-        <td class='edit-field'>{{currency}}<input class='edit-unit-price' type='text' name='unit-price-{{ref}}' value='{{price}}'></td>
+        <td class='item-unit-price edit-field'>{{currency}}<input class='edit-unit-price' type='text' name='unit-price-{{ref}}' value='{{price}}'></td>
 
-        <td>{{currency}} {{total}}</td>
+        <td class='item-total'>{{currency}} {{total}}</td>
     </tr>
 </template>
 

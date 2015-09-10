@@ -11,6 +11,7 @@
 	<style>
 		.widget
 		{
+			position: relative;
 			float: left;
 			margin: 2%;
 			width: 46%;
@@ -104,6 +105,7 @@
 	<a href="admin/items">
 
         <h3>Cutlery Sales</h3>
+		<a href="" style="position: absolute; top: 5px; right: 10px;">re-calculate</a>
 		<table>
 			<tr>
 				<td><span style="font-size: 15px;">nb sold</span></td>
