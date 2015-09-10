@@ -12,6 +12,8 @@
 	<style>
 		table
 		{
+			display: block;
+			margin: auto;
 			width: 70%;
 			border-collapse: collapse;
 		}
@@ -57,21 +59,12 @@
 	</style>
 
 	<script src="http://code.jquery.com/jquery.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="http://www.fourchetteandcie.com/js/layout.js"></script>
 	<script src="http://www.fourchetteandcie.com/js/reach_edit_items_reload.js"></script>
-	<script src="http://www.fourchetteandcie.com/js/search_db_2.js"></script>
 @stop
 
 
 @section('content')
-
-	<div id='search-box'>
-		<div id='search-tags'></div>
-		<div style='overflow: hidden'>
-			<input id='search-input' type='text' autocomplete='off' placeholder='search an item' >
-		</div>
-	</div>
 
 	<div id='search-results'>
 		<h2>Search Results</h2>

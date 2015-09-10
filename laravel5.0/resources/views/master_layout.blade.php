@@ -35,6 +35,7 @@
 
 		<h1 id="page-title"><span class="initials">F&C</span><span class="page-title">@yield('page_title')<span></h1>
 
+		
 
 
 		<div id="contain-svg-basket">
