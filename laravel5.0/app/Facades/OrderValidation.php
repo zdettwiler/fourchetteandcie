@@ -192,15 +192,15 @@ class OrderValidation
 		$VALIDATED_ORDER = json_decode($ORDER->val_order);
 
 		// Check if ref is already in the order...
-		foreach($VALIDATED_ORDER as $item)
-		{
-			// ...if yes, increment its qty
-			if($item->ref == $ref)
-			{
-				self::update_qty($order_id, $ref, $item->qty+1);
-				return false;
-			}
-		}
+		// foreach($VALIDATED_ORDER as $item)
+		// {
+		// 	// ...if yes, increment its qty
+		// 	if($item->ref == $ref)
+		// 	{
+		// 		self::update_qty($order_id, $ref, $item->qty+1);
+		// 		return false;
+		// 	}
+		// }
 
 		// If not already in the order make the item
 		$item_to_add = new Item($ref);
@@ -339,6 +339,70 @@ class OrderValidation
 		DB::table('orders')
 			->where('id', $order_id)
 			->update(['val_order_message' => $message]);
+
+		return false;
+	}
+
+//----------------------------------------------------------------------------//
+// UPDATE ITEM NAME
+//----------------------------------------------------------------------------//
+	public static function update_name($order_id, $ref, $new_name)
+	{
+		if(strlen($new_name) > 1)
+		{
+			$ORDER = DB::table('orders')->where('id', $order_id)->first();
+			$VALIDATED_ORDER = json_decode($ORDER->val_order);
+
+			// Check/Find if item is already in the basket
+			foreach($VALIDATED_ORDER as $item)
+			{
+				// If YES, update its name
+				if($item->ref == $ref)
+				{
+					$item->name = $new_name;
+					break;
+				}
+			}
+
+			DB::table('orders')
+				->where('id', $order_id)
+				->update([
+							'val_order' => json_encode($VALIDATED_ORDER)
+						]);
+			// self::save_order_to_db($order_id, $VALIDATED_ORDER);
+		}
+
+		return false;
+	}
+
+//----------------------------------------------------------------------------//
+// UPDATE ITEM DESCR
+//----------------------------------------------------------------------------//
+	public static function update_descr($order_id, $ref, $new_descr)
+	{
+		if(strlen($new_descr) > 1)
+		{
+			$ORDER = DB::table('orders')->where('id', $order_id)->first();
+			$VALIDATED_ORDER = json_decode($ORDER->val_order);
+
+			// Check/Find if item is already in the basket
+			foreach($VALIDATED_ORDER as $item)
+			{
+				// If YES, update its name
+				if($item->ref == $ref)
+				{
+					$item->descr = $new_descr;
+					break;
+				}
+			}
+
+			DB::table('orders')
+				->where('id', $order_id)
+				->update([
+							'val_order' => json_encode($VALIDATED_ORDER)
+						]);
+			// self::save_order_to_db($order_id, $VALIDATED_ORDER);
+		}
 
 		return false;
 	}

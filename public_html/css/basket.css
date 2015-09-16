@@ -43,10 +43,6 @@ td
 	font-size: 15px;
 
 }
-td span
-{
-	font-style: italic;
-}
 
 tr#subtotal-row td,
 tr#wholesale-row td,

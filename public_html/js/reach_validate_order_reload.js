@@ -158,7 +158,6 @@ $(function() {
 		var item_ref = $(this).parents('tr').attr('item-ref');
 		// console.log('UPDATE_UNIT_PRICE-' + item_ref + '-' + unit_price);
 		reach_validate_order_reload(id, 'UPDATE_UNIT_PRICE-' + item_ref + '-' + unit_price);
-
 	});
 
 	// SHIPPING
@@ -193,6 +192,39 @@ $(function() {
 			message = ' ';
 		}
 		reach_validate_order_reload(id, 'UPDATE_MESSAGE-null-' + encodeURIComponent(message) );
+	});
+
+	// MAKE EDITABLES
+	$("#validation-table").on("click", ".editable", function() {
+		var init_val = $(this).html();
+		var item_ref = $(this).parents('tr').attr('item-ref');
+
+		if($(this).hasClass('name'))
+		{
+			$(this).wrap("<input type='text' class='edit-item-name' value='"+ init_val +"'></input>")
+		}
+		if($(this).hasClass('descr'))
+		{
+			$(this).wrap("<input type='text' class='edit-item-descr' value='"+ init_val +"' autofocus></input>")
+		}
+
+		$(this).parents("input").focus();
+	});
+
+	// ITEM NAME
+	$("#validation-table").on("focusout", "input[type=text].edit-item-name", function() {
+		var item_name = encodeURIComponent( $(this).val() );
+		var item_ref = $(this).parents('tr').attr('item-ref');
+		// console.log('UPDATE_ITEM_NAME-' + item_ref + '-' + item_name);
+		reach_validate_order_reload(id, 'UPDATE_NAME-' + item_ref + '-' + item_name);
+	});
+
+	// ITEM DESCR
+	$("#validation-table").on("focusout", "input[type=text].edit-item-descr", function() {
+		var item_descr = encodeURIComponent( $(this).val() );
+		var item_ref = $(this).parents('tr').attr('item-ref');
+		// console.log('UPDATE_ITEM_NAME-' + item_ref + '-' + item_name);
+		reach_validate_order_reload(id, 'UPDATE_DESCR-' + item_ref + '-' + item_descr);
 	});
 
 

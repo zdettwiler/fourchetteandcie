@@ -92,8 +92,17 @@
 				preview_img(this);
 			});
 
-			$("input[type='submit']").on('click', function() {
-				upload_progress();
+			$("input[type='submit']").on('click', function(e) {
+				e.preventDefault()
+				$('form').ajax({
+
+					beforeSend: function() {
+						$("#progress_bar").show();
+					},
+					uploadProgress: function(event, position, total, percentComplete) {
+						console.log(percentComplete);
+					}
+				})
 			});
 		});
 

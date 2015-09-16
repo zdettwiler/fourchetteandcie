@@ -128,6 +128,16 @@ class AdminOrdersController extends Controller
 				OrderValidation::update_message($id, $value);
 				OrderValidation::validation_table_html($id);
 				break;
+
+			case 'UPDATE_NAME':
+				OrderValidation::update_name($id, $ref, $value);
+				OrderValidation::validation_table_html($id);
+				break;
+
+			case 'UPDATE_DESCR':
+				OrderValidation::update_descr($id, $ref, $value);
+				OrderValidation::validation_table_html($id);
+				break;
 		}
 	}
 

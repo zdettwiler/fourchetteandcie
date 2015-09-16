@@ -28,7 +28,7 @@
     <tr item-ref='{{ref}}'>
         <td class='item-img'><img class='item-img' src='http://www.fourchetteandcie.com/pictures/{{img_path}}' height='50'></td>
 
-        <td class='item-descr'><span class='ref-box'>{{ref}}</span> {{name}} <i>{{descr}}</i><br>
+        <td class='item-descr'><span class='ref-box'>{{ref}}</span> <span class="editable name">{{name}}</span> <i><span class="editable descr">{{descr}}</span></i><br>
             <input class='edit-comment' type='text' name='comment-{{ref}}' placeholder='comment' value='{{comment}}'></td>
 
         <td class='item-qty'><div class='item-qty'><div class='item-qty-plus-button'>+</div> <div class='item-qty-value'>{{qty}}</div> <div class='item-qty-minus-button'>{{{minus_button}}}</div></div></td>
