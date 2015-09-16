@@ -7,7 +7,7 @@ function search_db(query)
 
 	$.ajax({
 		type: 'GET',
-		url: '/search/' + encodeURIComponent(tags+query),
+		url: '/search/' + encodeURIComponent(tags+query) +'-'+ id,
 		success: function(results) {
 			display_response(results);
 		}

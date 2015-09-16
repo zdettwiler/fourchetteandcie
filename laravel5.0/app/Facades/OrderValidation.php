@@ -191,19 +191,30 @@ class OrderValidation
 		$ORDER = DB::table('orders')->where('id', $order_id)->first();
 		$VALIDATED_ORDER = json_decode($ORDER->val_order);
 
-		// Check if ref is already in the order...
-		// foreach($VALIDATED_ORDER as $item)
-		// {
-		// 	// ...if yes, increment its qty
-		// 	if($item->ref == $ref)
-		// 	{
-		// 		self::update_qty($order_id, $ref, $item->qty+1);
-		// 		return false;
-		// 	}
-		// }
-
-		// If not already in the order make the item
 		$item_to_add = new Item($ref);
+
+		//Check if ref is already in the order...
+		foreach($VALIDATED_ORDER as $item)
+		{
+			// ...if yes, make a duplicate
+			if($item->ref == $ref)
+			{
+				$next_duplicate = 1;
+				foreach($VALIDATED_ORDER as $order_item)
+				{
+					list($duplicate) = sscanf($order_item->ref, $ref."_%d");
+
+					if($duplicate > $next_duplicate)
+					{
+						$next_duplicate = $duplicate;
+					}
+				}
+				// dd($next_duplicate);
+
+				$ref = $ref.'_'.($next_duplicate);
+				break;
+			}
+		}
 
 		// Add item
 		$VALIDATED_ORDER[] = (object) [

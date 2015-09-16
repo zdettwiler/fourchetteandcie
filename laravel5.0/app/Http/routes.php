@@ -43,7 +43,7 @@ Route::get('/checkout/{order_token}/shipping/confirm/placed/payment/thanks', 'Ch
 
 // Search Engine
 Route::get('/search', 'HomeController@search');
-Route::get('/search/{query}', 'HomeController@search_query');
+Route::get('/search/{query}-{order_id?}', 'HomeController@search_query');
 
 //
 // Route::get('/invoice/{order_token}', 'HomeController@invoice');

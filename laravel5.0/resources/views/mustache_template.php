@@ -15,7 +15,7 @@
     <tr class='result' item-ref='{{ref}}'>
         <td class='result-img'></td>
         <td class='result-details'>
-            <p><span class='ref-box'>{{ref}}</span> {{name}}<br>
+            <p><span class='ref-box'>{{ref}}</span> {{name}} <span style="color: #e74c3c; font-style: italic;">{{in_order}}</span><br>
                 <i>{{descr}}</i> ({{categ}})</p>
         </td>
         <td class='result-price'>

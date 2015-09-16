@@ -71,7 +71,7 @@ class HomeController extends Controller {
 		return view('admin.search');
 	}
 
-	public function search_query($query, $nb_results=10)
+	public function search_query($query, $order_id=-1, $nb_results=10)
 	{
 		$section_ref_code = Config::get('fandc_arrays')['section_ref_code'];
 		$tag_keys = ['#', '@', '$'];
@@ -118,6 +118,28 @@ class HomeController extends Controller {
 						->where('ref', 'LIKE', $ref)
 						->take($nb_results)
 						->get();
+
+
+		// check if item is already in order
+		if($order_id != -1)
+		{
+			$ORDER = DB::table('orders')->where('id', $order_id)->first();
+			$VALIDATED_ORDER = json_decode($ORDER->val_order);
+			$VALIDATED_ORDER_IDs = [];
+
+			foreach($VALIDATED_ORDER as $item)
+			{
+				$VALIDATED_ORDER_IDs[] = $item->ref;
+			}
+
+			foreach($results as $key => &$result)
+			{
+				if(in_array($result->ref, $VALIDATED_ORDER_IDs))
+				{
+					$result->in_order = "in order";
+				}
+			}
+		}
 
 		echo json_encode($results);
 	}
