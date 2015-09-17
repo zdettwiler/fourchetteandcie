@@ -1,58 +1,84 @@
-function reach_edit_items_reload(ref, command)
+function reach_edit_items_reload(command)
 {
-	var xhr = new XMLHttpRequest();
+	$.ajax({
+		type: 'GET',
+		url: 'items/quick-edit/'+ encodeURIComponent(command),
+		beforeSend: function() {
+			$('#loading').css('display', 'inline-block');
+			$("body").css('cursor', 'not-allowed');
+		},
+		success: function(response) {
+			console.log(response);
+			response = decodeURIComponent(response);
+			console.log(response);
+			response = response.split('-');
 
-	xhr.open('GET', 'items/quick-edit/'+ encodeURIComponent(command), true);
-	xhr.addEventListener('readystatechange', function() {
+			if(response[0].substr(0,6) == 'TOGGLE')
+			{
+				if(response[2] == 0)
+				{
+					$("div[target='"+ response[0] +"-"+ response[1] +"']").removeClass('is-or-not-1').addClass('is-or-not-0');
+					$("div[target='"+ response[0] +"-"+ response[1] +"'] img").attr('src', 'http://fourchetteandcie.com/pictures/0.png');
+				}
+				if(response[2] == 1)
+				{
+					$("div[target='"+ response[0] +"-"+ response[1] +"']").removeClass('is-or-not-0').addClass('is-or-not-1');
+					$("div[target='"+ response[0] +"-"+ response[1] +"'] img").attr('src', 'http://fourchetteandcie.com/pictures/1.png');
+				}
+			}
+			else if(response[0].substr(0,4) == 'EDIT')
+			{
+				$("span[target='"+ response[0] +"-"+ response[1] +"']").removeClass('editing').addClass('editable');
+				$("span[target='"+ response[0] +"-"+ response[1] +"']").html(response[2]);
+			}
 
-		if (xhr.readyState === 4 && xhr.status === 200)
-		{
-            $("tr[item-ref='"+ ref +"']").html(xhr.responseText);
+
+		},
+		complete: function () {
+			$('#loading').css('display', 'none');
+			$("body").css('cursor', 'auto');
 		}
-		else if (xhr.readyState == 4 && xhr.status != 200)
-		{
-			console.log("ERROR!" + '\n\nCode :' + xhr.status + '\nText : ' + xhr.statusText + '\nMessage : ' + xhr.responseText);
-		}
-	}, false);
-
-	xhr.send(null);
-
-	return false;
+	});
 }
 
 $(function() {
 
     // for toggle values
-    $("table").on("click", ".edit-toggle", function() {
+    $("#results-box").on("click", ".toggleable", function() {
 		var target = $(this).attr("target");
-		var item_ref = $(this).parents('tr').attr('item-ref');
-		console.log(target+'-'+item_ref);
-		reach_edit_items_reload(item_ref, target+'-'+item_ref);
+		// var item_ref = $(this).parents('tr').attr('item-ref');
+		// console.log(target);
+		reach_edit_items_reload(target);
 	});
 
-    // for text edit
-    $("table").on("click", ".edit-text", function() {
-		if(!$(this).hasClass('editing'))
-        {
-            var current_val = $(this).html();
+    // for text edit make editables
+	// $("#results-box").on("click", ".editable", function() {
+	// 	var init_val = $(this).html();
+	// 	var target = $(this).attr('target');
+	// 	$(this).removeClass('editable').addClass('editing');
+	// 	$(this).html("<input type='text' class='edit' value='"+ init_val +"' target='"+ target +"'></input>")
+	// 	$(this).parents("input").focus();
+	// });
 
-            $(this).addClass('editing');
-            $(this).html("<input type='text' value='"+ current_val +"'>");
-            // console.log(current_val);
-        }
+	$("#results-box").on("focusout", ".editable", function() {
+		var new_value = $(this).html();
+		var target = $(this).attr('target');
+		// console.log(encodeURIComponent(target +'-'+ new_value));
+		reach_edit_items_reload(target +'-'+ new_value);
 	});
 
-    $('table').on("keypress", "input", function(event) {
+    $('#results-box').on("keypress", ".editable", function(event) {
         if(event.keyCode == 13)
 		{
-            var new_val = $(this).val();
-            var target = $(this).parents('span').attr("target");
-            var item_ref = $(this).parents('tr').attr('item-ref');
-
+			event.preventDefault();
 			$(this).blur();
-			reach_edit_items_reload(item_ref, target+'-'+item_ref+'-'+new_val);
-            return false; // prevent the button click from happening
+			var new_value = $(this).val();
+			var target = $(this).attr('target');
+			// console.log(encodeURIComponent(target +'-'+ new_value));
+			reach_edit_items_reload(target +'-'+ new_value);
+			return false;
         }
+
     });
 
 

@@ -13,7 +13,6 @@ class Item
 	private $_section; // here cutlery, lighting, etc...
 	private $_sectionfullname;
 	private $_descr;
-	private $_stamped;
 	private $_name;
 	private $_price;
 	private $_categ; // always is an array
@@ -91,48 +90,17 @@ class Item
 
 	public function update_db_item()
 	{
-		switch ($this->get_sectionfullname())
-		{
-			case 'cutlery':
-				/*echo $this->_ref.'<br>';
-				echo $request->descr.'<br>';
-				echo $request->stamped.'<br>';
-				echo $request->price.'<br>';
-				echo $request->imgs_count.'<br>';
-				echo $request->categ.'<br>';*/
-				// dd($request);
-
-				DB::table('cutlery')->where('ref', $this->_ref)->update([
-					'descr'          => $this->_descr,
-					'stamped'        => $this->_stamped,
-					'price'          => $this->_price,
-					'img_count'      => 1, //$this->_img_count,
-					'categ'          => $this->im_ex_plode_categs($this->_categ), // linearising into string
-					'is_new'         => $this->_is_new,
-					'is_best_seller' => $this->_is_best_seller,
-					'is_sold_out'    => $this->_is_sold_out
-				]);
-
-				break;
-
-			case 'cake-stand':
-				DB::table('cake-stand')->where('ref', $this->_ref)->update([
-					'descr'          => $request->descr,
-					'name'           => $request->name,
-					'price'          => $request->price,
-					'img_count'      => $request->imgs_count,
-					'categ'          => $request->categ,
-					'is_new'         => $this->_is_new,
-					'is_best_seller' => $this->_is_best_seller,
-					'is_sold_out'    => $this->_is_sold_out
-				]);
-
-				break;
-
-			// default:
-			// 	# code...
-			// 	break;
-		}
+		DB::table($this->get_sectionfullname())
+			->where('ref', $this->_ref)->update([
+				'descr'          => $this->_descr,
+				'name'           => $this->_name,
+				'price'          => $this->_price,
+				'img_count'      => 1, //$this->_img_count,
+				'categ'          => $this->im_ex_plode_categs($this->_categ), // linearising into string
+				'is_new'         => $this->_is_new,
+				'is_best_seller' => $this->_is_best_seller,
+				'is_sold_out'    => $this->_is_sold_out
+			]);
 	}
 
 	// GETTERS & SETTERS
@@ -161,15 +129,6 @@ class Item
 	public function set_descr($descr)
 	{
 		$this->_descr = $descr;
-	}
-
-	public function get_stamped()
-	{
-		return $this->_stamped;
-	}
-	public function set_stamped($stamped)
-	{
-		$this->_stamped = $stamped;
 	}
 
 	public function get_categ()

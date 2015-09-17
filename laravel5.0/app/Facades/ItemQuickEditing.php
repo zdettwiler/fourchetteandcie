@@ -19,14 +19,14 @@ class ItemQuickEditing
         {
             $item->set_is_new(1);
             $item->update_db_item();
-            return false;
         }
-        if($item->get_is_new() == 1)
+        elseif($item->get_is_new() == 1)
         {
             $item->set_is_new(0);
             $item->update_db_item();
-            return false;
         }
+
+        echo 'TOGGLE_NEW-'. $ref .'-'. $item->get_is_new();
     }
 
 //----------------------------------------------------------------------------//
@@ -40,14 +40,14 @@ class ItemQuickEditing
         {
             $item->set_is_best_seller(1);
             $item->update_db_item();
-            return false;
         }
-        if($item->get_is_best_seller() == 1)
+        elseif($item->get_is_best_seller() == 1)
         {
             $item->set_is_best_seller(0);
             $item->update_db_item();
-            return false;
         }
+
+        echo 'TOGGLE_BEST_SELLER-'. $ref .'-'. $item->get_is_best_seller();
     }
 
 //----------------------------------------------------------------------------//
@@ -61,46 +61,46 @@ class ItemQuickEditing
         {
             $item->set_is_sold_out(1);
             $item->update_db_item();
-            return false;
         }
-        if($item->get_is_sold_out() == 1)
+        elseif($item->get_is_sold_out() == 1)
         {
             $item->set_is_sold_out(0);
             $item->update_db_item();
-            return false;
         }
+
+        echo 'TOGGLE_SOLD_OUT-'. $ref .'-'. $item->get_is_sold_out();
     }
 
 //----------------------------------------------------------------------------//
-// EDIT STAMPED
+// EDIT NAME
 //----------------------------------------------------------------------------//
-    public static function edit_stamped($ref, $stamped)
+    public static function edit_name($ref, $name)
     {
         $item = new Item($ref);
 
-        $item->set_stamped($stamped);
+        $item->set_name($name);
         $item->update_db_item();
 
-        return false;
+        echo 'EDIT_NAME-'. $ref .'-'. $item->get_name();
     }
 
 //----------------------------------------------------------------------------//
 // EDIT DESCR
 //----------------------------------------------------------------------------//
-    public static function edit_descr($ref, $stamped)
+    public static function edit_descr($ref, $descr)
     {
         $item = new Item($ref);
 
-        $item->set_descr($stamped);
+        $item->set_descr($descr);
         $item->update_db_item();
 
-        return false;
+        echo 'EDIT_DESCR-'. $ref .'-'. $item->get_descr();
     }
 
 //----------------------------------------------------------------------------//
 // EDIT CATEG
 //----------------------------------------------------------------------------//
-    public static function edit_categ($ref, $stamped)
+    /*public static function edit_categ($ref, $stamped)
     {
         $item = new Item($ref);
 
@@ -108,56 +108,18 @@ class ItemQuickEditing
         $item->update_db_item();
 
         return false;
-    }
+    }*/
 
 //----------------------------------------------------------------------------//
-// EDIT CATEG
+// EDIT PRICE
 //----------------------------------------------------------------------------//
-    public static function edit_price($ref, $stamped)
+    public static function edit_price($ref, $price)
     {
         $item = new Item($ref);
 
-        $item->set_price($stamped);
+        $item->set_price($price);
         $item->update_db_item();
 
-        return false;
-    }
-
-//----------------------------------------------------------------------------//
-// MAKE HTML ROW OF UPDATED ITEM
-//----------------------------------------------------------------------------//
-    public static function updated_item_html($ref)
-    {
-        $item = new Item($ref);
-
-        $update ="<td class='cell-img'>
-                <img class='item-img' src='http://www.fourchetteandcie.com/pictures/{$ref[0]}/100px/{$ref}_thumb.jpg' height='50'>
-            </td>
-            <td class='cell-details'>
-                <span class='ref-box'>{$ref}</span>
-                <b><span class='edit-text' target='EDIT_STAMPED'>{$item->get_stamped()}</span></b></<br>
-                <span class='edit-text' target='EDIT_DESCR'>{$item->get_descr()}</span>
-                (<span class='edit-text' target='EDIT_CATEG'>{$item->im_ex_plode_categs($item->get_categ())}</span>)
-            </td>
-            <td class='cell-check'>
-                <span class='edit-toggle' target='TOGGLE_NEW'>
-                    <img src='http://www.fourchetteandcie.com/pictures/{$item->get_is_new()}.png'>
-                </span>
-            </td>
-            <td class='cell-check'>
-                <span class='edit-toggle' target='TOGGLE_BEST_SELLER'>
-                    <img src='http://www.fourchetteandcie.com/pictures/{$item->get_is_best_seller()}.png'>
-                </span>
-            </td>
-            <td class='cell-check'>
-                <span class='edit-toggle' target='TOGGLE_SOLD_OUT'>
-                    <img src='http://www.fourchetteandcie.com/pictures/{$item->get_is_sold_out()}.png'>
-                </span>
-            </td>
-            <td class='cell-price'>
-                €<span class='edit-text' target='EDIT_PRICE'>{$item->get_price()}</span>
-            </td>";
-
-        echo $update;
+        echo 'EDIT_PRICE-'. $ref .'-'. $item->get_price();
     }
 }

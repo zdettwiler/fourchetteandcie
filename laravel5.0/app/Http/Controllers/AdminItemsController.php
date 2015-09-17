@@ -79,37 +79,30 @@ class AdminItemsController extends Controller
 		{
 			case 'TOGGLE_NEW':
 				ItemQuickEditing::toggle_new($ref);
-				ItemQuickEditing::updated_item_html($ref);
 				break;
 
 			case 'TOGGLE_BEST_SELLER':
 				ItemQuickEditing::toggle_best_seller($ref);
-				ItemQuickEditing::updated_item_html($ref);
 				break;
 
 			case 'TOGGLE_SOLD_OUT':
 				ItemQuickEditing::toggle_sold_out($ref);
-				ItemQuickEditing::updated_item_html($ref);
 				break;
 
-			case 'EDIT_STAMPED':
-				ItemQuickEditing::edit_stamped($ref, $value);
-				ItemQuickEditing::updated_item_html($ref);
+			case 'EDIT_NAME':
+				ItemQuickEditing::edit_name($ref, $value);
 				break;
 
 			case 'EDIT_DESCR':
 				ItemQuickEditing::edit_descr($ref, $value);
-				ItemQuickEditing::updated_item_html($ref);
 				break;
 
 			// case 'EDIT_CATEG':
 			// 	ItemQuickEditing::edit_stamped($ref, $value);
-			// 	ItemQuickEditing::updated_item_html($ref);
 			// 	break;
 
 			case 'EDIT_PRICE':
 				ItemQuickEditing::edit_price($ref, $value);
-				ItemQuickEditing::updated_item_html($ref);
 				break;
 		}
 	}

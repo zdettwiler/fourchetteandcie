@@ -20,28 +20,6 @@ function search_db(query)
 	});
 }
 
-function display_response(json_results)
-{
-	var results = $.parseJSON(json_results);
-	console.log(results);
-	var template_search_result_order_validation = $("#template-search-result").html();
-	$("#results-box table").html('');
-
-	if($.isEmptyObject(results))
-	{
-		$("#results-box table").append("<tr class='result'>\n <td colspan='3'><p>No result...</p></td>\n </tr>");
-	}
-	else
-	{
-		$.each( results, function( i, result ) {
-			result.ref_section = result.ref.substr(0,1);
-			$("#results-box table").append( Mustache.render(template_search_result_order_validation, result) );
-		});
-	}
-
-	return false;
-}
-
 function select_result(ref)
 {
 	var keep_result = $("tr[item-ref='"+ref+"'")[0].outerHTML;

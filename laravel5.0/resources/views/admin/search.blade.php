@@ -173,6 +173,29 @@
 	<script src="http://www.fourchetteandcie.com/js/mustache.js"></script>
 	{{-- <script src="http://localhost/display-only/fourchetteandcie/public_html/js/search_db.js"></script> --}}
 	<script src="http://www.fourchetteandcie.com/js/search_db.js"></script>
+	<script>
+		function display_response(json_results)
+		{
+			var results = $.parseJSON(json_results);
+			console.log(results);
+			var template_search_result_order_validation = $("#template-search-result").html();
+			$("#results-box table").html('');
+
+			if($.isEmptyObject(results))
+			{
+				$("#results-box table").append("<tr class='result'>\n <td colspan='3'><p>No result...</p></td>\n </tr>");
+			}
+			else
+			{
+				$.each( results, function( i, result ) {
+					result.ref_section = result.ref.substr(0,1);
+					$("#results-box table").append( Mustache.render(template_search_result_order_validation, result) );
+				});
+			}
+
+			return false;
+		}
+	</script>
 @stop
 
 @section('content')
@@ -189,7 +212,6 @@
 	</div>
 
 	<br><br>
-	<h2>Results:</h2>
 	<div id='results-box' class='big-results'><table> </table></div>
 
 @stop
