@@ -220,7 +220,6 @@
 		function display_response(json_results)
 		{
 			var results = $.parseJSON(json_results);
-			console.log(results);
 			var template_search_result_order_validation = $("#template-editable-items").html();
 			$("#results-box").html('');
 
