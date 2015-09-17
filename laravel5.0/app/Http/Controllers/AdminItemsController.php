@@ -184,14 +184,18 @@ class AdminItemsController extends Controller
 
 	public function add_item()
 	{
-		return view('admin.add_item_2');
+		return view('admin.add_item');
 	}
 
 	public function post_add_item(Request $request)
 	{
-		// dd($request);
-		$section = $request->section;
-		$imgs = Input::file('img_'.$section);
+		$imgs = Input::file('imgs');
+		$this->_img_upload($imgs, 'c999');
+
+		// return redirect()->back()->with('notification', ['type' => 'positive', 'message' => 'Item c999 has been successfully added to the database!']);
+
+		/*$section = $request->section;
+
 
 		// GET REF OF NEW ITEM
 		$section_ref_code = Config::get('fandc_arrays')['section_ref_code'];
@@ -291,7 +295,7 @@ class AdminItemsController extends Controller
 			// END SWITCH ADD TO DB
 
 			return redirect()->back()->with('notification', ['type' => 'positive', 'message' => 'Item '.$new_ref.' has been successfully added to the database!']);
-		}
+		}*/
 		// END IF FORM OK
 	}
 	// END METHOD post_add_item()
@@ -299,12 +303,11 @@ class AdminItemsController extends Controller
 	private function _img_upload($imgs, $ref)
 	{
 		$imgs_count = count($imgs);
-		list($section, $id, $sectionfullname) = Item::get_id($ref);
 
 		// paths
-		$img_path_original = 'pictures/'.$ref[0].'/originals';
-		$img_path_500px = 'pictures/'.$ref[0].'/500px';
-		$img_path_100px = 'pictures/'.$ref[0].'/100px';
+		$img_path_original = 'tests/pictures/'.$ref[0].'/originals';
+		$img_path_500px = 'tests/pictures/'.$ref[0].'/500px';
+		$img_path_100px = 'tests/pictures/'.$ref[0].'/100px';
 
 		for($i=0 ; $i<=$imgs_count-1 ; $i++)
 		{
