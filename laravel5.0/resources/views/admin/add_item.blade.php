@@ -28,10 +28,10 @@
 			border: none;
 			margin: 5px 0;
 			width: 100%;
+			font-family: "Roboto Condensed", Helvetica, sans-serif;
 		}
 		#new-item-name
 		{
-			font-family: "Roboto Condensed", Helvetica, sans-serif;
 			font-size: 40px;
 		}
 		#new-item-descr
@@ -116,7 +116,7 @@
 						myXhr.upload.addEventListener('progress', function(event) {
 							if(event.lengthComputable)
 							{
-								var percentComplete = (event.loaded / event.total) * 100;
+								var percentComplete = 0.9 * (event.loaded / event.total) * 100;
 								$('#progress-bar').css('width', percentComplete +'%');
 							}
 						}, false);
@@ -129,6 +129,7 @@
 					return myXhr;
 				},
 				success: function(response) {
+					$('#progress-bar').css('width', '100%');
 					console.log('YES');
 				}
 			})

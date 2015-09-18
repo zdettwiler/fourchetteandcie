@@ -254,7 +254,42 @@
 	</div>
 
 	<br><br>
-	<div id='results-box' class='big-results'></div>
+	<div id='results-box' class='big-results'>
+		@foreach($section_list as $section)
+			@foreach($items[$section] as $item)
+				<div class='result' item-ref='{{ $item->ref }}'>
+			        <div class='result-img'>
+			            <img src="http://fourchetteandcie.com/pictures/{{ $item->ref[0] }}/500px/{{ $item->ref }}.jpg" width="200px" height="200px">
+			        </div>
+
+			        <div style="overflow: hidden">
+			        <div class="result-details">
+			            <span class="ref-box">{{ $item->ref }}</span>
+			            <span class="editable result-name" target="EDIT_NAME-{{ $item->ref }}" contenteditable="true">{{ $item->name }}</span><br>
+			            <span class="editable result-price" target="EDIT_PRICE-{{ $item->ref }}" contenteditable="true">{{ $item->price }}</span>
+			            <span class="editable result-descr" target="EDIT_DESCR-{{ $item->ref }}" contenteditable="true">{{ $item->descr }}</span><br>
+			            <span class="result-categ" target="EDIT_CATEG-{{ $item->ref }}" contenteditable="false">{{ $item->categ }}</span><br><br>
+
+			            <div class="is-or-not-{{ $item->is_new }} toggleable" target="TOGGLE_NEW-{{ $item->ref }}">
+			                <p>new</p>
+			                <img src="http://fourchetteandcie.com/pictures/{{ $item->is_new }}.png">
+			            </div>
+
+			            <div class="is-or-not-{{ $item->is_best_seller }} toggleable" target="TOGGLE_BEST_SELLER-{{ $item->ref }}">
+			                <p>b. seller</p>
+			                <img src="http://fourchetteandcie.com/pictures/{{ $item->is_best_seller }}.png">
+			            </div>
+
+			            <div class="is-or-not-{{ $item->is_sold_out }} toggleable" target="TOGGLE_SOLD_OUT-{{ $item->ref }}">
+			                <p>sold out</p>
+			                <img src="http://fourchetteandcie.com/pictures/{{ $item->is_sold_out }}.png">
+			            </div>
+			        </div>
+			        </div>
+			    </div>
+			@endforeach
+		@endforeach
+	</div>
 
 @stop
 

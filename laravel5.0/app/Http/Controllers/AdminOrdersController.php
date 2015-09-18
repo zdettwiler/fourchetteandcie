@@ -146,7 +146,8 @@ class AdminOrdersController extends Controller
 		DB::table('orders')
 			->where('id', $id)
 			->update([
-						'is_validated' => 1
+						'is_validated' => 1,
+						'validated_datetime' => time()
 					]);
 		$this->make_pdf_invoice($id);
 		EMailGenerator::send_cust_validated_order($id);
