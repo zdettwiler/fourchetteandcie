@@ -542,10 +542,9 @@ ul#shopwindow
 /******************************************** NOTIF BAR *********************************************/
 #notification-bar
 {
-	width: 70%;
+	width: 100%;
 	margin: auto;
 	/*height: 45px;*/
-	border: 2px solid #000000;
 	padding: 10px;
 	margin-bottom: 20px;
 }
@@ -554,27 +553,25 @@ ul#shopwindow
 	margin: 0;
 }
 
-#notification.positive
+.notification.positive
 {
-	width: 70%;
 	margin: 20px auto;
 	padding: 10px;
 	border: 1px solid #2ECC71;
 }
-#notification.positive p
+.notification.positive p
 {
 	color: #2ECC71;
 	margin: 0;
 }
 
-#notification.negative
+.notification.negative
 {
-	width: 70%;
 	margin: 20px auto;
 	padding: 10px;
 	border: 1px solid #E74C3C;
 }
-#notification.negative p
+.notification.negative p
 {
 	color: #E74C3C;
 	margin: 0;

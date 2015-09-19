@@ -11,7 +11,7 @@ class StoreItemRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return false;
+		return true;
 	}
 
 	/**
@@ -22,7 +22,11 @@ class StoreItemRequest extends Request {
 	public function rules()
 	{
 		return [
-			//
+			'new_item_imgs' => 'required|mimes:jpeg,bmp,png|max:5000',
+			'new_item_name' => 'required|string',
+			'new_item_descr' => 'required|string',
+			'new_item_categ' => 'required|array',
+			'new_item_price' => 'required|numeric'
 		];
 	}
 

@@ -1,6 +1,7 @@
 <?php namespace FandC\Http\Controllers;
 
 use FandC\Http\Requests;
+use FandC\Http\Requests\StoreItemRequest;
 use FandC\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -187,127 +188,53 @@ class AdminItemsController extends Controller
 		return view('admin.add_item');
 	}
 
-	public function post_add_item(Request $request)
+	public function post_add_item(StoreItemRequest $request)
 	{
-		$imgs = Input::file('imgs');
-		$this->_img_upload($imgs, 'c999');
-
-		// return redirect()->back()->with('notification', ['type' => 'positive', 'message' => 'Item c999 has been successfully added to the database!']);
-
-		/*$section = $request->section;
-
-
-		// GET REF OF NEW ITEM
+		// find new reference
 		$section_ref_code = Config::get('fandc_arrays')['section_ref_code'];
-		$refs = DB::table( $section )->lists('ref');
+		$refs = DB::table( $request->new_item_section )->lists('ref');
 
-		// for($i=1 ; in_array( $section_ref_code[ $section ].$i , $refs ) ; $i++)
-		// {
-		// }
-
-		$i = 1;
-
-		while( in_array( $section_ref_code[ $section ].$i , $refs ) )
+		for($i=1 ; in_array( $section_ref_code[ $request->new_item_section ].$i , $refs ) ; $i++)
 		{
-			$i++;
 		}
 
-		$new_ref = $section_ref_code[ $section ].$i;
+		$new_ref = $section_ref_code[ $request->new_item_section ].$i;
 
-		// MAKE RIGHT VALIDATOR FOR RIGHT SECTION
-		$validator = $this->_make_validator_section($request, $section);
+		// upload and make images
+		$imgs[] = Input::file('new_item_imgs');
+		$this->_img_upload($imgs, $new_ref);
 
-		$imgs_count = count($imgs);
+		// make new item in DB
+		DB::table( $request->new_item_section )->insert([
+			'ref'       => $new_ref,
+			'name'      => $request->new_item_name,
+			'descr'     => $request->new_item_descr,
+			'price'     => $request->new_item_price,
+			'img_count' => 1,
+			'categ'     => Item::im_ex_plode_categs($request->new_item_categ),
+			'is_new'	=> 1
+		]);
 
-		// VALIDATE FORM
-		if ($validator->fails())
-		{
-			echo 'Failed Validator<br>';
-			$messages = $validator->messages();
+		$new_item = [
+			'ref'       => $new_ref,
+			'name'      => $request->new_item_name,
+			'descr'     => $request->new_item_descr,
+			'price'     => $request->new_item_price,
+			'categ'     => Item::im_ex_plode_categs($request->new_item_categ)
+		];
 
-			return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $messages->all()]);
-		}
-		foreach ($imgs as $img)
-		{
-			$validator_img = Validator::make(
-				[
-					'img' => $img
-				],
-				[
-					'img' => 'required|image|mimes:jpeg,bmp,png|max:5000'
-				]
-			);
+		echo json_encode($new_item);
 
-			if ($validator_img->fails() OR !$img->isValid())
-			{
-				$messages = $validator->messages();
-				return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem.']);
-			}
-		}
-
-		// FORM IS OK - SAVE IMGS AND ADD NEW ITEM IN DB
-		if ($validator->passes())
-		{
-			$this->_img_upload($imgs, $new_ref);
-
-			// make category string
-			$categ = Item::im_ex_plode_categs($request->categs_cutlery);
-
-			// ADD ITEM TO DATABASE
-			switch ($section)
-			{
-				case 'cutlery':
-					DB::table('cutlery')->insert([
-						'ref'       => $new_ref,
-						'descr'     => $request->descr_cutlery,
-						'name'   => $request->stamped_cutlery,
-						'price'     => $request->price_cutlery,
-						'img_count' => $imgs_count,
-						'categ'     => $categ
-					]);
-
-					break;
-
-				case 'cake-stand':
-					DB::table('cake-stand')->insert([
-						'ref'       => $new_ref,
-						'name'      => $name,
-						'price'     => $price,
-						'img_count' => $imgs_count,
-						'categ'     => $categ
-					]);
-
-					break;
-
-				case 'key-holder':
-					DB::table('cake-stand')->insert([
-						'ref'       => $new_ref,
-						'name'      => $name,
-						'price'     => $price,
-						'img_count' => $imgs_count,
-						'categ'     => $categ
-					]);
-
-				// default:
-				// 	# code...
-				// 	break;
-			}
-			// END SWITCH ADD TO DB
-
-			return redirect()->back()->with('notification', ['type' => 'positive', 'message' => 'Item '.$new_ref.' has been successfully added to the database!']);
-		}*/
-		// END IF FORM OK
 	}
-	// END METHOD post_add_item()
 
 	private function _img_upload($imgs, $ref)
 	{
 		$imgs_count = count($imgs);
 
 		// paths
-		$img_path_original = 'tests/pictures/'.$ref[0].'/originals';
-		$img_path_500px = 'tests/pictures/'.$ref[0].'/500px';
-		$img_path_100px = 'tests/pictures/'.$ref[0].'/100px';
+		$img_path_original = 'pictures/'.$ref[0].'/originals';
+		$img_path_500px = 'pictures/'.$ref[0].'/500px';
+		$img_path_100px = 'pictures/'.$ref[0].'/100px';
 
 		for($i=0 ; $i<=$imgs_count-1 ; $i++)
 		{

@@ -3,71 +3,56 @@
 @section('page_title', 'Admin // Add Item')
 
 @section('include')
-	<link rel="stylesheet" href="http://localhost/fourchetteandcie/public/css/main.css" type="text/css" media="all"/>
-	<link rel="stylesheet" href="http://localhost/fourchetteandcie/public/css/nav.css" type="text/css" media="all"/>
-	<link rel="stylesheet" href="http://localhost/fourchetteandcie/public/css/basket.css" type="text/css" media="all"/>
-	<link rel="stylesheet" href="http://localhost/fourchetteandcie/public/css/admin_forms.css" type="text/css" media="all"/>
+	<link rel="stylesheet" href="http://fourchetteandcie.com/css/main.css" type="text/css" media="all"/>
+	<link rel="stylesheet" href="http://fourchetteandcie.com/css/nav.css" type="text/css" media="all"/>
+	<link rel="stylesheet" href="http://fourchetteandcie.com/css/basket.css" type="text/css" media="all"/>
+	<link rel="stylesheet" href="http://fourchetteandcie.com/css/admin_forms.css" type="text/css" media="all"/>
 	<style>
-		#new-item-img
-		{
-			display: inline-block;
-			width: 300px;
-			height: 400px;
-			float: left;
-			margin-right: 20px;
-		}
-		#new-item-details
-		{
-			display: inline-block;
-			width: 100%;
-		}
-
-		input[type="text"]
-		{
-			background-color: #FFFFFF;
-			border: none;
-			margin: 5px 0;
-			width: 100%;
-			font-family: "Roboto Condensed", Helvetica, sans-serif;
-		}
-		#new-item-name
-		{
-			font-size: 40px;
-		}
-		#new-item-descr
-		{
-			width: 80%;
-			float: left;
-			font-size: 30px;
-			font-style: italic;
-		}
-		#new-item-price
-		{
-			width: 20%;
-			float: right;
-			font-size: 30px;
-		}
-		#new-item-category
-		{
-			font-size: 30px;
-		}
-
-
 		#progress-bar
 		{
 			position: fixed;
 			top: 60px;
 			left: 0px;
 			width: 0%;
-			height: 5px;
+			height: 3px;
 			background-color: #7CFFB1;
-			box-shadow: 0 0 15px #7CFFB1, 0 0 5px #7CFFB1;
+			box-shadow: 0 0 10px #7CFFB1;
+		}
+
+		tr td
+		{
+			/*max-height: 50px;*/
+			overflow: hidden;
+			padding: 5px;
+			vertical-align: middle;
+			border-top: 1px solid #DDDDDD;
+		}
+		tr td p
+		{
+			margin: 0px;
+			padding: 0px;
+			font-size: 15px;
+		}
+		tr td.result-img
+		{
+			margin: 0px;
+			padding: 0px;
+			width: 200px;
+		}
+		tr td.result-details
+		{
+			width: 80%;
+		}
+		tr td.result-price
+		{
+			width: 20%;
 		}
 
 	</style>
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script src="http://localhost/display-only/fourchetteandcie/public_html/js/layout.js"></script>
+	<script src="http://www.fourchetteandcie.com/js/mustache.js"></script>
+	<script src="http://fourchetteandcie.com/js/layout.js"></script>
 
 	<script>
 		$(function() {
@@ -88,14 +73,24 @@
 							show_imgs_to_upload(event.target.result);
 						};
 						file_reader.readAsDataURL(file);
-						form_data.append("imgs[]", file);
+						// form_data.append("imgs[]", file);
+						form_data.append("new_item_imgs", file);
 					}
 				}
 			});
 
 			$("input[type='submit']").click(function(event){
 				event.preventDefault();
+
+				$("input:checkbox:checked").each(function(){
+				    form_data.append("new_item_categ[]", $(this).val());
+				});
+
 				form_data.append("_token", $('input[name=_token]').val());
+				form_data.append("new_item_section", $('select[name=new_item_section]').val());
+				form_data.append("new_item_name", $('input[name=new_item_name]').val());
+				form_data.append("new_item_price", $('input[name=new_item_price]').val());
+				form_data.append("new_item_descr", $('input[name=new_item_descr]').val());
 				submit_form(form_data);
 			});
 
@@ -108,7 +103,9 @@
 				data: form_data,
 				processData: false,
 				contentType: false,
-				beforeSend: function() {},
+				beforeSend: function() {
+					$('#progress-bar').css({'width': '0%', 'background-color': '#7CFFB1', 'box-shadow': '0 0 10px #7CFFB1'}).show();
+				},
 				xhr: function() {
 					myXhr = $.ajaxSettings.xhr();
 					if(myXhr.upload)
@@ -117,7 +114,8 @@
 							if(event.lengthComputable)
 							{
 								var percentComplete = 0.9 * (event.loaded / event.total) * 100;
-								$('#progress-bar').css('width', percentComplete +'%');
+								// $('#progress-bar').css('width', percentComplete +'%');
+								$('#progress-bar').animate({'width': percentComplete +'%'}, 200);
 							}
 						}, false);
 					}
@@ -128,9 +126,22 @@
 
 					return myXhr;
 				},
-				success: function(response) {
-					$('#progress-bar').css('width', '100%');
-					console.log('YES');
+				success: function(json_response) {
+					$('#progress-bar').animate({'width': '100%'}).delay(200).fadeOut();
+					$('input[type=submit]').val('OK!');
+
+					var new_item = $.parseJSON(json_response);
+					var template_search_result_order_validation = $("#template-search-result").html();
+					$("#notification-bar").html('');
+
+					new_item.ref_section = new_item.ref.substr(0,1);
+					$("#notification-bar").append("<div class='notification positive'><p>The item has been successfully added to the database!<br><br></p><table>" + Mustache.render(template_search_result_order_validation, new_item) + "</table></div>" );
+
+					return false;
+				},
+				error: function(error) {
+					console.log(error);
+					$('#progress-bar').animate({'width': '100%', 'background-color': '#e74c3c'}, 200).css('box-shadow', '0 0 10px #e74c3c');
 				}
 			})
 		}
@@ -141,38 +152,61 @@
 	</script>
 @stop
 
-@section('notification-bar')
-
-	@if(Session::has('notification'))
-		<div id="notification" class="{{ Session::get('notification')['type'] }}">
-			<p>{{ Session::get('notification')['message'] }}</p>
-		</div>
-	@endif
-
-@stop
-
 @section('content')
 
 	<div id="progress-bar">
+	</div>
+
+	<div id="notification-bar">
 	</div>
 
 	{!! Form::open(['files' => true]) !!}
 
 	    <div id='new-item-img'>
             <img id="new-item-img-preview" src="" width="300px" height="300px">
-			{!! Form::file('imgs[]', ['id'=>'new-item-imgs', 'multiple'=>true]) !!}
+			{{-- {!! Form::file('imgs[]', ['id'=>'new-item-imgs', 'multiple'=>true]) !!} --}}
+			{!! Form::file('new_item_imgs', ['id'=>'new-item-imgs']) !!}
         </div>
 
         <div style="overflow: hidden">
         <div id="new-item-details">
-            <input id="new-item-name" type="text" placeholder="add a name">
-        	<input id="new-item-price" type="text" placeholder="€0.00"><br>
-            <input id="new-item-descr" type="text" placeholder="add a description"><br>
-            <input id="new-item-categ" type="text" placeholder="add a category"><br><br><br>
+			{!! Form::select('new_item_section', array(
+						'cutlery' => 'Cutlery',
+						'cake-stand' => 'Cake Stand'
+						// 'furniture' => 'Furniture',
+						// 'bric-a-brac' => 'Bric-à-Brac'
+					));	!!}
+
+			{!! Form::text('new_item_name', '', ['id'=>'new-item-name', 'placeholder'=>'add a name']) !!}
+			{!! Form::text('new_item_price', '', ['id'=>'new-item-price', 'placeholder'=>'€0.00']) !!}
+			{!! Form::text('new_item_descr', '', ['id'=>'new-item-descr', 'placeholder'=>'add a description']) !!}
+
+			<label>{!! Form::checkbox('new_item_categ[0]', 'teaspoon', true) !!}Teaspoon</label>
+			<label>{!! Form::checkbox('new_item_categ[1]', 'big-spoon') !!}Big Spoon</label>
+			<label>{!! Form::checkbox('new_item_categ[2]', 'dessert-spoon') !!}Dessert Spoon</label>
+			<label>{!! Form::checkbox('new_item_categ[3]', 'baby-spoon') !!}Baby Spoon</label>
+			<label>{!! Form::checkbox('new_item_categ[4]', 'big-fork') !!}Big Fork</label>
+			<label>{!! Form::checkbox('new_item_categ[5]', 'dessert-fork') !!}Dessert Fork</label>
+			<label>{!! Form::checkbox('new_item_categ[6]', 'knife') !!}Knife</label>
+			<label>{!! Form::checkbox('new_item_categ[7]', 'serving-spoon') !!}Serving Spoon</label>
+			<label>{!! Form::checkbox('new_item_categ[8]', 'serving-fork') !!}Serving Fork</label>
+			<label>{!! Form::checkbox('new_item_categ[9]', 'cake-server') !!}Cake Server</label>
+			<label>{!! Form::checkbox('new_item_categ[10]', 'ladle') !!}Ladle</label>
+			<label>{!! Form::checkbox('new_item_categ[11]', 'pair') !!}Pair</label>
+			<label>{!! Form::checkbox('new_item_categ[12]', 'christmas') !!}Christmas</label><br>
+
+			<label>{!! Form::checkbox('new_item_categ[20]', 'two-plates') !!}Two Plates</label>
+			<label>{!! Form::checkbox('new_item_categ[21]', 'two-oval-plates') !!}Two Oval Plates</label>
+			<label>{!! Form::checkbox('new_item_categ[22]', 'plate-gravy-boat') !!}Plate Gravy Boat</label>
+			<label>{!! Form::checkbox('new_item_categ[23]', 'three-plates') !!}Three Plates</label>
         </div>
 		</div>
 
 
 		{!! Form::submit('ADD TO CATALOGUE'); !!}
 	{!! Form::close() !!}
+@stop
+
+@section('mustache-templates')
+	@include('mustache_template_search_result')
 @stop

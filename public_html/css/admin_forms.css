@@ -7,83 +7,60 @@ input[type='password']
 	margin: 5px;
 }
 
-p.label
+label
 {
-	display: inline-block;
-	margin: 0;
-}
-
-h2.item-title, h5.item-details
-{
-	margin: 0;
-	padding: 0;
-}
-h2.item-title input
-{
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	font-family: "Roboto Condensed";
-	font-size: 30px;
-	font-weight: 700;
-	color: #000000;
-	font-style: none;
-	text-align: left;
-	text-indent: 0;
-/*border: none;
-border-bottom: 1px dashed #555555;*/
-}
-h5.item-details input
-{
-	margin: 0;
-	padding: 0;
-	float: left;
-	width: 50%;
-	font-weight: 700;
-	font-family: "Roboto Condensed";
-	font-size: 20px;
-	color: #000000;
-	font-style: italic;
-/*border: none;
-border-bottom: 1px dashed #555555;*/
-}
-
-
-/*#cutlery-categ,
-#cutlery-name,
-#cutlery-descr,
-#cutlery-price,
-#cutlery-img
-{
-	float: left;
-	margin: 20px;
-}*/
-#img-preview-container
-{
-	float: left;
-	position: fixed;
-}
-.img-preview
-{
-	display: inline-block;
-	float: left;
-	margin-top: 20px;
-}
-#form-container
-{
-	width: 50%;
-	float: right;
-}
-#form-section
-{
-
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+	font-size: 17px;
 }
 select
 {
-	width: 300px;
-	font-family: "Roboto Condensed", "Source Sans Pro";
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
 	font-size: 30px;
-	margin-bottom: 20px;
+	width: 100%;
+}
+
+#new-item-img
+{
+	display: inline-block;
+	width: 300px;
+	height: 400px;
 	float: left;
-	position: fixed;
+	margin-right: 20px;
+}
+#new-item-details
+{
+	display: inline-block;
+	width: 100%;
+}
+
+#new-item-name,
+#new-item-descr,
+#new-item-price
+{
+	background-color: #FFFFFF;
+	border: none;
+	margin: 5px 0;
+	width: 100%;
+	font-family: "Roboto Condensed", Helvetica, sans-serif;
+}
+#new-item-name
+{
+	font-size: 40px;
+}
+#new-item-descr
+{
+	width: 80%;
+	float: left;
+	font-size: 30px;
+	font-style: italic;
+}
+#new-item-price
+{
+	width: 20%;
+	float: right;
+	font-size: 30px;
+}
+#new-item-category
+{
+	font-size: 30px;
 }
