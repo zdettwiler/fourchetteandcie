@@ -57,7 +57,7 @@
 	<script>
 		$(function() {
 			var imgs = $("#new-item-imgs"),
-				file_reader = new FileReader();
+				file_reader = new FileReader(),
 				form_data = new FormData();
 
 			$('#new-item-imgs').change(function() {

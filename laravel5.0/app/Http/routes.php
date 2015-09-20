@@ -61,9 +61,8 @@ Route::get('/admin/items/pdf', 'AdminItemsController@all_items_pdf');
 Route::get('/admin/items/add', 'AdminItemsController@add_item');
 Route::get('/admin/items/add/cutlery', 'AdminItemsController@add_item');
 Route::post('/admin/items/add', 'AdminItemsController@post_add_item');
+Route::post('/admin/items/img', 'AdminItemsController@post_new_img');
 
-// Route::get('/admin/items/edit/{ref}', 'AdminItemsController@edit_item');
-// Route::post('/admin/items/edit/{ref}', 'AdminItemsController@post_edit_item');
 Route::get('/admin/items/quick-edit/{command}-{ref}-{value?}', 'AdminItemsController@quick_item_edit_command');
 
 // Orders Management

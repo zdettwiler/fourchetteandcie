@@ -1,5 +1,5 @@
 <template id="template-editable-items">
-    <div class='result' item-ref='{{ref}}'>
+    <div class='result' item-ref='{{ref}}' item-img-count='{{ img_count }}'>
         <div class='result-img'>
             <img src="http://fourchetteandcie.com/pictures/{{ref_section}}/500px/{{ref}}.jpg" width="200px" height="200px">
         </div>

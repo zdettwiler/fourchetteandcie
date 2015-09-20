@@ -25,7 +25,6 @@
 			position: relative;
 			width: 100%;
 			height: 42px;
-			z-index: 50;
 			margin: 0 auto 10px auto;
 			padding: 3px 2px;
 			border-radius: 7px;
@@ -205,6 +204,53 @@
 			display: block;
 			margin: auto;
 		}
+
+		#img-manager
+		{
+			display: block;
+			width: 70%;
+			height: 70%;
+			padding: 10px;
+			position: fixed;
+			top: -5000px;
+			left: 15%;
+			background-color: #FFFFFF;
+			z-index: 51;
+			box-shadow: inset 0 10px 20px -20px #000000;
+		}
+		#img-manager h2,
+		#img-manager p
+		{
+			text-align: center;
+			margin: 0;
+		}
+		#img-manager #img-manager-imgs
+		{
+			display: block;
+			margin: auto;
+		}
+		#img-manager #img-manager-imgs img
+		{
+			width: 200px;
+			height: 200px;
+		}
+		#img-manager-imgs .img-container
+		{
+			width: 200px;
+			width: 200px;
+			margin: 5px;
+			position: relative;
+			float: left;
+		}
+		#img-manager-imgs .img-container #progress-bar
+		{
+			position: absolute;
+			bottom: 4px;
+			left: 0px;
+			width: 50%;
+			height: 10px;
+			background-color: #7CFFB1;
+		}
 	</style>
 
 	<script src="http://code.jquery.com/jquery.js"></script>
@@ -238,9 +284,138 @@
 			return false;
 		}
 	</script>
+
+	<script>
+		$(function() {
+			var file_reader = new FileReader(),
+				form_data = new FormData();
+
+			$('body').on('change', '#new-imgs', function() {
+				var i = 0, len = this.files.length, img, file;
+
+				for ( ; i< len ; i++)
+				{
+					file = this.files[i];
+
+					if (!!file.type.match(/image.*/))
+					{
+						file_reader.onloadend = function(event) {
+							show_imgs_to_upload(event.target.result);
+						};
+						file_reader.readAsDataURL(file);
+						// form_data.append("imgs[]", file);
+						form_data.append("new_img", file);
+					}
+				}
+				upload_nem_img(form_data);
+
+
+			});
+
+			$('body').on('click', '.result-img img', function() {
+				var item_ref = $(this).parents('div.result').attr('item-ref');
+				var item_img_count = parseInt($(this).parents('div.result').attr('item-img-count'));
+				form_data.append("ref", item_ref);
+				form_data.append("img_nb", (item_img_count+1));
+				form_data.append("_token", $('input[name=_token]').val());
+
+				build_img_manager(item_ref, item_img_count);
+			});
+
+			$('#fade').click(function() {
+				$('#img-manager').animate({'top': '-5000px'}, 500);
+			})
+
+		});
+
+		function build_img_manager(ref, img_count)
+		{
+			var i=1;
+
+			$('#fade').show();
+			$('#img-manager span.ref-box').html(ref);
+			$('#img-manager-imgs').html('');
+
+			for(i=1 ; i<=img_count ; i++)
+			{
+				if(i == 1)
+				{
+					$('#img-manager-imgs').append("<div class='img-container'><img src='http://fourchetteandcie.com/pictures/"+ ref.substr(0,1) +"/500px/"+ ref +".jpg' width='200px'></div>");
+				}
+				else
+				{
+					$('#img-manager-imgs').append("<div class='img-container'><img src='http://fourchetteandcie.com/pictures/"+ ref.substr(0,1) +"/500px/"+ ref +"_"+ i +".jpg' width='200px'></div>");
+				}
+			}
+
+			$('#img-manager').animate({'top': '60px'}, 500);
+		}
+
+		function upload_nem_img(form_data)
+		{
+			$.ajax({
+				type: 'POST',
+				url: $('form').attr('action'),
+				data: form_data,
+				processData: false,
+				contentType: false,
+				beforeSend: function() {
+					$('#progress-bar').css('width', '0%');
+				},
+				xhr: function() {
+					myXhr = $.ajaxSettings.xhr();
+					if(myXhr.upload)
+					{
+						myXhr.upload.addEventListener('progress', function(event) {
+							if(event.lengthComputable)
+							{
+								var percentComplete = 0.9 * (event.loaded / event.total) * 100;
+								// $('#progress-bar').css('width', percentComplete +'%');
+								$('#progress-bar').animate({'width': percentComplete +'%'}, 200);
+							}
+						}, false);
+					}
+					else
+					{
+						console.log("Uploadress is not supported.");
+					}
+
+					return myXhr;
+				},
+				success: function(response) {
+					response = $.parseJSON(response);
+					$('#progress-bar').animate({'width': 100 +'%'}, 200).delay(200).fadeOut(400, function() {
+						$(this).remove();
+					});
+					$("div.result[item-ref='"+ response.ref +"']").attr('item-img-count', response.img_nb);
+					form_data.append("img_nb", (parseInt(response.img_nb)+1));
+				},
+				error: function(error) {
+					console.log(error);
+					// $('#progress-bar').animate({'width': '100%', 'background-color': '#e74c3c'}, 200).css('box-shadow', '0 0 10px #e74c3c');
+				}
+			})
+		}
+		function show_imgs_to_upload(source)
+		{
+			$('#img-manager-imgs').append("<div class='img-container'><img src='"+ source +"' width='200px'><div id='progress-bar'></div></div>");
+		}
+	</script>
 @stop
 
 @section('content')
+
+	<div id='img-manager'>
+		<h2>Image Manager</h2>
+		<p><span class='ref-box'></span></p>
+
+		<div id='img-manager-imgs'>
+		</div>
+
+		{!! Form::open(['files' => true, 'action' => 'AdminItemsController@post_new_img']) !!}
+			{!! Form::file('new_imgs', ['id'=>'new-imgs']) !!}
+		{!! Form::close() !!}
+	</div>
 
 	<p id='search-info'>try [#]+ref+[space]</i>, <i>&#36;section</i> or <i>@category</i>.</p><br>
 	<div id='search-container'>
@@ -257,7 +432,7 @@
 	<div id='results-box' class='big-results'>
 		@foreach($section_list as $section)
 			@foreach($items[$section] as $item)
-				<div class='result' item-ref='{{ $item->ref }}'>
+				<div class='result' item-ref='{{ $item->ref }}' item-img-count='{{ $item->img_count }}'>
 			        <div class='result-img'>
 			            <img src="http://fourchetteandcie.com/pictures/{{ $item->ref[0] }}/500px/{{ $item->ref }}.jpg" width="200px" height="200px">
 			        </div>

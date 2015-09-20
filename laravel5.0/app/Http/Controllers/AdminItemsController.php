@@ -108,81 +108,6 @@ class AdminItemsController extends Controller
 		}
 	}
 
-	public function edit_item($ref)
-	{
-		$item = new Item($ref);
-		$section = $item->get_sectionfullname();
-
-		return view('admin.edit_item.edit_'.$section)->with('item', $item);
-	}
-
-	public function post_edit_item(Request $request, $ref)
-	{
-		$item = new Item($ref);
-
-		// MAKE RIGHT VALIDATOR FOR RIGHT SECTION
-		$validator = $this->_make_validator_section($request, $item->get_sectionfullname());
-
-		$imgs_count = count($request->imgs);
-
-		// VALIDATE FORM
-		if ($validator->fails())
-		{
-			echo 'Failed Validator<br>';
-			$messages = $validator->messages();
-
-			return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $messages->all()]);
-		}
-		// dd($request->file('imgs'));
-		if(!is_null($request->file('imgs')[0]))
-		{
-			foreach ($request->file('imgs') as $img)
-			{
-				$validator_img = Validator::make(
-					[
-						'img' => $img
-					],
-					[
-						'img' => 'image|mimes:jpeg,bmp,png|max:5000'
-					]
-				);
-
-				if ($validator_img->fails() OR !$img->isValid())
-				{
-					$messages = $validator->messages();
-					return redirect()->back()->with('notification', ['type' => 'negative', 'message' => $img->getClientOriginalName().' has a problem.']);
-				}
-			}
-			$this->_img_upload($request->file('imgs'), $ref);
-		}
-
-
-		// FORM IS OK - SAVE IMGS AND ADD NEW ITEM IN DB
-		if ($validator->passes())
-		{
-
-
-			// make category string
-			$categ = $item->im_ex_plode_categs($request->categs);
-
-			// ADD ITEM TO DATABASE
-
-			$item->set_descr($request->descr);
-			$item->set_stamped($request->stamped);
-			$item->set_price($request->price);
-			// $item->set_img_count($request->img_count);
-			$item->set_categ($request->categs);
-
-			$item->update_db_item();
-
-			// END SWITCH ADD TO DB
-
-			return redirect()->back()->with('notification', ['type' => 'positive', 'message' => 'Item '.$new_ref.' has been successfully added to the database!']);
-		}
-		// END IF FORM OK
-	}
-	// END METHOD post_edit_item()
-
 	public function add_item()
 	{
 		return view('admin.add_item');
@@ -227,6 +152,26 @@ class AdminItemsController extends Controller
 
 	}
 
+	public function post_new_img(Request $request)
+	{
+		$section_ref_code = Config::get('fandc_arrays')['section_ref_code'];
+
+		$imgs[] = Input::file('new_img');
+		$this->_img_upload($imgs, $request->ref.'_'.$request->img_nb);
+
+		DB::table( $section_ref_code[ $request->ref[0] ] )
+			->where('ref', $request->ref)
+			->update([
+				'img_count' => $request->img_nb
+			]);
+
+		echo json_encode([
+			'ref' => $request->ref,
+			'img_nb' => $request->img_nb
+		]);
+
+	}
+
 	private function _img_upload($imgs, $ref)
 	{
 		$imgs_count = count($imgs);
@@ -236,104 +181,53 @@ class AdminItemsController extends Controller
 		$img_path_500px = 'pictures/'.$ref[0].'/500px';
 		$img_path_100px = 'pictures/'.$ref[0].'/100px';
 
-		for($i=0 ; $i<=$imgs_count-1 ; $i++)
+		if(strpos($ref, '_') != false)
 		{
-			// filenames
-			$img_extension = $imgs[$i]->getClientOriginalExtension();
+			list($ref, $img_nb) = explode('_', $ref);
+			$img_extension = $imgs[0]->getClientOriginalExtension();
 
-			if ($i == 0)
-			{
-				$img_name_original = $ref.'_original.'.$img_extension;
-				$img_name_500px =    $ref.         '.'.$img_extension;
-				$img_name_100px =    $ref.   '_thumb.'.$img_extension;
-			}
-			else
-			{
-				$img_name_original = $ref.'_original_'.($i+1).'.'.$img_extension;
-				$img_name_500px =    $ref.         '_'.($i+1).'.'.$img_extension;
-				$img_name_100px =    $ref.   '_thumb_'.($i+1).'.'.$img_extension;
-			}
-
+			$img_name_original = $ref .'_original_'. $img_nb .'.'. $img_extension;
+			$img_name_500px    = $ref .         '_'. $img_nb .'.'. $img_extension;
+			$img_name_100px    = $ref .   '_thumb_'. $img_nb .'.'. $img_extension;
 
 			// save original image in /originals
-			$imgs[$i]->move($img_path_original, $img_name_original);
+			$imgs[0]->move($img_path_original, $img_name_original);
 
 			// make 500px and 100px versions
 			$img = Image::make($img_path_original.'/'.$img_name_original)->resize(500, 500)->save($img_path_500px.'/'.$img_name_500px);
 			$img = Image::make($img_path_original.'/'.$img_name_original)->resize(100, 100)->save($img_path_100px.'/'.$img_name_100px);
 		}
+		else
+		{
+			for($i=0 ; $i<=$imgs_count-1 ; $i++)
+			{
+				// filenames
+				$img_extension = $imgs[$i]->getClientOriginalExtension();
+
+				if ($i == 0)
+				{
+					$img_name_original = $ref.'_original.'.$img_extension;
+					$img_name_500px    = $ref.         '.'.$img_extension;
+					$img_name_100px    = $ref.   '_thumb.'.$img_extension;
+				}
+				else
+				{
+					$img_name_original = $ref.'_original_'.($i+1).'.'.$img_extension;
+					$img_name_500px =    $ref.         '_'.($i+1).'.'.$img_extension;
+					$img_name_100px =    $ref.   '_thumb_'.($i+1).'.'.$img_extension;
+				}
+
+
+				// save original image in /originals
+				$imgs[$i]->move($img_path_original, $img_name_original);
+
+				// make 500px and 100px versions
+				$img = Image::make($img_path_original.'/'.$img_name_original)->resize(500, 500)->save($img_path_500px.'/'.$img_name_500px);
+				$img = Image::make($img_path_original.'/'.$img_name_original)->resize(100, 100)->save($img_path_100px.'/'.$img_name_100px);
+			}
+		}
 
 		return true;
 	}
 
-	private function _make_validator_section(Request $request, $section)
-	{
-		switch($section)
-		{
-
-		//----- CUTLERY ------------------------------
-			case 'cutlery':
-				// vars for cutlery
-				$categs = $request->categs_cutlery;
-				$stamped = $request->stamped_cutlery;
-				$descr = $request->descr_cutlery;
-				$price = $request->price_cutlery;
-				// $imgs = $request->file('img');
-				// dd($request);
-
-				// validator for cutlery
-				$validator = Validator::make(
-					[
-						'section' => $section,
-						'categs'   => $categs,
-						'stamped' => $stamped,
-						'descr'   => $descr,
-						'price'   => $price
-					],
-					[
-						'section' => 'required|in:cutlery,cake-stand', // include more
-						'categs'   => 'required',
-						'stamped' => 'required',
-						'descr'   => 'required',
-						'price'   => 'required|numeric'
-					]
-				);
-			break;
-
-		//----- CAKE STAND ---------------------------
-			case 'cake-stand':
-				$categs = $request->categs;
-				$name = $request->name;
-				$price = $request->price;
-				$imgs = $request->file('img');
-
-				// validator for cake-stand
-				$validator = Validator::make(
-					[
-						'section' => $section,
-						'categs' => $categs,
-						'name' => $name,
-						'price' => $price
-					],
-					[
-						'section' => 'required|in:cutlery,cake-stand', // include more also silly since switch of this
-						'categs' => 'required',
-						'name' => 'required',
-						'price' => 'required|numeric'
-					]
-				);
-			break;
-
-			default:
-				return $request->section;
-				break;
-
-		//----- BRIC-A-BRAC --------------------------
-		//----- FURNITURE ----------------------------
-		//----- LUMINAIRE ----------------------------
-
-		}
-
-		return $validator;
-	}
 }

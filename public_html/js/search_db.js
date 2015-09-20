@@ -233,11 +233,6 @@ $(function() {
 
 	$("#fade").on("click", function() {
 
-		if(previous_request && previous_request.readyState < 4)
-		{
-			previous_request.abort();
-		}
-
 		$("#results-box table").html('');
 		$("#fade").hide();
 		// $('html, body').css({
