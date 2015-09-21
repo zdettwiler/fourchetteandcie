@@ -499,6 +499,11 @@ class OrderValidation
 
 		foreach($VAL_ORDER as $sold_item)
 		{
+			if($sold_item->ref[0] == '_')
+			{
+				continue;
+			}
+			
 			$nb_sold = DB::table($section_ref_code[ $sold_item->ref[0] ])
 				->where('ref', $sold_item->ref)
 				->pluck('nb_sold');

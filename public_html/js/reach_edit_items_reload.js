@@ -50,6 +50,7 @@ $(function() {
 	$("body").on("focusout", ".editable", function() {
 		var new_value = $(this).html();
 		var target = $(this).attr('target');
+		console.log(new_value);
 		reach_edit_items_reload(target +'-'+ new_value);
 	});
 
