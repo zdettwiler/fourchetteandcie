@@ -42,18 +42,18 @@ function reach_edit_items_reload(command)
 $(function() {
 
     // for toggle values
-    $("#results-box").on("click", ".toggleable", function() {
+    $("body").on("click", ".toggleable", function() {
 		var target = $(this).attr("target");
 		reach_edit_items_reload(target);
 	});
 
-	$("#results-box").on("focusout", ".editable", function() {
+	$("body").on("focusout", ".editable", function() {
 		var new_value = $(this).html();
 		var target = $(this).attr('target');
 		reach_edit_items_reload(target +'-'+ new_value);
 	});
 
-    $('#results-box').on("keypress", ".editable", function(event) {
+    $('body').on("keypress", ".editable", function(event) {
         if(event.keyCode == 13)
 		{
 			event.preventDefault();

@@ -229,14 +229,14 @@
 			display: block;
 			margin: auto;
 		}
-		#img-manager #img-manager-imgs img
+		#img-manager #img-manager-imgs img.item-img
 		{
 			width: 200px;
 			height: 200px;
 		}
 		#img-manager-imgs .img-container
 		{
-			width: 200px;
+			height: 200px;
 			width: 200px;
 			margin: 5px;
 			position: relative;
@@ -245,11 +245,20 @@
 		#img-manager-imgs .img-container #progress-bar
 		{
 			position: absolute;
-			bottom: 4px;
+			bottom: 0px;
 			left: 0px;
 			width: 50%;
 			height: 10px;
 			background-color: #7CFFB1;
+		}
+		#img-manager-imgs .img-container .delete-img
+		{
+			position: absolute;
+			top: 5px;
+			right: 5px;
+			height: 20px;
+			width: 20px;
+			cursor: pointer;
 		}
 	</style>
 
@@ -259,8 +268,8 @@
 	<script src="http://www.fourchetteandcie.com/js/mustache.js"></script>
 	{{-- <script src="http://localhost/display-only/fourchetteandcie/public_html/js/search_db.js"></script> --}}
 	<script src="http://www.fourchetteandcie.com/js/search_db.js"></script>
-	{{-- <script src="http://localhost/display-only/fourchetteandcie/public_html/js/reach_edit_items_reload.js"></script> --}}
-	<script src="http://www.fourchetteandcie.com/js/reach_edit_items_reload.js"></script>
+	<script src="http://localhost/display-only/fourchetteandcie/public_html/js/reach_edit_items_reload.js"></script>
+	{{-- <script src="http://www.fourchetteandcie.com/js/reach_edit_items_reload.js"></script> --}}
 
 	<script>
 		function display_response(json_results)
@@ -328,6 +337,11 @@
 
 		});
 
+		function show_imgs_to_upload(source)
+		{
+			$('#img-manager-imgs').append("<div class='img-container'><img src='http://fourchetteandcie.com/pictures/del.png' class='delete-img toggleable' width='20px' height='20px'><img src='"+ source +"' width='200px' class='item-img'><div id='progress-bar'></div></div>");
+		}
+
 		function build_img_manager(ref, img_count)
 		{
 			var i=1;
@@ -340,11 +354,11 @@
 			{
 				if(i == 1)
 				{
-					$('#img-manager-imgs').append("<div class='img-container'><img src='http://fourchetteandcie.com/pictures/"+ ref.substr(0,1) +"/500px/"+ ref +".jpg' width='200px'></div>");
+					$('#img-manager-imgs').append("<div class='img-container'><img src='http://fourchetteandcie.com/pictures/del.png' class='delete-img toggleable' target='DELETE_IMG-"+ ref +"-'  width='20px' height='20px'><img src='http://fourchetteandcie.com/pictures/"+ ref.substr(0,1) +"/500px/"+ ref +".jpg' width='200px' class='item-img'></div>");
 				}
 				else
 				{
-					$('#img-manager-imgs').append("<div class='img-container'><img src='http://fourchetteandcie.com/pictures/"+ ref.substr(0,1) +"/500px/"+ ref +"_"+ i +".jpg' width='200px'></div>");
+					$('#img-manager-imgs').append("<div class='img-container'><img src='http://fourchetteandcie.com/pictures/del.png' class='delete-img toggleable' target='DELETE_IMG-"+ ref +"-"+ i +"'  width='20px' height='20px'><img src='http://fourchetteandcie.com/pictures/"+ ref.substr(0,1) +"/500px/"+ ref +"_"+ i +".jpg' width='200px' class='item-img'></div>");
 				}
 			}
 
@@ -370,7 +384,6 @@
 							if(event.lengthComputable)
 							{
 								var percentComplete = 0.9 * (event.loaded / event.total) * 100;
-								// $('#progress-bar').css('width', percentComplete +'%');
 								$('#progress-bar').animate({'width': percentComplete +'%'}, 200);
 							}
 						}, false);
@@ -396,10 +409,7 @@
 				}
 			})
 		}
-		function show_imgs_to_upload(source)
-		{
-			$('#img-manager-imgs').append("<div class='img-container'><img src='"+ source +"' width='200px'><div id='progress-bar'></div></div>");
-		}
+
 	</script>
 @stop
 

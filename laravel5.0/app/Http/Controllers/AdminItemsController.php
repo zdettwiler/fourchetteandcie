@@ -105,6 +105,10 @@ class AdminItemsController extends Controller
 			case 'EDIT_PRICE':
 				ItemQuickEditing::edit_price($ref, $value);
 				break;
+
+			case 'DELETE_IMG':
+				ItemQuickEditing::delete_img($ref, $value);
+				break;
 		}
 	}
 

@@ -43,8 +43,8 @@
 		MERCI BEAUCOUP POUR VOTRE COMMANDE!
 	</p>
 	<br>
-	<p class="fandc-details">fourchette &amp; cie - 383, rue du général de gaulle - 62110 hénin-beaumont - france<br>
-		nº siret 523087575000016 - fourchetteandcie.com - fourchetteandcie@gmail.com</p>
+	<p class="fandc-details">iris dettwiler - 383, rue du général de gaulle - 62110 hénin-beaumont - france<br>
+		nº siret 523087575000016 - fourchetteandcie.com - fourchetteandcie@gmail.com - +33 (0) 3 61 93 12 54</p>
 
 
 </body>

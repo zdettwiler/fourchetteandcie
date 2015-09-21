@@ -95,7 +95,7 @@ class Item
 				'descr'          => $this->_descr,
 				'name'           => $this->_name,
 				'price'          => $this->_price,
-				'img_count'      => 1, //$this->_img_count,
+				'img_count'      => $this->_img_count,
 				'categ'          => $this->im_ex_plode_categs($this->_categ), // linearising into string
 				'is_new'         => $this->_is_new,
 				'is_best_seller' => $this->_is_best_seller,
