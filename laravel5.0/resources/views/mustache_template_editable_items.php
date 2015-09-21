@@ -7,9 +7,9 @@
         <div style="overflow: hidden">
         <div class="result-details">
             <span class="ref-box">{{ref}}</span>
-            <span class="editable result-name" target="EDIT_NAME-{{ref}}" contenteditable="true">{{name}}</span><br>
+            <span class="editable result-name" target="EDIT_NAME-{{ref}}" contenteditable="true">{{{name}}}</span><br>
             <span class="editable result-price" target="EDIT_PRICE-{{ref}}" contenteditable="true">{{price}}</span>
-            <span class="editable result-descr" target="EDIT_DESCR-{{ref}}" contenteditable="true">{{descr}}</span><br>
+            <span class="editable result-descr" target="EDIT_DESCR-{{ref}}" contenteditable="true">{{{descr}}}</span><br>
             <span class="editable result-categ" target="EDIT_CATEG-{{ref}}" contenteditable="true">{{categ}}</span><br><br>
 
             <div class="is-or-not-{{is_new}} toggleable" target="TOGGLE_NEW-{{ref}}">
