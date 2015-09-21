@@ -100,15 +100,15 @@ class ItemQuickEditing
 //----------------------------------------------------------------------------//
 // EDIT CATEG
 //----------------------------------------------------------------------------//
-    /*public static function edit_categ($ref, $stamped)
+    public static function edit_categ($ref, $categs)
     {
         $item = new Item($ref);
 
-        $item->set_stamped($stamped);
+        $item->set_categ($categs);
         $item->update_db_item();
 
         return false;
-    }*/
+    }
 
 //----------------------------------------------------------------------------//
 // EDIT PRICE

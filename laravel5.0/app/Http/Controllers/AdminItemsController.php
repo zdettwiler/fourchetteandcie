@@ -98,9 +98,9 @@ class AdminItemsController extends Controller
 				ItemQuickEditing::edit_descr($ref, $value);
 				break;
 
-			// case 'EDIT_CATEG':
-			// 	ItemQuickEditing::edit_stamped($ref, $value);
-			// 	break;
+			case 'EDIT_CATEG':
+				ItemQuickEditing::edit_categ($ref, $value);
+				break;
 
 			case 'EDIT_PRICE':
 				ItemQuickEditing::edit_price($ref, $value);
