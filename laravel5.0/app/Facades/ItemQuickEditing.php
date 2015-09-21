@@ -117,6 +117,11 @@ class ItemQuickEditing
     {
         $item = new Item($ref);
 
+        if(!is_numeric($price))
+        {
+            $price = 0.00;
+        }
+
         $item->set_price($price);
         $item->update_db_item();
 

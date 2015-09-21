@@ -62,6 +62,7 @@ Route::get('/admin/items/add', 'AdminItemsController@add_item');
 Route::get('/admin/items/add/cutlery', 'AdminItemsController@add_item');
 Route::post('/admin/items/add', 'AdminItemsController@post_add_item');
 Route::post('/admin/items/img', 'AdminItemsController@post_new_img');
+Route::get('/admin/items/recalculate-sales', 'AdminItemsController@recalculate_cutlery_sales');
 
 Route::get('/admin/items/quick-edit/{command}-{ref}-{value?}', 'AdminItemsController@quick_item_edit_command');
 

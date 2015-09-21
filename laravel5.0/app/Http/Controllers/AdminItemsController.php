@@ -234,4 +234,54 @@ class AdminItemsController extends Controller
 		return true;
 	}
 
+	public function recalculate_cutlery_sales()
+	{
+		$section_ref_code = Config::get('fandc_arrays')['section_ref_code'];
+
+		// reinitialise nb_sold
+		DB::table('cutlery')
+			->update([
+						'nb_sold' => 0
+			]);
+
+		// get every paid order
+		$orders = DB::table('orders')
+			->where('is_payed', 1)
+			->lists('val_order');
+
+		foreach($orders as $order)
+		{
+			$order = json_decode($order);
+
+			// go trough all items
+			foreach($order as $sold_item)
+			{
+				if($sold_item->ref[0] == '_')
+				{
+					continue;
+				}
+
+				$nb_sold = DB::table($section_ref_code[ $sold_item->ref[0] ])
+					->where('ref', $sold_item->ref)
+					->pluck('nb_sold');
+
+				// echo $sold_item->name .': '. $nb_sold .' -> '. ($nb_sold + $sold_item->qty) .'<br>';
+				DB::table($section_ref_code[ $sold_item->ref[0] ])
+					->where('ref', $sold_item->ref)
+					->update([
+								'nb_sold' => $nb_sold + $sold_item->qty
+							]);
+			}
+		}
+
+		$sales = DB::table('cutlery')
+			->select('ref', 'name', 'nb_sold')
+			->orderBy('nb_sold', 'desc')
+			->take(5)
+			->get();
+
+		// dd($sales);
+		echo json_encode($sales);
+	}
+
 }
