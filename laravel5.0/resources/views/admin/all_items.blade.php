@@ -268,8 +268,8 @@
 	<script src="http://www.fourchetteandcie.com/js/mustache.js"></script>
 	{{-- <script src="http://localhost/display-only/fourchetteandcie/public_html/js/search_db.js"></script> --}}
 	<script src="http://www.fourchetteandcie.com/js/search_db.js"></script>
-	<script src="http://localhost/display-only/fourchetteandcie/public_html/js/reach_edit_items_reload.js"></script>
-	{{-- <script src="http://www.fourchetteandcie.com/js/reach_edit_items_reload.js"></script> --}}
+	{{-- <script src="http://localhost/display-only/fourchetteandcie/public_html/js/reach_edit_items_reload.js"></script> --}}
+	<script src="http://www.fourchetteandcie.com/js/reach_edit_items_reload.js"></script>
 
 	<script>
 		function display_response(json_results)
