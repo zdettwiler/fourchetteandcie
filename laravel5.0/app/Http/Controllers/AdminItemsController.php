@@ -201,6 +201,7 @@ class AdminItemsController extends Controller
 			$img = Image::make($img_path_original.'/'.$img_name_original)->resize(500, 500)->save($img_path_500px.'/'.$img_name_500px);
 			$img = Image::make($img_path_original.'/'.$img_name_original)->resize(100, 100)->save($img_path_100px.'/'.$img_name_100px);
 		}
+		// if adding just the img, not the whole item
 		else
 		{
 			for($i=0 ; $i<=$imgs_count-1 ; $i++)

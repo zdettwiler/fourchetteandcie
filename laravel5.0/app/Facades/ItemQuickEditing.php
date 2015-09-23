@@ -148,11 +148,13 @@ class ItemQuickEditing
             $img_nb = '';
         }
 
-        unlink($path_originals . $ref .'_original'. $_.$img_nb .'.jpg');
-        unlink($path_100px . $ref .'_thumb'. $_.$img_nb .'.jpg');
-        unlink($path_500px . $ref.$_.$img_nb .'.jpg');
+        if(file_exists($path_originals . $ref .'_original'. $_.$img_nb .'.jpg'))
+            unlink($path_originals . $ref .'_original'. $_.$img_nb .'.jpg');
+        if(file_exists($path_100px . $ref .'_thumb'. $_.$img_nb .'.jpg'))
+            unlink($path_100px . $ref .'_thumb'. $_.$img_nb .'.jpg');
+        if(file_exists($path_500px . $ref.$_.$img_nb .'.jpg'))
+            unlink($path_500px . $ref.$_.$img_nb .'.jpg');
 
-        echo 'deleted '.$ref .'_'. $img_nb .'.jpg <br>';
         $item->set_img_count($item->get_img_count() - 1);
         $item->update_db_item();
 
@@ -163,7 +165,6 @@ class ItemQuickEditing
 
         for($i=$img_nb+1 ; $i<=$item->get_img_count()+1 ; $i++)
         {
-            echo $i;
             if($i == 2)
             {
                 rename(
@@ -197,6 +198,6 @@ class ItemQuickEditing
 
         }
 
-        // echo 'EDIT_PRICE-'. $ref .'-'. $item->get_price();
+        echo 'DELETE_IMG-'. $ref .'-'. $img_nb;
     }
 }

@@ -29,6 +29,10 @@ function reach_edit_items_reload(command)
 				$("span[target='"+ response[0] +"-"+ response[1] +"']").removeClass('editing').addClass('editable');
 				$("span[target='"+ response[0] +"-"+ response[1] +"']").html(response[2]);
 			}
+			else if(response[0].substr(0,10) == 'DELETE_IMG')
+			{
+				$('img[target='+ response[0] +'-'+ response[1] +'-'+ response[2] +']').parents('div.img-container').remove();
+			}
 
 
 		},

@@ -354,7 +354,7 @@
 			{
 				if(i == 1)
 				{
-					$('#img-manager-imgs').append("<div class='img-container'><img src='http://fourchetteandcie.com/pictures/del.png' class='delete-img toggleable' target='DELETE_IMG-"+ ref +"-'  width='20px' height='20px'><img src='http://fourchetteandcie.com/pictures/"+ ref.substr(0,1) +"/500px/"+ ref +".jpg' width='200px' class='item-img'></div>");
+					$('#img-manager-imgs').append("<div class='img-container'><img src='http://fourchetteandcie.com/pictures/del.png' class='delete-img toggleable' target='DELETE_IMG-"+ ref +"-"+ i +"'  width='20px' height='20px'><img src='http://fourchetteandcie.com/pictures/"+ ref.substr(0,1) +"/500px/"+ ref +".jpg' width='200px' class='item-img'></div>");
 				}
 				else
 				{
